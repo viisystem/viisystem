@@ -1,0 +1,42 @@
+# Installation directory
+#RewriteBase /
+
+
+# Protect hidden files from being viewed
+#	Order Deny,Allow
+#	Deny From All
+
+
+# Protect application and system files from being viewed
+#RewriteRule ^(modules|system) - [F,L]
+
+
+# Turn on URL rewriting
+RewriteEngine On
+
+
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+
+# remove trailing slash
+RewriteRule ^(.*)/$ http://%{HTTP_HOST}/$1 [L,R=301]
+
+# 301
+RewriteRule ^bitrix24$ /vi/bitrix24 [R=301,L]
+
+
+RewriteCond %{HTTP_HOST} ^let\.vn
+RewriteRule ^xs(.*)$ http:\/\/xs3m.com\/xs$1 [L,R=301]
+
+
+#RewriteCond $1 !^(application|assets|uploads)
+# Allow any files or directories that exist to be displayed directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+
+#
+# Rewrite all other URLs to index.php/URL
+#RewriteRule ^xem-phim/(.*)/f([0-9]*).(.*) index.php/frontend/film/items/1 [F]
+RewriteRule .* index.php [L]
