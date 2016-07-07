@@ -17,15 +17,14 @@
         "php": ">=5.4.0",
         "yiisoft/yii2": ">=2.0.6",
         "yiisoft/yii2-bootstrap": "*",
-        "yiisoft/yii2-swiftmailer": "*"
+        "yiisoft/yii2-swiftmailer": "*",
+        "viisystem/vii-common": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
         "yiisoft/yii2-debug": "*",
         "yiisoft/yii2-gii": "*",
-        "yiisoft/yii2-faker": "*",
-
-        "viisystem/vii-common": "dev-master"
+        "yiisoft/yii2-faker": "*"
     },
     "config": {
         "process-timeout": 1800
@@ -41,8 +40,11 @@
     },
     "repositories": [
         {
-            "url": "https://github.com/viisystem/vii-common.git",
-            "type": "git"
+            "type": "path",
+            "url": "packages/vii-common",
+            "options": {
+                "symlink": true
+            }
         }
     ]
 }
