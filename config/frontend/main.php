@@ -16,10 +16,7 @@ return [
     ],
     'modules' => [
         'system' => [
-            'class' => 'common\modules\system\frontend\Module'
-        ],
-        'user' => [
-            'class' => 'common\modules\user\frontend\Module'
+            'class' => 'viisystem\common\frontend\Module'
         ],
     ]
 ];
