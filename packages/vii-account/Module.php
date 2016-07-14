@@ -1,6 +1,6 @@
 <?php
 
-namespace viisystem\common;
+namespace viisystem\account;
 
 class Module extends \app\classes\Module
 {

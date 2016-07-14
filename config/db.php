@@ -1,12 +1,4 @@
 <?php
-$host = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '';
-$ssh = gethostbyname(gethostname());
-$mongodb = '';
-if (in_array($host, ['demo.com'])) {
-    $mongodb = 'mongodb://localhost:27017/demo';
-} else {
-    $mongodb = 'mongodb://localhost:27017/default';
-}
 
 return [
     'components' => [
@@ -30,7 +22,7 @@ return [
         ],
         'mongodb' => [
             'class' => '\yii\mongodb\Connection',
-            'dsn' => $mongodb,
+            'dsn' => 'mongodb://localhost:27017/default',
         ],
     ],
 ];
