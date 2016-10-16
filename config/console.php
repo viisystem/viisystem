@@ -1,20 +1,10 @@
 <?php
-$host = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '';
-if (in_array($host, ['demo.com'])) {
-    $project = 'demo';
-} else {
-    $project = 'default';
-}
-
-if (isset($_GET['project']))
-    $project = $_GET['project'];
 
 $config = [
-    'id' => 'basic-console',
+    'id' => 'vii-console',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',
-    'extensions' => require(__DIR__ . '/../vendor/yiisoft/extensions.php'),
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -27,16 +17,30 @@ $config = [
                 ],
             ],
         ],
+        'db' => [
+			'class' => 'yii\db\Connection',
+			'dsn' => 'mysql:host=localhost;dbname=test',
+			'username' => 'root',
+			'password' => '',
+			'charset' => 'utf8',
+		],
     ],
+    //'params' => $params,
+    /*
+    'controllerMap' => [
+        'fixture' => [ // Fixture generation command line.
+            'class' => 'yii\faker\FixtureController',
+        ],
+    ],
+    */
 ];
 
+if (YII_ENV_DEV) {
+    // configuration adjustments for 'dev' environment
+    $config['bootstrap'][] = 'gii';
+    $config['modules']['gii'] = [
+        'class' => 'yii\gii\Module',
+    ];
+}
 
-// Merge data config
-$configs = array_replace_recursive(
-    require(__DIR__ . '/db.php'),
-    require(__DIR__ . '/params.php'),
-    $config,
-    require(__DIR__ . '/project/'.$project.'/common.php')
-);
-
-return $configs;
+return $config;

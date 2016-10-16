@@ -1,79 +1,77 @@
 <?php
-
-return [
-    'timeZone' => 'Asia/Ho_Chi_Minh',
+$config = [
+    'id' => 'vii-system',
+    'basePath' => dirname(__DIR__),
+	'vendorPath' => dirname(__DIR__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor',
+    'bootstrap' => ['log'],
     'components' => [
-        'errorHandler' => [
-            'maxSourceLines' => 20,
-        ],
         'request' => [
-            'enableCookieValidation' => true,
-            'enableCsrfValidation' => true,
-            'cookieValidationKey' => 'letyii@!$(!&@',
+            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+            'cookieValidationKey' => 'fjdslkfjsdklafjs83454',
         ],
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
         ],
-        'authClientCollection' => [
-            'class' => 'yii\authclient\Collection',
-            'clients' => [
-                'facebook' => [
-                    'class' => 'yii\authclient\clients\Facebook',
-                    'clientId' => '205949952886967',
-                    'clientSecret' => 'bfc0c11ada1ab56ec57f459ce3d06b63',
-                    'title' => '',
-                    'viewOptions' => [
-                        'popupWidth' => 800,
-                        'popupHeight' => 500
-                    ]
+        'user' => [
+            'identityClass' => 'app\models\User',
+            'enableAutoLogin' => true,
+        ],
+        'errorHandler' => [
+            'errorAction' => 'dashboard/error',
+        ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            // send all mails to a file by default. You have to set
+            // 'useFileTransport' to false and configure a transport
+            // for the mailer to send real emails.
+            'useFileTransport' => true,
+        ],
+        'log' => [
+            'traceLevel' => YII_DEBUG ? 3 : 0,
+            'targets' => [
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['error', 'warning'],
                 ],
             ],
         ],
-        'imageCache' => [
-            'class' => 'letyii\imagecache\imageCache',
-            'cachePath' => '@app/uploads/cache',
-            'cacheUrl' => '@web/uploads/cache',
-        ],
-        'assetManager' => [
-            'bundles' => [
-                'yii\web\JqueryAsset' => [
-                    'js' => [
-                        'jquery.min.js',
-                    ]
-                ],
-                'yii\bootstrap\BootstrapAsset' => [
-                    'css' => [
-                        'css/bootstrap.min.css',
-                    ],
-                ],
-                'yii\bootstrap\BootstrapPluginAsset' => [
-                    'js' => [
-                        'js/bootstrap.min.js',
-                    ],
-                ],
-            ],
-        ],
-        'i18n' => [
-            'translations' => [
-                '*' => ['class' => 'yii\i18n\PhpMessageSource', 'basePath' => '@app/messages'],
-            ]
-        ],
-        'formatter' => [
-            'dateFormat' => 'dd-MM-yyyy',
-            'decimalSeparator' => '.',
-            'thousandSeparator' => ',',
-            'currencyCode' => 'VND',
-            'timeZone' => 'Asia/Ho_Chi_Minh',
-            'nullDisplay' => '',
-        ],
+        'db' => [
+			'class' => 'yii\db\Connection',
+			'dsn' => 'mysql:host=localhost;dbname=test',
+			'username' => 'root',
+			'password' => '',
+			'charset' => 'utf8',
+		],
+		'i18n' => [
+			'translations' => [
+				'*' => ['class' => 'yii\i18n\PhpMessageSource'],
+			]
+		],
     ],
-    'modules' => [
-        'gridview' => [
-            'class' => '\kartik\grid\Module',
-        ],
-        'datecontrol' =>  [
-            'class' => '\kartik\datecontrol\Module'
-        ],
-    ]
+	'timeZone' => 'Asia/Ho_Chi_Minh',
+	'language' => 'vi',
+	'modules' => [
+		'dashboard' => [
+			'class' => 'app\packages\dashboard\Module',
+		],
+		'user-account' => [
+			'class' => 'app\packages\user-account\Module',
+		],
+	],
+    //'params' => $params,
 ];
+
+if (YII_ENV_DEV) {
+    // configuration adjustments for 'dev' environment
+    $config['bootstrap'][] = 'debug';
+    $config['modules']['debug'] = [
+        'class' => 'yii\debug\Module',
+    ];
+
+    $config['bootstrap'][] = 'gii';
+    $config['modules']['gii'] = [
+        'class' => 'yii\gii\Module',
+    ];
+}
+
+return $config;
