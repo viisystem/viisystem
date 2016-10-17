@@ -18,12 +18,7 @@
 		"yiisoft/yii2": "*",
 		"yiisoft/yii2-bootstrap": "*",
 		"yiisoft/yii2-swiftmailer": "*",
-		"yiisoft/yii2-jui": "*",
-		"yiidoc/yii2-redactor": "*",
-		"creocoder/yii2-nested-sets": "@dev",
-		"johnitvn/yii2-rbac-plus": "*",
-		"johnitvn/yii2-user-plus": "*",
-		"mihaildev/yii2-elfinder": "*"
+		"yiisoft/yii2-jui": "*"
 	},
 	"scripts": {
 		"post-create-project-cmd": [
