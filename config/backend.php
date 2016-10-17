@@ -26,6 +26,17 @@ $config = [
                 //'<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/backend/<controller>/<action>',
             ]
         ],
+		'db' => [
+			'class' => 'yii\db\Connection',
+			'dsn' => 'mysql:host=localhost;dbname=test',
+			'username' => 'root',
+			'password' => '',
+			'charset' => 'utf8',
+		],
+		'mongodb' => [
+            'class' => '\yii\mongodb\Connection',
+            'dsn' => 'mongodb://viidev:khongphaiem123!@#@52.77.56.164:27017/viidev',
+        ],
 	],
 ];
 

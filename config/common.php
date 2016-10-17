@@ -17,7 +17,7 @@ $config = [
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
-            'errorAction' => 'dashboard/error',
+            'errorAction' => 'dashboard/backend/error',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
@@ -35,13 +35,6 @@ $config = [
                 ],
             ],
         ],
-        'db' => [
-			'class' => 'yii\db\Connection',
-			'dsn' => 'mysql:host=localhost;dbname=test',
-			'username' => 'root',
-			'password' => '',
-			'charset' => 'utf8',
-		],
 		'i18n' => [
 			'translations' => [
 				'*' => ['class' => 'yii\i18n\PhpMessageSource'],

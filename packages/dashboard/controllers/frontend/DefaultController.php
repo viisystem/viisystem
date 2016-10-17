@@ -1,6 +1,6 @@
 <?php
 
-namespace app\packages\dashboard\controllers\backend;
+namespace app\packages\dashboard\controllers\frontend;
 
 use yii\web\Controller;
 
@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function actionIndex()
     {
-        echo \yii\helpers\Url::to(['/account/backend/default/index']);
+        echo 'Frontend';
     }
 }
