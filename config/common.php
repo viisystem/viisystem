@@ -47,8 +47,8 @@ $config = [
 		'dashboard' => [
 			'class' => 'app\packages\dashboard\Module',
 		],
-		'user-account' => [
-			'class' => 'app\packages\user-account\Module',
+		'account' => [
+			'class' => 'app\packages\account\Module',
 		],
 	],
     //'params' => $params,
