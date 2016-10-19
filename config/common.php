@@ -2,7 +2,6 @@
 $config = [
     'id' => 'vii-system',
     'basePath' => dirname(__DIR__),
-	'vendorPath' => dirname(__DIR__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor',
     'bootstrap' => ['log'],
     'components' => [
         'request' => [

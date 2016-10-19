@@ -9,7 +9,7 @@ $config = [
 			'errorAction' => 'dashboard/backend/error',
 		],
 		'urlManager' => [
-            'enablePrettyUrl' => true,
+            'enablePrettyUrl' => false,
             'showScriptName' => true,
             'rules' => [
                 //'gii/<controller:\w+>' => 'gii/<controller>/index',
@@ -38,6 +38,8 @@ $config = [
             'dsn' => 'mongodb://viidev:khongphaiem123!@#@52.77.56.164:27017/viidev',
         ],
 	],
+	'layout' => 'backend',
+	'layoutPath' => '@app/themes/inspinia/layouts',
 ];
 
 $configs = array_replace_recursive($common, $config);
