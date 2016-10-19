@@ -50,7 +50,7 @@ app\themes\inspinia\assets\AppAsset::register($this);
                         <a href="<?=yii\helpers\Url::to(['/dashboard/backend/default'])?>"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
                     </li>
 					<li>
-                        <a href="javascript:void(0)"><i class="fa fa-th-large"></i> <span class="nav-label">Account</span> <span class="fa arrow"></span></a>
+                        <a href="javascript:void(0)"><i class="fa fa-user"></i> <span class="nav-label">Account</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="<?=yii\helpers\Url::to(['/account/backend/user'])?>">User</a></li>
                         </ul>
