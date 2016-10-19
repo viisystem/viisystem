@@ -8,7 +8,6 @@ class DefaultController extends Controller
 {
     public function actionIndex()
     {
-        //echo \yii\helpers\Url::to(['/account/backend/default/index']);
 		return $this->render('index');
     }
 }
