@@ -8,3 +8,14 @@ and open the template in the editor.
     Author     : Minh Nguyen
 */
 
+table.vii-detail-view th {
+    color: gray;
+    font-weight: normal;
+    text-align: right;
+    white-space: nowrap;
+    width: 100px;
+}
+
+table.vii-detail-view td {
+    font-weight: bold;
+}

@@ -33,27 +33,42 @@ $this->params['breadcrumbs'][] = $this->title;
 							],
 						]) ?>
 					</p>
-					<div class="table-responsive">
-						<?= DetailView::widget([
-							'model' => $model,
-							'attributes' => [
-								'_id',
-								'username',
-								'password',
-								'name',
-								'birth_date',
-								'gender',
-								'emails',
-								'addresses',
-								'description',
-								'auth_key',
-								'token',
-								'created_date',
-								'updated_date',
-								'last_login_datetime',
-								'data',
-							],
-						]) ?>
+					
+					<div class="row">
+						<div class="col-md-6">
+							<div class="table-responsive">
+								<?= DetailView::widget([
+									'model' => $model,
+									'attributes' => [
+										'username',
+										'password',
+										'displayName',
+										'birth_date',
+										'gender',
+										'description',
+									],
+									'options' => ['class' => 'table table-borderless vii-detail-view'],
+								]) ?>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="table-responsive">
+								<?= DetailView::widget([
+									'model' => $model,
+									'attributes' => [
+										'displayEmails',
+										'displayAddresses',
+										'auth_key',
+										'token',
+										//'created_date',
+										//'updated_date',
+										'last_login_datetime',
+										//'data',
+									],
+									'options' => ['class' => 'table table-borderless vii-detail-view'],
+								]) ?>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

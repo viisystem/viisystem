@@ -49,6 +49,9 @@ $config = [
 		'account' => [
 			'class' => 'app\packages\account\Module',
 		],
+		'article' => [
+			'class' => 'app\packages\article\Module',
+		],
 	],
     //'params' => $params,
 ];

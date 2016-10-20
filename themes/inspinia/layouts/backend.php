@@ -53,6 +53,14 @@ app\themes\inspinia\assets\AppAsset::register($this);
                         <a href="javascript:void(0)"><i class="fa fa-user"></i> <span class="nav-label">Account</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="<?=yii\helpers\Url::to(['/account/backend/user'])?>">User</a></li>
+							<li><a href="<?=yii\helpers\Url::to(['/account/backend/permission'])?>">Permission</a></li>
+                        </ul>
+                    </li>
+					<li>
+                        <a href="javascript:void(0)"><i class="fa fa-newspaper-o"></i> <span class="nav-label">Article</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+							<li><a href="<?=yii\helpers\Url::to(['/article/backend/category'])?>">Category</a></li>
+							<li><a href="<?=yii\helpers\Url::to(['/article/backend/post'])?>">Post</a></li>
                         </ul>
                     </li>
                 </ul>

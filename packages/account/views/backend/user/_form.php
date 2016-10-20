@@ -21,8 +21,8 @@ use yii\widgets\ActiveForm;
 					</div>
 				</div>
 				<div class="ibox-content">
+					<?php $form = ActiveForm::begin(); ?>
 					<div class="row">
-						<?php $form = ActiveForm::begin(); ?>
 						<div class="col-md-6">
 							<div class="row">
 								<div class="col-md-6">
@@ -33,13 +33,16 @@ use yii\widgets\ActiveForm;
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-md-4">
+								<div class="col-md-2">
+									<?= $form->field($model, 'name[prefix]')->label(Yii::t('account', 'Prefix')) ?>
+								</div>
+								<div class="col-md-3">
 									<?= $form->field($model, 'name[first]')->label(Yii::t('account', 'First Name')) ?>
 								</div>
 								<div class="col-md-4">
 									<?= $form->field($model, 'name[middle]')->label(Yii::t('account', 'Middle Name')) ?>
 								</div>
-								<div class="col-md-4">
+								<div class="col-md-3">
 									<?= $form->field($model, 'name[last]')->label(Yii::t('account', 'Last Name')) ?>
 								</div>
 							</div>
@@ -58,35 +61,60 @@ use yii\widgets\ActiveForm;
 									]) ?>
 								</div>
 							</div>
-
-						
-						<?= $form->field($model, 'description') ?>
-
-						
+							<div class="row">
+								<div class="col-md-12">
+									<?= $form->field($model, 'description')->textarea() ?>
+								</div>
+							</div>
 						</div>
 						<div class="col-md-6">
-							<?= $form->field($model, 'emails')->widget(\yii\widgets\MaskedInput::className(),[
-								'clientOptions' => [
-									'alias' =>  'email'
-								],
-							]) ?>
-							<?= $form->field($model, 'addresses') ?>
-
-
+							<div class="row">
+								<div class="col-md-12">
+									<?= $form->field($model, 'emails[0][address]')->widget(\yii\widgets\MaskedInput::className(),[
+										'options' => [
+											'id'=>'email_id_1',
+											'class'=>'form-control',
+										],
+										'clientOptions' => [ 'alias' => 'email' ],
+									])->label(Yii::t('account', 'Email')) ?>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-3">
+									<?= $form->field($model, 'addresses[0][type]')->label(Yii::t('account', 'Addres Type')) ?>
+								</div>
+								<div class="col-md-9">
+									<?= $form->field($model, 'addresses[0][street]')->label(Yii::t('account', 'Street')) ?>
+								</div>
+								<div class="col-md-4">
+									<?= $form->field($model, 'addresses[0][city]')->label(Yii::t('account', 'City')) ?>
+								</div>
+								<div class="col-md-4">
+									<?= $form->field($model, 'addresses[0][state]')->label(Yii::t('account', 'State')) ?>
+								</div>
+								<div class="col-md-2">
+									<?= $form->field($model, 'addresses[0][zip]')->label(Yii::t('account', 'Zip')) ?>
+								</div>
+								<div class="col-md-2">
+									<?= $form->field($model, 'addresses[0][country]')->label(Yii::t('account', 'Country')) ?>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<?= $form->field($model, 'token') ?>
+								</div>
+							</div>
+							<?php /*
 
 							<?= $form->field($model, 'auth_key') ?>
-
 							<?= $form->field($model, 'token') ?>
-
-							<?= $form->field($model, 'data') ?>
+							<?= $form->field($model, 'data') ?> */ ?>
 						</div>
 					</div>
-
-						<div class="form-group">
-							<?= Html::submitButton($model->isNewRecord ? Yii::t('account', 'Create') : Yii::t('account', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-						</div>
-
-						<?php ActiveForm::end(); ?>
+					<div class="form-group" style="text-align:center">
+						<?= Html::submitButton($model->isNewRecord ? Yii::t('account', 'Create') : Yii::t('account', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+					</div>
+					<?php ActiveForm::end(); ?>
 					</div>
 				</div>
 			</div>

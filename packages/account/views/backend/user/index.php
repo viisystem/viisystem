@@ -31,14 +31,32 @@ $this->params['breadcrumbs'][] = $this->title;
 						'dataProvider' => $dataProvider,
 						'filterModel' => $searchModel,
 						'columns' => [
-							['class' => 'yii\grid\SerialColumn'],
-
-							//'_id',
-							'username',
+							/*[
+								'class' => 'yii\grid\SerialColumn',
+								'headerOptions'=>['style'=>'width:30px;'],
+							],*/
+							[
+								'class' => 'yii\grid\CheckboxColumn',
+								'headerOptions'=>['style'=>'width:30px;'],
+							],
+							[
+								'attribute'=>'username',
+								'headerOptions'=>['style'=>'width:150px;'],
+								'format'=>'raw',
+								'value'=>function($item){
+									return Html::a($item->username,['view', 'id'=> strval($item->_id)]);
+								},
+							],
 							//'password',
-							'name',
-							'birth_date',
-							// 'gender',
+							'displayName',
+							[
+								'attribute'=>'gender',
+								'headerOptions'=>['style'=>'width:50px;'],
+							],
+							[
+								'attribute'=>'birth_date',
+								'headerOptions'=>['style'=>'width:100px;'],
+							],
 							// 'emails',
 							// 'addresses',
 							// 'description',
@@ -49,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
 							// 'last_login_datetime',
 							// 'data',
 
-							['class' => 'yii\grid\ActionColumn'],
+							['class'=>'yii\grid\ActionColumn','headerOptions'=>['style'=>'width:70px;']],
 						],
 					]); ?>
 					</div>

@@ -12,13 +12,14 @@ use app\packages\account\models\User;
  */
 class UserSearch extends User
 {
-    /**
+	public $displayName;
+	/**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['_id', 'username', 'password', 'name', 'birth_date', 'gender', 'emails', 'addresses', 'description', 'auth_key', 'token', 'created_date', 'updated_date', 'last_login_datetime', 'data'], 'safe'],
+            [['_id', 'username', 'password', 'name', 'birth_date', 'gender', 'emails', 'addresses', 'description', 'auth_key', 'token', 'created_date', 'updated_date', 'last_login_datetime', 'data', 'displayName'], 'safe'],
         ];
     }
 
