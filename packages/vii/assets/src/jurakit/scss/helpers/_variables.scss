@@ -1,0 +1,49 @@
+//@import "_variables_bootstrap";
+$fa-font-path: "http://assets.jurakit.com/v2.0/fonts/font-awesome/fonts" !default;
+
+
+$default-padding-left:      15px !default;
+$default-padding-right:     15px !default;
+
+
+$base-color-scheme-1: inherit !default; // Điểm nhấn nav, widget, button
+$base-color-scheme-2: inherit !default; // Điểm nhấn màu text
+$base-color-scheme-3: inherit !default; //
+$base-color-scheme-4: inherit !default; //
+$base-color-scheme-5: inherit !default; //
+
+
+
+$base-highlight-color: #00bcd4 !default;
+
+
+$base-assets-url: 'http://assets.jurakit.com/v2.0' !default;
+$base-margin-size: 15px !default;
+$base-padding-size: 15px !default;
+$base-divider-color: #efefef !default;
+
+$base-bg-color: #fff !default;
+$base-bg-highlight-color: $base-highlight-color !default;
+
+$base-border-color: #ececec !default; // #e8e8e8
+$base-border-highlight-color: $base-highlight-color !default;
+
+$base-text-color: #333 !default;
+$base-text-color-hover: darken($base-highlight-color, 8%) !default;
+$base-text-link-color: $base-text-color !default;
+$base-text-link-color-hover: $base-highlight-color !default;
+$base-text-inverse-color: #fff !default;
+$base-text-inverse-color-hover: #fff !default;
+
+$base-text-featured-color: #d90000 !default;
+$base-text-strike-color: #bbb !default;
+
+$base-button-color: #fff !default;
+$base-button-color-inverse: #333 !default;
+$base-button-bg-color: $base-highlight-color !default;
+$base-button-border-color: darken($base-button-bg-color, 3%) !default;
+$base-button-hover-color: #fff !default;
+$base-button-hover-bg-color: darken($base-button-bg-color, 3%) !default;
+$base-button-hover-border-color: darken($base-button-hover-bg-color, 3%) !default;
+
+

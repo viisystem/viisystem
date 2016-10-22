@@ -3,6 +3,9 @@ $config = [
     'id' => 'vii-system',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+	'aliases' => [
+		'@vii' => dirname(__DIR__) . '/packages/vii'
+	],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -36,7 +39,14 @@ $config = [
         ],
 		'i18n' => [
 			'translations' => [
-				'*' => ['class' => 'yii\i18n\PhpMessageSource'],
+				'*' => [
+					'class' => 'yii\i18n\PhpMessageSource',
+					'basePath' => '@app/messages'
+				],
+				'category' => [
+					'class' => 'yii\i18n\PhpMessageSource',
+					'basePath' => '@app/packages/category/messages'
+				],
 			]
 		],
     ],
@@ -52,8 +62,25 @@ $config = [
 		'article' => [
 			'class' => 'app\packages\article\Module',
 		],
+		'category' => [
+			'class' => 'app\packages\category\Module',
+		],
 	],
-    //'params' => $params,
+    'params' => [
+		'multilingual' => 0,
+		'languageSource' => 'vi', // Dùng cho translate
+		'languageDefault' => 'vi',
+		'languageBackend' => 'vi',
+		'languageFrontend' => 'vi',
+		'languageSupport' => [
+			'vi' => 'Tiếng Việt',
+			'en' => 'English'
+		],
+
+		'mobileDetect' => [
+			'isDesktop' => true
+		]
+	],
 ];
 
 if (YII_ENV_DEV) {
@@ -66,6 +93,11 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
+		'generators' => [
+			'mongoDbModel' => [
+				'class' => 'yii\mongodb\gii\model\Generator'
+			]
+		]
     ];
 }
 
