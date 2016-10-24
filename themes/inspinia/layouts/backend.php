@@ -63,6 +63,12 @@ app\themes\inspinia\assets\AppAsset::register($this);
 							<li><a href="<?=yii\helpers\Url::to(['/article/backend/post'])?>">Post</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="javascript:void(0)"><i class="fa fa-newspaper-o"></i> <span class="nav-label">Category</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="<?=yii\helpers\Url::to(['/category/backend/category'])?>">Category</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -193,6 +199,7 @@ app\themes\inspinia\assets\AppAsset::register($this);
 
         </nav>
         </div>
+
         <div class="row">
             <div class="col-lg-12">
                 <div class="wrapper wrapper-content">

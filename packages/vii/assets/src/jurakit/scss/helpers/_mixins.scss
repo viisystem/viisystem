@@ -1,0 +1,72 @@
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin box-shadow($box-shadow) {
+  -webkit-box-shadow: $box-shadow;
+  -moz-box-shadow: $box-shadow;
+  -ms-box-shadow: $box-shadow;
+  box-shadow: $box-shadow;
+}
+
+@mixin transition($transition: all .35s ease) {
+  -webkit-transition: $transition;
+  transition: $transition;
+}
+
+@mixin transform($transform) {
+  -webkit-transform: $transform;
+  transform: $transform;
+}
+
+@mixin animation($animation) {
+  -webkit-animation: $animation;
+  animation: $animation;
+}
+
+@mixin arrow-base() {
+  display: block;
+  width: 0;
+  height: 0;
+  content: "";
+}
+@mixin arrow-bottom() {
+  @include arrow-base();
+  margin-top: 8px;
+  margin-right: -4px;
+  border-width: 4px 4px 0 4px;
+  border-style: solid;
+  border-top-style: dashed;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
+@mixin arrow-left() {
+  @include arrow-base();
+  margin-top: 6px;
+  margin-left: -8px;
+  border-width: 4px 4px 4px 0;
+  border-style: solid;
+  border-left-style: dashed;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+}
+
+
+@mixin arrow-right() {
+  @include arrow-base();
+  margin-top: 6px;
+  margin-right: -8px;
+  border-width: 4px 0 4px 4px;
+  border-style: solid;
+  border-right-style: dashed;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+}
+
+@import "../../../plugins/bootstrap/scss/_variables.scss";
+@import "../../../plugins/bootstrap/scss/mixins/_breakpoints.scss";
+@import "_vendor-prefixes.scss";

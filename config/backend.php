@@ -9,7 +9,7 @@ $config = [
 			'errorAction' => 'dashboard/backend/error',
 		],
 		'urlManager' => [
-            'enablePrettyUrl' => false,
+            'enablePrettyUrl' => true,
             'showScriptName' => true,
             'rules' => [
                 //'gii/<controller:\w+>' => 'gii/<controller>/index',
@@ -26,6 +26,10 @@ $config = [
                 //'<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/backend/<controller>/<action>',
             ]
         ],
+		'authManager' => [
+			//'class' => 'yii\rbac\DbManager',
+			'class' => 'yii\mongodb\rbac\MongoDbManager',
+		],
 		'db' => [
 			'class' => 'yii\db\Connection',
 			'dsn' => 'mysql:host=localhost;dbname=test',
