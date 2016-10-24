@@ -49,7 +49,7 @@ use vii\widgets\Select;
     </div>
 
     <div class="form-ctrl">
-        <?= Html::submitButton(Yii::t('common', ($modelItem->isNewRecord ? 'Save' : 'Update')), ['class' => 'btn btn-normal pull-right']) ?>
+        <?= Html::submitButton(Yii::t('common', ($modelItem->isNewRecord ? 'Save' : 'Update')), ['class' => 'btn btn-primary pull-right']) ?>
     </div>
 
     <?php ActiveForm::end() ?>

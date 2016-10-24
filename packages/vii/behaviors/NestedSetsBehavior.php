@@ -36,7 +36,7 @@ class NestedSetsBehavior extends Behavior
     /**
      * @var string|false
      */
-    public $rootAttribute = false;
+    public $rootAttribute = 'root'; //false
     /**
      * @var string
      */

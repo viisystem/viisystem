@@ -9,7 +9,7 @@ use vii\helpers\Url;
 /* @var $model vii\post\common\models\Post */
 /* @var $form yii\bootstrap\ActiveForm */
 
-\vii\assets\components\NestsortableAsset::register($this);
+\vii\assets\NestsortableAsset::register($this);
 
 $gridId = 'category-grid';
 $moduleId = Yii::$app->controller->module->id;
@@ -28,9 +28,9 @@ $this->params['breadcrumbs'][] = $title;
 
 <div class="form-btn-action">
     <div role="toolbar" class="btn-toolbar">
-        <a class="btn btn-normal" href="javascript:" data-class="body-full" data-url="<?= Url::to(["{$controllerId}/item-create", 'id' => $model->getId()]) ?>" data-ajax-container="nestsortable-container" data-func-success="jurakit.nestsortable.init()" onclick="jurakit.form.modal($(this)); return false"><?= Yii::t('common', 'Create') ?></a>
+        <a class="btn btn-primary" href="javascript:" data-class="body-full" data-url="<?= Url::to(["{$controllerId}/item-create", 'id' => $model->getId()]) ?>" data-ajax-container="nestsortable-container" data-func-success="jurakit.nestsortable.init()" onclick="jurakit.form.modal($(this)); return false"><?= Yii::t('common', 'Create') ?></a>
 
-        <?= \app\packages\category\widgets\backend\LanguageSwitcher::widget() ?>
+        <?php //= \app\packages\category\widgets\backend\LanguageSwitcher::widget() ?>
     </div>
 </div>
 

@@ -22,13 +22,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
-            ['class' => 'jurakit.grid\SerialColumn'],
-            ['class' => 'jurakit.grid\CheckboxColumn'],
+            ['class' => 'vii\grid\SerialColumn'],
+            ['class' => 'vii\grid\CheckboxColumn'],
             'title',
-            ['class' => 'jurakit.grid\BooleanColumn', 'attribute' => 'is_active'],
-            ['class' => 'jurakit.grid\LanguageColumn'],
+            ['class' => 'vii\grid\BooleanColumn', 'attribute' => 'is_active'],
+            ['class' => 'vii\grid\LanguageColumn'],
             [
-                'class' => 'jurakit.grid\ActionColumn',
+                'class' => 'vii\grid\ActionColumn',
                 'template' => '{update} {delete}',
             ]
         ]

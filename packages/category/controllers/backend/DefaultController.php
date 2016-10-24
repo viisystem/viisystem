@@ -31,7 +31,19 @@ class DefaultController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'is-featured' => ['POST'],
                 ],
+            ],
+        ];
+    }
+
+    public function actions()
+    {
+        return [
+            'is-active' => [
+                'class' => 'vii\actions\BooleanAction',
+                'modelClass' => '\app\packages\category\models\Category',
+                'statusField' => 'is_active'
             ],
         ];
     }
