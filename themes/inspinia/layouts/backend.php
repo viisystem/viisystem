@@ -64,7 +64,6 @@ app\themes\inspinia\assets\AppAsset::register($this);
                         </ul>
                     </li>
                 </ul>
-
             </div>
         </nav>
 
