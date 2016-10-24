@@ -1,0 +1,21 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 24, 2016, 9:32:29 AM
+    Author     : Minh Nguyen
+*/
+
+.role-table > tbody > tr
+{
+	cursor: pointer;
+}
+
+.role-table > tbody > tr.active > td
+{
+	background-color: #ffffdc !important;
+	color: steelblue;
+	font-weight: bold;
+}

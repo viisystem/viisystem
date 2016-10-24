@@ -46,6 +46,7 @@ class UserBase extends \yii\mongodb\ActiveRecord
             'birth_date',
             'gender',
             'emails',
+			'phone',
             'addresses',
             'description',
             'auth_key',
@@ -63,7 +64,7 @@ class UserBase extends \yii\mongodb\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'password', 'name', 'birth_date', 'gender', 'emails', 'addresses', 'description', 'auth_key', 'token', 'created_date', 'updated_date', 'last_login_datetime', 'data'], 'safe']
+            [['username', 'password', 'name', 'birth_date', 'gender', 'emails', 'phone', 'addresses', 'description', 'auth_key', 'token', 'created_date', 'updated_date', 'last_login_datetime', 'data'], 'safe']
         ];
     }
 
@@ -80,6 +81,7 @@ class UserBase extends \yii\mongodb\ActiveRecord
             'birth_date' => Yii::t('account', 'Birth Date'),
             'gender' => Yii::t('account', 'Gender'),
             'emails' => Yii::t('account', 'Emails'),
+			'phone' => Yii::t('account', 'Phone'),
             'addresses' => Yii::t('account', 'Addresses'),
             'description' => Yii::t('account', 'Description'),
             'auth_key' => Yii::t('account', 'Auth Key'),

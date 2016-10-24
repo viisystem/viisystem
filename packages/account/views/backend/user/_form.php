@@ -63,7 +63,7 @@ use yii\widgets\ActiveForm;
 							</div>
 							<div class="row">
 								<div class="col-md-12">
-									<?= $form->field($model, 'description')->textarea() ?>
+									<?= $form->field($model, 'description')->textarea(['rows'=>6]) ?>
 								</div>
 							</div>
 						</div>
@@ -77,6 +77,17 @@ use yii\widgets\ActiveForm;
 										],
 										'clientOptions' => [ 'alias' => 'email' ],
 									])->label(Yii::t('account', 'Email')) ?>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<?= $form->field($model, 'phone[home]')->label(Yii::t('account', 'Home Phone')) ?>
+								</div>
+								<div class="col-md-4">
+									<?= $form->field($model, 'phone[mobile]')->label(Yii::t('account', 'Mobile Phone')) ?>
+								</div>
+								<div class="col-md-4">
+									<?= $form->field($model, 'phone[working]')->label(Yii::t('account', 'Office Phone')) ?>
 								</div>
 							</div>
 							<div class="row">
@@ -104,11 +115,26 @@ use yii\widgets\ActiveForm;
 									<?= $form->field($model, 'token') ?>
 								</div>
 							</div>
-							<?php /*
-
-							<?= $form->field($model, 'auth_key') ?>
-							<?= $form->field($model, 'token') ?>
-							<?= $form->field($model, 'data') ?> */ ?>
+							<div class="row">
+								<div class="col-md-3">
+									<?= $form->field($model, 'addresses[0][type]')->label(Yii::t('account', 'Addres Type')) ?>
+								</div>
+								<div class="col-md-9">
+									<?= $form->field($model, 'addresses[0][street]')->label(Yii::t('account', 'Street')) ?>
+								</div>
+								<div class="col-md-4">
+									<?= $form->field($model, 'addresses[0][city]')->label(Yii::t('account', 'City')) ?>
+								</div>
+								<div class="col-md-4">
+									<?= $form->field($model, 'addresses[0][state]')->label(Yii::t('account', 'State')) ?>
+								</div>
+								<div class="col-md-2">
+									<?= $form->field($model, 'addresses[0][zip]')->label(Yii::t('account', 'Zip')) ?>
+								</div>
+								<div class="col-md-2">
+									<?= $form->field($model, 'addresses[0][country]')->label(Yii::t('account', 'Country')) ?>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="form-group" style="text-align:center">
