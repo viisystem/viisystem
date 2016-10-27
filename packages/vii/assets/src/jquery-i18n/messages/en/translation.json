@@ -1,0 +1,28 @@
+{
+  "common": {
+    "INFO": "INFO",
+    "WARNING": "WARNING",
+    "Processing ...": "Processing ...",
+    "Confirm": "Confirm",
+    "Are you sure you want to do this?": "Are you sure you want to do this?",
+    "Unable to select rows": "Unable to select rows",
+    "Are you sure you want to perform this action?": "Are you sure you want to perform this action?",
+    "Are you sure you want to delete?": "Are you sure you want to delete?",
+    "Are you sure you want to delete forever?": "Are you sure you want to delete forever?",
+    "Are you sure you want to restore?": "Are you sure you want to restore?",
+    "Please select only 50 rows": "Please select only 50 rows",
+    "Please check your Information and try again": "Please check your Information and try again",
+    "Ok": "OK",
+    "Yes": "Yes",
+    "No": "No",
+    "Save": "Save",
+    "Cancel": "Cancel",
+    "Close": "Close",
+    "Delete": "Delete",
+    "Trash": "Trash",
+    "Upload": "Upload"
+  },
+  "cart": {
+    "Your shopping cart is empty": "Your shopping cart is empty"
+  }
+}

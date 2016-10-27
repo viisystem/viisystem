@@ -1,0 +1,28 @@
+{
+  "common": {
+    "INFO": "Thông báo",
+    "WARNING": "Cảnh báo",
+    "Processing ...": "Đang xử lý ...",
+    "Confirm": "Xác nhận",
+    "Are you sure you want to do this?": "Bạn muốn thực hiện chức năng này?",
+    "Unable to select rows": "Không có dòng nào được chọn. Bạn vui lòng kiểm tra lại!",
+    "Are you sure you want to perform this action?": "Bạn có chắc muốn thực hiện hành động này?",
+    "Are you sure you want to delete?": "Bạn chắc chắn muốn xóa?",
+    "Are you sure you want to delete forever?": "Bạn chắc chắn muốn xóa vĩnh viễn dòng này?",
+    "Are you sure you want to restore?": "Bạn chắc chắn muốn khôi phục lại dòng này?",
+    "Please select only 50 rows": "Để đảm bảo toàn vẹn dữ liệu, hệ thống chỉ xử lý 50 dòng đầu tiên đã chọn. Bạn có đồng ý?",
+    "Please check your Information and try again": "Vui lòng kiểm tra thông tin",
+    "Ok": "Đồng ý",
+    "Yes": "Có",
+    "No": "Không",
+    "Save": "Lưu lại",
+    "Cancel": "Đóng",
+    "Close": "Đóng",
+    "Delete": "Xóa bỏ",
+    "Trash": "Rác",
+    "Upload": "Tải lên"
+  },
+  "cart": {
+    "Your shopping cart is empty": "Giỏ hàng chưa có sản phẩm"
+  }
+}

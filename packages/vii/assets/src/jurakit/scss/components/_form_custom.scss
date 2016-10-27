@@ -1,0 +1,120 @@
+.file-preview {
+  background-color: #fff;
+  border-color: #e8e8e8 !important;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+}
+.file-preview-frame {
+  display: block !important;
+  height: auto !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+.file-preview-image {
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 300px !important;
+}
+.file-caption {
+  //overflow: hidden;
+  max-height:38px
+}
+.file-caption-name {
+  height: 1.25rem;
+  overflow: hidden;
+}
+.file-drop-zone-title {
+  padding: 50px 10px;
+}
+.file-mega-form {
+  .file-preview-frame {
+    position: relative;
+    width: 200px !important;
+    height: 260px !important;
+    margin: 10px !important;
+    padding: 5px !important;
+    background: #f7f7f7 !important;
+    @include border-radius(5px);
+  }
+  .file-thumbnail-footer {
+    position: absolute;
+    bottom: 5px; left: 5px; right: 5px;
+  }
+  .file-drop-zone-title {
+    padding: 110px 10px;
+  }
+}
+
+
+.select2-container--bootstrap {
+  &.select2-container--disabled,
+  .select2-selection,
+  .select2-dropdown,
+  .select2-search--dropdown .select2-search__field {
+    background-color: #fff !important;
+    border-color: #e8e8e8 !important;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+  }
+  .select2-selection {
+    min-height: 2.375rem;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: 1.5rem;
+
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+  .select2-selection__clear {
+    position: absolute;
+    //top: 0.375rem;
+    //right: 1.25rem;
+    z-index: 99;
+  }
+  .select2-results__group {
+    color: #333;
+    text-shadow: 0 1px 0 #fff;
+    border-bottom: 1px solid #e0e0e0;
+    border-top: 1px solid #e0e0e0;
+    background-color: #eee;
+  }
+
+  .s2-togall-button {
+    display: block;
+    padding: 8px;
+
+    span {
+      display: inline-block;
+      margin-right: 15px;
+      cursor: pointer;
+    }
+  }
+}
+.select2-container--open {
+  z-index: 11200; // Fix in modal
+}
+.bootstrap-timepicker {
+  input {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+  }
+}
+
+.slider.slider-horizontal {
+  display: block;
+  min-height: 2.375rem;
+}
+
+
+
+

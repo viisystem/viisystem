@@ -3,11 +3,14 @@
 namespace app\packages\category\models;
 
 use vii\behaviors\NestedSetsBehavior;
+use vii\behaviors\SourceBehavior;
+
 use vii\helpers\ArrayHelper;
 use vii\helpers\DataHelper;
 use vii\helpers\StringHelper;
 
 use Yii;
+use yii\mongodb\ActiveQuery;
 
 
 class Category extends BaseCategory
@@ -50,6 +53,15 @@ class Category extends BaseCategory
         return new CategoryQuery(get_called_class());
     }
 
+    public static function findTable($tableName)
+    {
+        if ($tableName != null) {
+            static::$tableName = $tableName;
+        }
+
+        return Yii::createObject(ActiveQuery::className(), [get_called_class()]);
+    }
+
     public function setTableName($tableName = null)
     {
         if ($tableName != null) {
@@ -61,9 +73,8 @@ class Category extends BaseCategory
     {
         return ArrayHelper::merge(
             parent::behaviors(), [
-                [
-                    'class' => NestedSetsBehavior::className(),
-                ],
+                ['class' => NestedSetsBehavior::className()],
+                ['class' => SourceBehavior::className(), 'attributeSync' => ['skin', 'is_active']],
             ]
         );
     }
@@ -72,6 +83,7 @@ class Category extends BaseCategory
     {
         return ArrayHelper::merge(
             parent::rules(), [
+                [['title', 'language', 'lookup_id'], 'required'],
                 ['lookup_id', 'unique', 'targetAttribute' => ['language', 'lookup_id'], 'on' => 'root'],
             ]
         );
@@ -85,6 +97,12 @@ class Category extends BaseCategory
                 'item' => ['language', 'lookup_id', 'title', 'slug', 'meta_title', 'meta_keyword', 'meta_description', 'classes', 'is_active'],
             ]
         );
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        static::deleteAll(['lft' => 2, 'language' => null]);
     }
 
     public function getId()

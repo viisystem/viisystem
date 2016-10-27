@@ -1,0 +1,156 @@
+//@import "../../../../helpers/scss/_variables.scss";
+//@import "../../../../helpers/scss/_mixins.scss";
+
+
+.i18n-flag {opacity: 0.35; margin: 0 3px}
+.i18n-flag:hover,
+.i18n-flag.active {opacity: 1}
+
+
+.grid-view {
+  font-size: 15px;
+
+  .table {
+    margin-bottom: 0;
+  }
+
+  .dropdown-menu {
+    min-width: 40px;
+
+    .grid-action {
+      &:hover {
+        background-color: #f5f5f5;
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      &.dropdown-action {
+        top: -5px;
+        bottom: auto !important;
+        @include box-shadow(0 1px 3px 0 rgba(0, 0, 0, 0.2));
+      }
+    }
+  }
+}
+
+.grid-link {
+  display: block;
+}
+.grid-vtop {
+  vertical-align: top !important;
+}
+
+.grid-action {
+  position: relative;
+  display: inline-block;
+  min-width: 32px;
+  min-height: 32px;
+  line-height: 32px;
+  color: $base-text-color;
+  font-size: 14px !important;
+  text-align: center;
+  border: 1px solid transparent;
+  @include border-radius(3px);
+
+  // Hidden caret
+  &:after {
+    display: none;
+  }
+
+  &:hover {
+    color: #000 !important;
+    //border-color: #ddd;
+    //background-color: #eee;
+
+  }
+}
+
+.grid-serial {
+  width: 60px;
+  padding-left: 17px !important;
+}
+
+.grid-bulk-action {
+  .btn-secondary,
+  .dropdown-item {
+    font-size: 15px;
+  }
+}
+
+
+@include media-breakpoint-down(sm) {
+  .grid-view-jurakit {
+    .summary {
+      margin: 0 $base-margin-size $base-margin-size;
+    }
+    .pagination {
+      margin: $base-margin-size;
+    }
+  }
+  .grid-bulk-action {
+    margin: $base-margin-size;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .grid-view-jurakit {
+    .summary,
+    .pagination {
+      float: right;
+      margin: 5px 15px 20px;
+    }
+
+    .summary {
+      line-height: 39px;
+    }
+  }
+
+  //.grid-view {
+  //  padding-bottom: 50px;
+  //}
+
+  .grid-bulk-action {
+    margin: -58px 0 20px 15px;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .grid-view-auto {
+    .table {
+      thead {
+        display: none;
+      }
+
+      tr {
+        display: block;
+        border-bottom: 3px solid #efefef;
+
+        &:nth-child(even) {
+          background-color: #fefefe;
+        }
+      }
+
+      td {
+        display: block;
+        text-align: right;
+
+        &:before {
+          content: attr(data-label);
+          float: left;
+          font-size: 13px;
+          font-weight: bold;
+          vertical-align: middle;
+        }
+
+        &:last-child {
+          border-bottom: 0;
+        }
+
+        &:empty:after {
+          content: "...";
+          opacity: 0;
+        }
+      }
+    }
+  }
+}

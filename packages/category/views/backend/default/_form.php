@@ -8,7 +8,6 @@ use vii\widgets\Select;
 use yii\bootstrap\ActiveForm;
 
 \vii\assets\NestsortableAsset::register($this);
-\vii\assets\JurakitAsset::register($this);
 
 
 $gridId = 'category-grid';
@@ -19,49 +18,59 @@ $controllerId = Yii::$app->controller->controllerId;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="ibox-content m-b-sm border-bottom">
-    <?php $form = ActiveForm::begin(['layout' => 'default']); ?>
-
-    <div class="row">
-        <div class="col-md-3">
-            <?= $form->field($model, 'title') ?>
-        </div>
-        <div class="col-md-3">
-            <?= $form->field($model, 'lookup_id') ?>
-        </div>
-        <div class="col-md-3">
-            <?= $form->field($model, 'language')->widget(Select::className(), ['data' => DataHelper::getLanguageOptions()]) ?>
-        </div>
-        <div class="col-md-3">
-            <?= $form->field($model, 'is_active')->widget(Select::className()) ?>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('category', 'Create') : Yii::t('category', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
-
-    <?php ActiveForm::end(); ?>
-</div>
-
-<div class="ibox-content m-b-sm border-bottom">
-    <?php if (!$model->isNewRecord) : ?>
-        <div class="card card-clean m-t-5">
-            <div class="card-header">
-                <div class="card-ctrl">
-                    <a class="card-ctrl-item" data-tooltip="tooltip" data-placement="left" title="<?= Yii::t('category', 'Create Category Item') ?>" href="javascript:" data-class="body-full" data-url="<?= Url::to(["{$controllerId}/item-create", 'id' => $model->getId()]) ?>" data-ajax-container="nestsortable-container" data-func-success="jurakit.nestsortable.init()" onclick="jurakit.form.modal($(this)); return false"><i class="fa fa-plus"></i></a>
+<div class="row">
+    <div class="col-md-9">
+        <?php if (!$model->isNewRecord) : ?>
+            <div class="ibox">
+                <div class="ibox-title">
+<!--                    <h5>All form elements <small>With custom checbox and radion elements.</small></h5>-->
+                    <div class="ibox-tools">
+                        <a data-tooltip="tooltip" data-placement="left" title="<?= Yii::t('category', 'Create Category Item') ?>" href="javascript:" data-class="body-full" data-url="<?= Url::to(["{$controllerId}/item-create", 'id' => $model->getId()]) ?>" data-ajax-container="nestsortable-container" data-func-success="jurakit.nestsortable.init()" onclick="jurakit.form.modal($(this)); return false">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content m-b-sm border-bottom">
+                    <div id="nestsortable-container" class="bg4 nestsortable-container">
+                        <?php echo $this->render('/backend/category/itemList', ['model' => $model, 'modelItem' => $model->items]); ?>
+                    </div>
                 </div>
             </div>
-            <div class="p-20 bg4">
-                <div id="nestsortable-container" class="bg4 nestsortable-container">
-                    <?php echo $this->render('/backend/category/itemList', ['model' => $model, 'modelItem' => $model->items]); ?>
+        <?php endif; ?>
+    </div>
+    <div class="col-md-3">
+        <div class="ibox-content m-b-sm border-bottom">
+            <?php $form = ActiveForm::begin(['layout' => 'default']); ?>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <?= $form->field($model, 'title') ?>
+                </div>
+                <div class="col-md-12">
+                    <?= $form->field($model, 'lookup_id') ?>
+                </div>
+                <div class="col-md-12">
+                    <?= $form->field($model, 'language')->widget(Select::className(), ['data' => DataHelper::getLanguageOptions()]) ?>
+                </div>
+                <div class="col-md-12">
+                    <?= $form->field($model, 'is_active')->widget(Select::className()) ?>
                 </div>
             </div>
+
+            <div class="form-group">
+                <?= Html::submitButton($model->isNewRecord ? Yii::t('category', 'Create') : Yii::t('category', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            </div>
+
+            <?php ActiveForm::end(); ?>
         </div>
-    <?php endif; ?>
+    </div>
 </div>
 
-<div class="category-form">
+
+
+
+
+<div class="category-form" style="display: none">
 
     <div class="ibox float-e-margins">
         <div class="ibox-title">

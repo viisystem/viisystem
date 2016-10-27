@@ -43,8 +43,8 @@
   outline: 1px dashed #42a5f5; //#4183C4
 }
 
-//// Bootstrap
-//.dropdown-menu-right {
-//  left: auto;
-//  right: 0;
-//}
+// Bootstrap
+.dropdown-menu-right {
+  left: auto !important;
+  right: 0 !important;
+}

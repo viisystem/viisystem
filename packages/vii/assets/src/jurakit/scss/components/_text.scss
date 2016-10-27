@@ -1,0 +1,169 @@
+.text {
+  img {
+    max-width: 100%;
+  }
+}
+
+.text-block {
+  display: block;
+}
+.text-default {
+  &,
+  a {
+    color: #333;
+  }
+}
+.text-inverse {
+  &,
+  a {
+    color: #fff;
+  }
+}
+.text-gray {
+  &,
+  a {
+    color: #868786;
+  }
+}
+.text-link {
+  color: $base-text-link-color;
+
+  &:hover {
+    text-decoration: none;
+    color: $base-text-link-color-hover;
+  }
+}
+.text-icon {
+  font-size: 0.875rem;
+}
+
+//.text-truncate {
+//  overflow: hidden;
+//  text-overflow: ellipsis;
+//  white-space: nowrap;
+//  width: 100%;
+//}
+
+.text-center,
+.text-xs-center {
+  text-align: center;
+
+  .media-object {
+    display: inline-block !important;
+  }
+}
+
+
+.text {
+  font-size: 1rem;
+}
+.text-xxs {
+  font-size: 0.75rem;
+}
+.text-xs {
+  font-size: 0.8125rem;
+}
+.text-sm {
+  font-size: 0.9375rem;
+}
+.text-md {
+  font-size: 1.125rem;
+}
+.text-lg {
+  font-size: 1.5rem;
+}
+.text-xl {
+  font-size: 1.75rem;
+}
+.text-2x {
+  font-size: 2rem;
+}
+.text-3x {
+  font-size: 3rem;
+}
+.text-4x {
+  font-size: 4rem;
+}
+
+
+.text-300 {
+  font-weight: 300;
+}
+.text-400 {
+  font-weight: 400;
+}
+.text-500 {
+  font-weight: 500;
+}
+.text-600 {
+  font-weight: 600;
+}
+.text-700 {
+  font-weight: 700;
+}
+
+
+// COLOR
+.text-red {
+  color: $base-color-red !important;
+}
+.text-red-orange {
+  color: $base-color-red-orange !important;
+}
+.text-pink {
+  color: $base-color-pink !important; //e91e63
+}
+.text-purple {
+  color: $base-color-purple !important;
+}
+.text-deep-purple {
+  color: $base-color-deep-purple !important;
+}
+.text-blue {
+  color: $base-color-blue !important; //2196f3
+}
+.text-light-blue {
+  color: $base-color-light-blue !important;
+}
+.text-cyan {
+  color: $base-color-cyan !important;
+}
+.text-teal {
+  color: $base-color-teal !important;
+}
+.text-green {
+  color: $base-color-green !important; //4caf50
+}
+.text-light-green {
+  color: $base-color-light-green !important; //90c446
+}
+.text-lime {
+  color: $base-color-lime !important;
+}
+.text-yellow {
+  color: $base-color-yellow !important;
+}
+.text-amber {
+  color: $base-color-amber !important;
+}
+.text-orange {
+  color: $base-color-orange !important;
+}
+.text-deep-orange {
+  color: $base-color-deep-orange !important;
+}
+.text-brown {
+  color: $base-color-brown !important;
+}
+.text-grey {
+  color: $base-color-grey !important;
+}
+.text-blue-grey {
+  color: $base-color-blue-grey !important;
+}
+.text-black {
+  color: $base-color-black !important;
+}
+.text-white {
+  color: $base-color-white !important;
+}

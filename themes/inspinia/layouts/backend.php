@@ -66,7 +66,7 @@ app\themes\inspinia\assets\AppAsset::register($this);
                     <li>
                         <a href="javascript:void(0)"><i class="fa fa-newspaper-o"></i> <span class="nav-label">Category</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="<?=yii\helpers\Url::to(['/category/backend/category'])?>">Category</a></li>
+                            <li><a href="<?=yii\helpers\Url::to(['/category/default'])?>">Category</a></li>
                         </ul>
                     </li>
                 </ul>
