@@ -3,7 +3,7 @@
 namespace app\packages\dashboard;
 use yii\filters\AccessControl;
 
-class Module extends \yii\base\Module
+class Module extends \app\classes\Module
 {
     public $controllerNamespace = 'app\packages\dashboard\controllers';
 	

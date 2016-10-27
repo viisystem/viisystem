@@ -94,8 +94,13 @@ class PermissionController extends Controller
 	
 	public function actionAddPermission($permissionName, $permissionDesc)
 	{
-		$return = [];
 		\Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+		return $this->AddPermission($permissionName, $permissionDesc);
+	}
+	
+	private function AddPermission($permissionName, $permissionDesc)
+	{
+		$return = [];
 		$auth = Yii::$app->authManager;
 		$permission = $auth->getPermission($permissionName);
 		if($permission == null && strlen(trim($permissionName)) > 0)
@@ -135,5 +140,33 @@ class PermissionController extends Controller
 			$return['success'] = true;
 		}
 		return $return;
+	}
+	
+	public function actionGeneratePermissions()
+	{
+		foreach(Yii::$app->modules as $key=>$value)
+		{
+			$module = Yii::$app->getModule($key);
+			if($module !== null)
+			{
+				try
+				{
+					$permissions = $module->getModulePermissions();
+					foreach ($permissions as $permission=>$description)
+					{
+						$this->AddPermission($permission, $description);
+					}
+				}
+				catch (yii\base\UnknownMethodException $e)
+				{
+
+				}
+				catch(Exception $e)
+				{
+					
+				}
+			}
+		}
+		return $this->redirect(['/account/backend/permission']);
 	}
 }

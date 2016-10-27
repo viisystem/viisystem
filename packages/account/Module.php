@@ -3,7 +3,7 @@
 namespace app\packages\account;
 use yii\filters\AccessControl;
 
-class Module extends \yii\base\Module
+class Module extends \app\classes\Module
 {
     public $controllerNamespace = 'app\packages\account\controllers';
 
@@ -12,4 +12,9 @@ class Module extends \yii\base\Module
         parent::init();
 		\Yii::$app->formatter->nullDisplay = '';
     }
+	
+	public function getModulePermissions()
+	{
+		return require (__DIR__ . '/permissions.php');
+	}
 }

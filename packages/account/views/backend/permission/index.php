@@ -78,6 +78,7 @@ use yii\widgets\ActiveForm;
 								</tbody>
 							</table>
 							<p style="text-align:right">
+								<?=Html::a('Generate All Permissions', ['/account/backend/permission/generate-permissions'], ['class'=>'btn btn-success'])?>
 								<?=Html::button('Add Permission',['class'=>'btn btn-primary', 'onclick'=>new yii\web\JsExpression('Permission.AddRow()')])?>
 							</p>
 						</div>

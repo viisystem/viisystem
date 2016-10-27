@@ -9,6 +9,7 @@ use yii\grid\GridView;
 
 $this->title = Yii::t('account', 'Users');
 $this->params['breadcrumbs'][] = $this->title;
+\app\packages\account\bundles\UserAsset::register($this);
 ?>
 <div class="user-index">
 	<div class="row">
@@ -24,10 +25,14 @@ $this->params['breadcrumbs'][] = $this->title;
 				</div>
 				<div class="ibox-content">
 					<p style="text-align:right">
+						<?= Html::a(Yii::t('account', 'Batch'), 'javascript:void(0)', ['class' => 'btn btn-primary', 'onclick'=>new yii\web\JsExpression('User.BatchDelete($("#vii-grid-user"), "'.yii\helpers\Url::to(['/account/backend/user/batch-delete']).'")')]) ?>
 						<?= Html::a(Yii::t('account', 'New User'), ['create'], ['class' => 'btn btn-success']) ?>
 					</p>
 					<div class="table-responsive">
 					<?= GridView::widget([
+						'options' => [
+							'id'=>'vii-grid-user',
+						],
 						'dataProvider' => $dataProvider,
 						'filterModel' => $searchModel,
 						'columns' => [
