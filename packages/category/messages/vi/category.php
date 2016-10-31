@@ -6,6 +6,8 @@
 return [
 	'Module Name' => 'Danh mục',
 
+	'Categories' => 'Danh mục',
+	
     'Manage Category' => 'Quản lý danh mục',
     'Index Category' => 'Danh sách danh mục',
     'Create Category' => 'Thêm mới danh mục',
@@ -25,5 +27,5 @@ return [
 	'Meta Keyword' => 'Meta keyword',
 	'Meta Description' => 'Meta Description',
 	'Is Active' => 'Hiển thị',
-	'Lookup ID' => 'KEY',
+	'Key' => 'KEY',
 ];

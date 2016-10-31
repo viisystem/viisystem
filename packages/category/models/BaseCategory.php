@@ -26,7 +26,7 @@ use Yii;
  * @property mixed $is_active
  * @property mixed $is_promotion
  * @property mixed $language
- * @property mixed $lookup_id
+ * @property mixed $key
  * @property mixed $source_id
  */
 class BaseCategory extends \vii\mongodb\ActiveRecord
@@ -64,7 +64,7 @@ class BaseCategory extends \vii\mongodb\ActiveRecord
             'is_active',
             'is_promotion',
             'language',
-            'lookup_id',
+            'key',
             'source_id',
         ];
     }
@@ -75,7 +75,7 @@ class BaseCategory extends \vii\mongodb\ActiveRecord
     public function rules()
     {
         return [
-            [['root', 'lft', 'rgt', 'depth', 'title', 'title_extra', 'slug', 'image', 'classes', 'skin', 'description', 'content', 'meta_title', 'meta_keyword', 'meta_description', 'is_active', 'is_promotion', 'language', 'lookup_id', 'source_id'], 'safe']
+            [['root', 'lft', 'rgt', 'depth', 'title', 'title_extra', 'slug', 'image', 'classes', 'skin', 'description', 'content', 'meta_title', 'meta_keyword', 'meta_description', 'is_active', 'is_promotion', 'language', 'key', 'source_id'], 'safe']
         ];
     }
 
@@ -104,7 +104,7 @@ class BaseCategory extends \vii\mongodb\ActiveRecord
             'is_active' => Yii::t('category', 'Is Active'),
             'is_promotion' => Yii::t('category', 'Is Promotion'),
             'language' => Yii::t('category', 'Language'),
-            'lookup_id' => Yii::t('category', 'Lookup ID'),
+            'key' => Yii::t('category', 'Key'),
             'source_id' => Yii::t('category', 'Source ID'),
         ];
     }

@@ -78,4 +78,51 @@ class ActiveField extends \yii\bootstrap\ActiveField
         return $this;
     }
 
+    /**
+     * @param array $instanceConfig the configuration passed to this instance's constructor
+     * @return array the layout specific default configuration for this instance
+     */
+    protected function createLayoutConfig($instanceConfig)
+    {
+        $config = [
+            'hintOptions' => [
+                'tag' => 'p',
+                'class' => 'help-block',
+            ],
+            'errorOptions' => [
+                'tag' => 'p',
+                'class' => 'help-block help-block-error',
+            ],
+            'inputOptions' => [
+                'class' => 'form-control',
+            ],
+        ];
+
+        $layout = $instanceConfig['form']->layout;
+
+        if ($layout === 'horizontal') {
+            $config['template'] = "{label}\n{beginWrapper}\n{input}\n{error}\n{endWrapper}\n{hint}";
+            $cssClasses = [
+                'offset' => 'col-sm-offset-2',
+                'label' => 'col-sm-2',
+                'wrapper' => 'col-sm-10',
+                'error' => '',
+                'hint' => 'col-sm-2',
+            ];
+            if (isset($instanceConfig['horizontalCssClasses'])) {
+                $cssClasses = ArrayHelper::merge($cssClasses, $instanceConfig['horizontalCssClasses']);
+            }
+            $config['horizontalCssClasses'] = $cssClasses;
+            $config['wrapperOptions'] = ['class' => $cssClasses['wrapper']];
+            $config['labelOptions'] = ['class' => 'control-label ' . $cssClasses['label']];
+            $config['errorOptions'] = ['class' => 'help-block help-block-error ' . $cssClasses['error']];
+            $config['hintOptions'] = ['class' => 'help-block ' . $cssClasses['hint']];
+        } elseif ($layout === 'inline') {
+            $config['labelOptions'] = ['class' => 'sr-only'];
+            $config['enableError'] = false;
+        }
+
+        return $config;
+    }
+
 }

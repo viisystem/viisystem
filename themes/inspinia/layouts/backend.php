@@ -63,10 +63,26 @@ app\themes\inspinia\assets\AppAsset::register($this);
 							<li><a href="<?=yii\helpers\Url::to(['/article/backend/post'])?>">Post</a></li>
                         </ul>
                     </li>
+
+                    <!-- DUY -->
                     <li>
-                        <a href="javascript:void(0)"><i class="fa fa-newspaper-o"></i> <span class="nav-label">Category</span> <span class="fa arrow"></span></a>
+                        <a href="javascript:"><i class="fa fa-file-text"></i> <span class="nav-label">Blog</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="<?=yii\helpers\Url::to(['/category/default'])?>">Category</a></li>
+                            <li><a href="<?= yii\helpers\Url::to(['/blog/default']) ?>">Blog</a></li>
+                            <li><a href="<?= yii\helpers\Url::to(['/blog/category']) ?>">Category</a></li>
+                            <li><a href="<?= yii\helpers\Url::to(['/blog/setting']) ?>">Setting</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:"><i class="fa fa-list"></i> <span class="nav-label">Category</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="<?= yii\helpers\Url::to(['/category/default']) ?>">Category</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:"><i class="fa fa-cogs"></i> <span class="nav-label">Setting</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="<?= yii\helpers\Url::to(['/setting/setting']) ?>">Setting</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -202,6 +218,17 @@ app\themes\inspinia\assets\AppAsset::register($this);
 
         <div class="row">
             <div class="col-lg-12">
+                <?php if (isset($this->params['breadcrumbs'])) : ?>
+                <div class="row wrapper border-bottom white-bg page-heading">
+                    <div class="col-sm-12">
+                        <h2><?= $this->title ?></h2>
+                        <?= Breadcrumbs::widget([
+                            'links' => $this->params['breadcrumbs'],
+                        ]); ?>
+                    </div>
+                </div>
+                <?php endif; ?>
+
                 <div class="wrapper wrapper-content">
 					<?=$content?>
                 </div>

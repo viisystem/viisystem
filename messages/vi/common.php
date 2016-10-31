@@ -12,4 +12,9 @@ return [
     'BOOLEAN_OFF' => 'Không',
     'YES' => 'YES',
     'NO' => 'NO',
+
+    'Save' => 'Lưu lại',
+    'Create' => 'Thêm mới',
+    'Update' => 'Cập nhật',
+    'Delete' => 'Xóa bỏ',
 ];

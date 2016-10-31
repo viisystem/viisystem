@@ -43,9 +43,19 @@ $config = [
 					'class' => 'yii\i18n\PhpMessageSource',
 					'basePath' => '@app/messages'
 				],
+
+				// DUY
+				'blog' => [
+					'class' => 'yii\i18n\PhpMessageSource',
+					'basePath' => '@app/packages/blog/messages'
+				],
 				'category' => [
 					'class' => 'yii\i18n\PhpMessageSource',
 					'basePath' => '@app/packages/category/messages'
+				],
+				'setting' => [
+					'class' => 'yii\i18n\PhpMessageSource',
+					'basePath' => '@app/packages/setting/messages'
 				],
 			]
 		],
@@ -62,8 +72,16 @@ $config = [
 		'article' => [
 			'class' => 'app\packages\article\Module',
 		],
+
+		// Duy
+		'blog' => [
+			'class' => 'app\packages\blog\Module',
+		],
 		'category' => [
 			'class' => 'app\packages\category\Module',
+		],
+		'setting' => [
+			'class' => 'app\packages\setting\Module',
 		],
 	],
     'params' => [
@@ -77,10 +95,13 @@ $config = [
 			'en' => 'English'
 		],
 
+		'uploadUrl' => pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME),
+		'uploadDir' => 'uploads',
+
 		'mobileDetect' => [
 			'isDesktop' => true
 		]
-	],
+	]
 ];
 
 if (YII_ENV_DEV) {
