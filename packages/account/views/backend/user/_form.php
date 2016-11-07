@@ -141,7 +141,6 @@ use yii\widgets\ActiveForm;
 						<?= Html::submitButton($model->isNewRecord ? Yii::t('account', 'Create') : Yii::t('account', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 					</div>
 					<?php ActiveForm::end(); ?>
-					</div>
 				</div>
 			</div>
 		</div>
