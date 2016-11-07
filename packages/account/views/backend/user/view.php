@@ -9,6 +9,7 @@ use yii\widgets\DetailView;
 $this->title = Yii::t('account', 'User');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('account', 'Users'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+\app\packages\account\bundles\PermissionAsset::register($this);
 ?>
 <div class="user-view">
 	<div class="row">
@@ -24,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				</div>
 				<div class="ibox-content">
 					<p style="text-align:right">
+						<a data-toggle="modal" class="btn btn-default" href="<?=yii\helpers\Url::to(['/account/backend/assignment', 'user'=>strval($model->_id)])?>" data-target="#myModal">Assign</a>
 						<?= Html::a(Yii::t('account', 'Update'), ['update', 'id' => (string)$model->_id], ['class' => 'btn btn-primary']) ?>
 						<?= Html::a(Yii::t('account', 'Delete'), ['delete', 'id' => (string)$model->_id], [
 							'class' => 'btn btn-danger',
@@ -33,6 +35,26 @@ $this->params['breadcrumbs'][] = $this->title;
 							],
 						]) ?>
 					</p>
+					
+					<!-- Modal -->
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									 <h4 class="modal-title">Assignment</h4>
+								</div>
+								<div class="modal-body"><div class="te"></div></div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									<?php //<button type="button" class="btn btn-primary">Save changes</button> ?>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- /.modal -->
 					
 					<div class="row">
 						<div class="col-md-6">

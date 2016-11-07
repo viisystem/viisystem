@@ -8,7 +8,8 @@ var Role = new function() {
 		targetObject:null,
 		urlPermission:null,
 		urlAddRole:null,
-		urlDeleteRole:null
+		urlDeleteRole:null,
+		urlAssignment:null
 	};
 	this.SelectRow = function(sender) {
 		var $sender = $(sender);
@@ -107,6 +108,20 @@ var Role = new function() {
 					$(this).remove();
 				});
 			}
+		});
+	};
+	
+	this.SetRole = function(sender, user, role) {
+		var checked = $(sender).is(":checked");
+		$.ajax({
+			url:this.settings.urlAssignment,
+			data:{
+				user:user,
+				role:role,
+				checked:checked
+			}
+		}).done(function(response){
+
 		});
 	};
 };
