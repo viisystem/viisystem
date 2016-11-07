@@ -9,7 +9,7 @@ $config = [
 			'errorAction' => 'dashboard/backend/error',
 		],
 		'urlManager' => [
-            'enablePrettyUrl' => false,
+            'enablePrettyUrl' => true,
             'showScriptName' => true,
             'rules' => [
                 //'gii/<controller:\w+>' => 'gii/<controller>/index',
@@ -39,8 +39,7 @@ $config = [
 		],
 		'mongodb' => [
             'class' => '\yii\mongodb\Connection',
-			//'dsn' => 'mongodb://viidev:khongphaiem123%21%40%23@52.77.56.164:27017/viidev',
-			'dsn' => 'mongodb://127.0.0.1:27017/viidev',
+			'dsn' => 'mongodb://viidev:khongphaiem123%21%40%23@52.77.56.164:27017/viidev',
         ],
 	],
 	'layout' => 'backend',

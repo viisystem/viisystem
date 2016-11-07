@@ -66,18 +66,6 @@ class DefaultController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Category model.
-     * @param integer $_id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
     public function actionCreate()
     {
         $model = new Category();
@@ -85,10 +73,7 @@ class DefaultController extends Controller
         $model->setDefaultValues();
 
         if ($model->load(Yii::$app->request->post()) && $model->makeRoot()) {
-            $returnUrl = Yii::$app->request->get('returnUrl', Url::to(['index']));
-            return (Yii::$app->request->post('action', 'save') == 'save')
-                ? $this->redirect(['update', 'id' => $model->getId(), 'returnUrl' => $returnUrl])
-                : $this->redirect($returnUrl);
+            return $this->redirect(['view', 'id' => $model->getId()]);
         }
 
         return $this->render('create', [
@@ -107,10 +92,7 @@ class DefaultController extends Controller
         $model->setTranslateValues($language, $modelSource);
 
         if ($model->load(Yii::$app->request->post()) && $model->makeRoot()) {
-            $returnUrl = Yii::$app->request->get('returnUrl', Url::to(['index']));
-            return (Yii::$app->request->post('action', 'save') == 'save')
-                ? $this->redirect(['update', 'id' => $model->getId(), 'returnUrl' => $returnUrl])
-                : $this->redirect($returnUrl);
+            return $this->redirect(['view', 'id' => $model->getId()]);
         }
 
         return $this->render('create', [
@@ -124,14 +106,21 @@ class DefaultController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $returnUrl = Yii::$app->request->get('returnUrl', Url::to(['index']));
-            return (Yii::$app->request->post('action', 'save') == 'save')
-                ? $this->redirect(['update', 'id' => $model->getId(), 'returnUrl' => $returnUrl])
-                : $this->redirect($returnUrl);
+            return $this->redirect(['view', 'id' => $model->getId()]);
         }
 
-        $model->items = $model->children()->all();
         return $this->render('update', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionView($id)
+    {
+        if (($model = $this->findModel($id)) === null)
+            throw new NotFoundHttpException('The requested page does not exist.');
+
+        $model->items = $model->children()->all();
+        return $this->render('view', [
             'model' => $model,
         ]);
     }

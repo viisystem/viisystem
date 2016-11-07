@@ -18,7 +18,7 @@ class CategorySearch extends Category
     public function rules()
     {
         return [
-            [['_id', 'root', 'lft', 'rgt', 'depth', 'title', 'title_extra', 'slug', 'image', 'classes', 'skin', 'description', 'content', 'meta_title', 'meta_keyword', 'meta_description', 'is_active', 'is_promotion', 'language', 'lookup_id', 'source_id'], 'safe'],
+            [['_id', 'root', 'lft', 'rgt', 'depth', 'title', 'title_extra', 'slug', 'image', 'classes', 'skin', 'description', 'content', 'meta_title', 'meta_keyword', 'meta_description', 'is_active', 'is_promotion', 'language', 'key', 'source_id'], 'safe'],
         ];
     }
 
@@ -58,7 +58,7 @@ class CategorySearch extends Category
 
         // grid filtering conditions
         $query->andFilterWhere(['like', '_id', $this->_id])
-            ->andFilterWhere(['like', 'lookup_id', $this->lookup_id])
+            ->andFilterWhere(['like', 'key', $this->key])
             ->andFilterWhere(['like', 'root', $this->root])
             ->andFilterWhere(['like', 'lft', $this->lft])
             ->andFilterWhere(['like', 'rgt', $this->rgt])

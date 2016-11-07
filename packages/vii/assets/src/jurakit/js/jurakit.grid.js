@@ -12,11 +12,11 @@
 
         getParams: function (obj) {
             title = (typeof obj.attr('data-title') === 'undefined')
-                ? $.t('common.WARNING')
+                ? $.t('WARNING')
                 : obj.attr('data-title');
 
             message = (typeof obj.attr('data-msg') === 'undefined')
-                ? $.t('common.Are you sure you want to do this?')
+                ? $.t('Are you sure you want to do this?')
                 : obj.attr('data-msg');
 
             return {
@@ -65,7 +65,7 @@
                             type: BootstrapDialog.TYPE_DEFAULT,
                             message: data.m,
                             buttons: [{
-                                label: $.t('common.Close'),
+                                label: $.t('Close'),
                                 action: function(dialogItself){
                                     dialogItself.close();
                                 }
@@ -80,12 +80,12 @@
             var keys = $('#' + grid).yiiGridView('getSelectedRows');
             if (keys.length > 0) {
                 BootstrapDialog.confirm({
-                    title: $.t('common.WARNING'),
-                    message: $.t('common.Are you sure you want to do this?'),
+                    title: $.t('WARNING'),
+                    message: $.t('Are you sure you want to do this?'),
                     type: BootstrapDialog.TYPE_DEFAULT,
                     closable: true,
-                    btnCancelLabel: $.t('common.Cancel'),
-                    btnOKLabel: $.t('common.Ok'),
+                    btnCancelLabel: $.t('Cancel'),
+                    btnOKLabel: $.t('Ok'),
                     btnOKClass: 'btn-danger',
                     callback: function(result) {
                         if (result) {
@@ -99,12 +99,12 @@
             var keys = $('#' + grid).yiiGridView('getSelectedRows');
             if (keys.length > 0) {
                 BootstrapDialog.confirm({
-                    title: $.t('common.WARNING'),
-                    message: $.t('common.Are you sure you want to delete?'),
+                    title: $.t('WARNING'),
+                    message: $.t('Are you sure you want to delete?'),
                     type: BootstrapDialog.TYPE_DEFAULT,
                     closable: true,
-                    btnCancelLabel: $.t('common.Cancel'),
-                    btnOKLabel: $.t('common.Delete'),
+                    btnCancelLabel: $.t('Cancel'),
+                    btnOKLabel: $.t('Delete'),
                     btnOKClass: 'btn-danger',
                     callback: function (result) {
                         if (result) {
@@ -128,7 +128,6 @@
                     }
 
                     if (data.s === 1 && typeof(pjax) !== 'undefined') {
-                        //$.pjax.reload({container: '#' + pjax, timeout: false});
                         jurakit.form.pjaxReload('#' + pjax);
                         return true;
                     }
@@ -141,10 +140,10 @@
                     if (data.s === 0 && data.hasOwnProperty('m')) {
                         BootstrapDialog.show({
                             type: BootstrapDialog.TYPE_DANGER,
-                            title: $.t('common.WARNING'),
+                            title: $.t('WARNING'),
                             message: data.m,
                             buttons: [{
-                                label: $.t('common.Ok'),
+                                label: $.t('Ok'),
                                 action: function(dialogItself){
                                     dialogItself.close();
                                 }
@@ -159,11 +158,11 @@
         },
         delete: function (obj) {
             title = (typeof obj.attr('data-title') === 'undefined')
-                ? $.t('common.WARNING')
+                ? $.t('WARNING')
                 : obj.attr('data-title');
 
             message = (typeof obj.attr('data-msg') === 'undefined')
-                ? $.t('common.Are you sure you want to delete?')
+                ? $.t('Are you sure you want to do this?') //'common.Are you sure you want to delete?'
                 : obj.attr('data-msg');
 
             BootstrapDialog.confirm({
@@ -171,8 +170,8 @@
                 message: message,
                 type: BootstrapDialog.TYPE_DEFAULT,
                 closable: true,
-                btnCancelLabel: $.t('common.Cancel'),
-                btnOKLabel: $.t('common.Ok'),
+                btnCancelLabel: $.t('Cancel'),
+                btnOKLabel: $.t('Ok'),
                 btnOKClass: 'btn-danger',
                 callback: function(result) {
                     if (result) {
@@ -186,21 +185,23 @@
                             type: 'POST',
                             dataType: 'json',
                             success: function (data) {
-                                if (data.s === 0 && data.hasOwnProperty('m')) {
+                                if (data.hasOwnProperty('m')) {
                                     BootstrapDialog.show({
-                                        type: BootstrapDialog.TYPE_DANGER,
+                                        type: (data.s === 0) ? BootstrapDialog.TYPE_DANGER : BootstrapDialog.TYPE_DEFAULT,
+                                        title: $.t('INFO'),
                                         message: data.m,
                                         buttons: [{
-                                            label: $.t('common.Close'),
+                                            label: $.t('Close'),
                                             action: function(dialogItself){
                                                 dialogItself.close();
                                             }
                                         }]
                                     });
-                                    return false;
+                                    //return false;
                                 }
 
-                                pjaxContainer = '#' + obj.parents('.pjax-container').attr('id');
+                                //pjaxContainer = '#' + obj.parents('.pjax-container').attr('id');
+                                pjaxContainer = '#' + (obj.is('[data-pjax-container]') ? obj.attr('data-pjax-container') : obj.parents('.pjax-container').attr('id'));
                                 if (data.s === 1 && $(pjaxContainer).length > 0) {
                                     paramsPjax = {container: pjaxContainer, timeout: false};
 
@@ -236,11 +237,11 @@
         },
         goLink: function (obj) {
             title = (typeof obj.attr('data-title') === 'undefined')
-                ? $.t('common.WARNING')
+                ? $.t('WARNING')
                 : obj.attr('data-title');
 
             message = (typeof obj.attr('data-msg') === 'undefined')
-                ? $.t('common.Are you sure you want to do this?')
+                ? $.t('Are you sure you want to do this?')
                 : obj.attr('data-msg');
 
             BootstrapDialog.confirm({
@@ -248,8 +249,8 @@
                 message: message,
                 type: BootstrapDialog.TYPE_DEFAULT,
                 closable: true,
-                btnCancelLabel: $.t('common.Cancel'),
-                btnOKLabel: $.t('common.Ok'),
+                btnCancelLabel: $.t('Cancel'),
+                btnOKLabel: $.t('Ok'),
                 btnOKClass: 'btn-danger',
                 callback: function(result) {
                     if (result) {
@@ -270,8 +271,11 @@
                 containerSelector: 'table',
                 itemPath: '> tbody',
                 itemSelector: 'tr',
-                placeholder: '<tr class="placeholder"/>',
+                placeholder: '<tr class="sortable-placeholder"/>',
                 nested: false,
+                onDrag: function ($item, position, _super, event) {
+                    $item.css(position);
+                },
                 onDragStart: function ($item, container, _super, event) {
                     $item.css({height: $item.outerHeight(), width: $item.outerWidth()});
                     $item.addClass(container.group.options.draggedClass);

@@ -65,7 +65,7 @@ use vii\helpers\ArrayHelper;
  * @author Michael Härtl <haertl.mike@gmail.com>
  * @since 2.0
  */
-class ActiveForm extends \yii\widgets\ActiveForm
+class ActiveForm extends \yii\bootstrap\ActiveForm
 {
 
     public $enableClientValidation = true;

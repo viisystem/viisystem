@@ -26,13 +26,15 @@ use vii\widgets\Select;
 
             <?= $form->field($model, 'classes')->textInput(['maxlength' => true]) ?>
 
+            <?= $form->field($model, 'skin')->textInput(['maxlength' => true]) ?>
+
             <?= $form->field($model, 'is_active')->widget(Select::className(), ['options' => ['id' => 'category_item-is_active']]) ?>
 
         </div>
     </div>
 
     <div class="form-ctrl">
-        <?= Html::submitButton(Yii::t('common', ($model->isNewRecord ? 'Save' : 'Update')), ['class' => 'btn btn-primary pull-right']) ?>
+        <?= Html::submitButton(Yii::t('common', ($model->isNewRecord ? 'Save' : 'Update')), ['class' => 'btn btn-success pull-right']) ?>
     </div>
 
     <?php ActiveForm::end() ?>

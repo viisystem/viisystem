@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, '_id') ?>
 
-    <?= $form->field($model, 'lookup_id') ?>
+    <?= $form->field($model, 'key') ?>
 
     <?= $form->field($model, 'root') ?>
 
@@ -58,7 +58,7 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'source_id') ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('category', 'Search'), ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton(Yii::t('category', 'Search'), ['class' => 'btn btn-success']) ?>
         <?= Html::resetButton(Yii::t('category', 'Reset'), ['class' => 'btn btn-default']) ?>
     </div>
 

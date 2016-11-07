@@ -83,8 +83,8 @@ class Category extends BaseCategory
     {
         return ArrayHelper::merge(
             parent::rules(), [
-                [['title', 'language', 'lookup_id'], 'required'],
-                ['lookup_id', 'unique', 'targetAttribute' => ['language', 'lookup_id'], 'on' => 'root'],
+                [['title', 'language', 'key'], 'required'],
+                ['key', 'unique', 'targetAttribute' => ['language', 'key'], 'on' => 'root'],
             ]
         );
     }
@@ -93,8 +93,8 @@ class Category extends BaseCategory
     {
         return ArrayHelper::merge(
             parent::scenarios(), [
-                'root' => ['language', 'lookup_id', 'title', 'is_active'],
-                'item' => ['language', 'lookup_id', 'title', 'slug', 'meta_title', 'meta_keyword', 'meta_description', 'classes', 'is_active'],
+                'root' => ['language', 'key', 'title', 'is_active'],
+                'item' => ['language', 'key', 'title', 'slug', 'meta_title', 'meta_keyword', 'meta_description', 'classes', 'is_active'],
             ]
         );
     }
@@ -102,7 +102,18 @@ class Category extends BaseCategory
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
-        static::deleteAll(['lft' => 2, 'language' => null]);
+        $this->triggerChange();
+    }
+
+    public function afterDelete()
+    {
+        parent::afterDelete();
+        $this->triggerChange();
+    }
+
+    public function triggerChange()
+    {
+        static::deleteAll(['language' => null]); // Fix MongoDB >= 3.2
     }
 
     public function getId()
@@ -129,7 +140,7 @@ class Category extends BaseCategory
     {
         $this->language = $language;
         $this->source_id = $modelSource->primaryKey;
-        $this->lookup_id = $modelSource->lookup_id;
+        $this->key = $modelSource->key;
         $this->title = $modelSource->title;
     }
 

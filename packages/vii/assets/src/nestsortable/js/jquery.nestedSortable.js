@@ -1,19 +1,17 @@
 /*
  * jQuery UI Nested Sortable
- * v 2.0 / 29 oct 2012
- * http://mjsarfatti.com/sandbox/nestedSortable
+ * v 2.1a / 2016-02-04
+ * https://github.com/ilikenwf/nestedSortable
  *
  * Depends on:
  *	 jquery.ui.sortable.js 1.10+
  *
- * Copyright (c) 2010-2013 Manuele J Sarfatti
+ * Copyright (c) 2010-2016 Manuele J Sarfatti and contributors
  * Licensed under the MIT License
  * http://www.opensource.org/licenses/mit-license.php
  */
 (function( factory ) {
 	"use strict";
-
-	var define = window.define;
 
 	if ( typeof define === "function" && define.amd ) {
 
@@ -69,7 +67,7 @@
 			// mjs - prevent browser from freezing if the HTML is not correct
 			if (!this.element.is(this.options.listType)) {
 				err = "nestedSortable: " +
-				"Please check that the listType option is set to your actual list type";
+					"Please check that the listType option is set to your actual list type";
 
 				throw new Error(err);
 			}
@@ -151,8 +149,8 @@
 
 					if (
 						(
-						this.overflowOffset.top +
-						this.scrollParent[0].offsetHeight
+							this.overflowOffset.top +
+							this.scrollParent[0].offsetHeight
 						) -
 						event.pageY <
 						o.scrollSensitivity
@@ -170,8 +168,8 @@
 
 					if (
 						(
-						this.overflowOffset.left +
-						this.scrollParent[0].offsetWidth
+							this.overflowOffset.left +
+							this.scrollParent[0].offsetWidth
 						) -
 						event.pageX <
 						o.scrollSensitivity
@@ -199,8 +197,8 @@
 					} else if (
 						$(window).height() -
 						(
-						event.pageY -
-						$document.scrollTop()
+							event.pageY -
+							$document.scrollTop()
 						) <
 						o.scrollSensitivity
 					) {
@@ -218,8 +216,8 @@
 					} else if (
 						$(window).width() -
 						(
-						event.pageX -
-						$document.scrollLeft()
+							event.pageX -
+							$document.scrollLeft()
 						) <
 						o.scrollSensitivity
 					) {
@@ -245,7 +243,7 @@
 				this.helper[0].style.left = this.position.left + "px";
 			}
 			if (!this.options.axis || this.options.axis !== "x") {
-				this.helper[0].style.top = this.position.top + "px";
+				this.helper[0].style.top = (this.position.top) + "px";
 			}
 
 			// mjs - check and reset hovering state at each cycle
@@ -362,9 +360,9 @@
 						// or if it's not a root item but we are trying to make it root
 						if (o.protectRoot &&
 							!(
-							this.currentItem[0].parentNode === this.element[0] &&
+								this.currentItem[0].parentNode === this.element[0] &&
 								// it's a root item
-							itemElement.parentNode !== this.element[0]
+								itemElement.parentNode !== this.element[0]
 								// it's intersecting a non-root item
 							)
 						) {
@@ -471,13 +469,13 @@
 				nextItem == null &&
 				!(o.protectRoot && parentItem[0].parentNode == this.element[0]) &&
 				(
-				o.rtl &&
-				(
-				this.positionAbs.left +
-				this.helper.outerWidth() > parentItem.offset().left +
-				parentItem.outerWidth()
-				) ||
-				!o.rtl && (this.positionAbs.left < parentItem.offset().left)
+					o.rtl &&
+					(
+						this.positionAbs.left +
+						this.helper.outerWidth() > parentItem.offset().left +
+						parentItem.outerWidth()
+					) ||
+					!o.rtl && (this.positionAbs.left < parentItem.offset().left)
 				)
 			) {
 
@@ -499,22 +497,22 @@
 			} else if (previousItem != null &&
 				!previousItem.hasClass(o.disableNestingClass) &&
 				(
-				previousItem.children(o.listType).length &&
-				previousItem.children(o.listType).is(":visible") ||
-				!previousItem.children(o.listType).length
+					previousItem.children(o.listType).length &&
+					previousItem.children(o.listType).is(":visible") ||
+					!previousItem.children(o.listType).length
 				) &&
 				!(o.protectRoot && this.currentItem[0].parentNode === this.element[0]) &&
 				(
-				o.rtl &&
-				(
-				this.positionAbs.left +
-				this.helper.outerWidth() <
-				previousItem.offset().left +
-				previousItem.outerWidth() -
-				o.tabSize
-				) ||
-				!o.rtl &&
-				(this.positionAbs.left > previousItem.offset().left + o.tabSize)
+					o.rtl &&
+					(
+						this.positionAbs.left +
+						this.helper.outerWidth() <
+						previousItem.offset().left +
+						previousItem.outerWidth() -
+						o.tabSize
+					) ||
+					!o.rtl &&
+					(this.positionAbs.left > previousItem.offset().left + o.tabSize)
 				)
 			) {
 
@@ -617,13 +615,13 @@
 
 			if (this.floating && horizontalDirection) {
 				return (
-				(horizontalDirection === "right" && isOverRightHalf) ||
-				(horizontalDirection === "left" && !isOverRightHalf)
+					(horizontalDirection === "right" && isOverRightHalf) ||
+					(horizontalDirection === "left" && !isOverRightHalf)
 				);
 			} else {
 				return verticalDirection && (
-					(verticalDirection === "down" && isOverBottomHalf) ||
-					(verticalDirection === "up" && isOverTopHalf)
+						(verticalDirection === "down" && isOverBottomHalf) ||
+						(verticalDirection === "up" && isOverTopHalf)
 					);
 			}
 
@@ -676,9 +674,9 @@
 				if (res) {
 					str.push(
 						(
-						(o.key || res[1]) +
-						"[" +
-						(o.key && o.expression ? res[1] : res[2]) + "]"
+							(o.key || res[1]) +
+							"[" +
+							(o.key && o.expression ? res[1] : res[2]) + "]"
 						) +
 						"=" +
 						(pid ? (o.key && o.expression ? pid[1] : pid[2]) : o.rootID));
@@ -708,10 +706,18 @@
 			function _recursiveItems(item) {
 				var id = ($(item).attr(o.attribute || "id") || "").match(o.expression || (/(.+)[-=_](.+)/)),
 					currentItem;
+
+				var data = $(item).data();
+				if (data.nestedSortableItem) {
+					delete data.nestedSortableItem; // Remove the nestedSortableItem object from the data
+				}
+
 				if (id) {
 					currentItem = {
 						"id": id[2]
 					};
+
+					currentItem = $.extend({}, currentItem, data); // Combine the two objects
 
 					if ($(item).children(o.listType).children(o.items).length > 0) {
 						currentItem.children = [];
@@ -744,7 +750,7 @@
 			}
 
 			$(this.element).children(o.items).each(function() {
-				left = _recursiveArray(this, sDepth + 1, left);
+				left = _recursiveArray(this, sDepth, left);
 			});
 
 			ret = ret.sort(function(a, b) { return (a.left - b.left); });
@@ -766,9 +772,9 @@
 					depth--;
 				}
 
-				id = ($(item).attr(o.attribute || "id")).match(o.expression || (/(.+)[-=_](.+)/));
+				id = ($(item).attr(o.attribute || "id") || "").match(o.expression || (/(.+)[-=_](.+)/));
 
-				if (depth === sDepth + 1) {
+				if (depth === sDepth) {
 					pid = o.rootID;
 				} else {
 					parentItem = ($(item).parent(o.listType)
@@ -779,13 +785,15 @@
 				}
 
 				if (id) {
-					ret.push({
-						"item_id": id[2],
-						"parent_id": pid,
-						"depth": depth,
-						"left": _left,
-						"right": right
-					});
+					var data = $(item).children('div').data();
+					var itemObj = $.extend( data, {
+						"id":id[2],
+						"parent_id":pid,
+						"depth":depth,
+						"left":_left,
+						"right":right
+					} );
+					ret.push( itemObj );
 				}
 
 				_left = right + 1;
@@ -805,7 +813,7 @@
 
 			var o = this.options,
 				childrenList = $(item).children(o.listType),
-				hasChildren = childrenList.is(':not(:empty)');
+				hasChildren = childrenList.has('li').length;
 
 			var doNotClear =
 				o.doNotClear ||
@@ -814,13 +822,10 @@
 
 			if (o.isTree) {
 				replaceClass(item, o.branchClass, o.leafClass, doNotClear);
-
-				if (doNotClear && hasChildren) {
-					replaceClass(item, o.collapsedClass, o.expandedClass);
-				}
 			}
 
 			if (!doNotClear) {
+				childrenList.parent().removeClass(o.expandedClass);
 				childrenList.remove();
 			}
 		},
@@ -866,8 +871,8 @@
 				oldParent = this.currentItem.parent().parent(),
 				disabledByParentchange = o.disableParentChange && (
 						//From somewhere to somewhere else, except the root
-					typeof parentItem !== 'undefined' && !oldParent.is(parentItem) ||
-					typeof parentItem === 'undefined' && oldParent.is("li")	//From somewhere to the root
+						typeof parentItem !== 'undefined' && !oldParent.is(parentItem) ||
+						typeof parentItem === 'undefined' && oldParent.is("li")	//From somewhere to the root
 					);
 			// mjs - is the root protected?
 			// mjs - are we nesting too deep?

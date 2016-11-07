@@ -33,7 +33,7 @@
                     case 'select-one':
                     case 'text':
                     case 'textarea':
-                        $(this).val('');
+                        $(this).val(null);
                         break;
                     case 'checkbox':
                     case 'radio':
@@ -110,13 +110,13 @@
             var paramButton = obj.attr('data-modal-button');
             if (typeof paramButton === 'undefined' && paramButton !== false) {
                 modalButtons = [{
-                    label: $.t('common.Cancel'),
+                    label: $.t('Cancel'),
                     cssClass: 'btn btn-default',
                     action: function($dialog) {
                         $dialog.close();
                     }
                 },{
-                    label: $.t('common.Save'),
+                    label: $.t('Save'),
                     cssClass: 'btn btn-primary',
                     //autospin: true,
                     action: function($dialog) {
@@ -162,6 +162,16 @@
             jurakit.form.modalInstance.close();
         },
 
+        event: function () {
+            $('button[type="reset"]').on('click', function(e) {
+                e.preventDefault();
+                var formId = $(this).parents('form').attr('id');
+
+                jurakit.form.reset(formId);
+                $('#' + formId).find('.form-reset').val(1);
+                //$('#' + formId).submit();
+            });
+        },
         filter: function () {
             // Preventing duplicate handlers
             $('.form-filter').off('beforeSubmit').on('beforeSubmit', function (e) {
@@ -251,7 +261,7 @@
                     } else if (data.s === 0 && data.hasOwnProperty('m')) {
                         jurakit.form.modalInstance.setType(BootstrapDialog.TYPE_DANGER);
                         jurakit.form.modalInstance.setSize(BootstrapDialog.SIZE_NORMAL);
-                        jurakit.form.modalInstance.setTitle($.t('common.WARNING'));
+                        jurakit.form.modalInstance.setTitle($.t('WARNING'));
                         jurakit.form.modalInstance.getModal().removeClass('modal-full');
                         jurakit.form.modalInstance.getModal().removeClass('modal-auto');
                         jurakit.form.modalMsg(data.m);
@@ -516,11 +526,11 @@
         },
         delete: function (obj) {
             BootstrapDialog.confirm({
-                title: $.t('common.WARNING'),
-                message: $.t('common.Are you sure you want to delete?'),
+                title: $.t('WARNING'),
+                message: $.t('Are you sure you want to delete?'),
                 type: BootstrapDialog.TYPE_DEFAULT,
-                btnCancelLabel: $.t('common.Cancel'),
-                btnOKLabel: $.t('common.Delete'),
+                btnCancelLabel: $.t('Cancel'),
+                btnOKLabel: $.t('Delete'),
                 btnOKClass: 'btn-danger',
                 closeByBackdrop: false,
                 closeByKeyboard: false,
@@ -541,7 +551,7 @@
                                         type: BootstrapDialog.TYPE_DANGER,
                                         message: data.m,
                                         buttons: [{
-                                            label: $.t('common.Close'),
+                                            label: $.t('Close'),
                                             action: function(dialogItself){
                                                 dialogItself.close();
                                             }
@@ -602,11 +612,13 @@ $(window).resize(jurakit.form.button);
 $(document).ready(function () {
     jurakit.form.button();
     jurakit.form.ajax();
+    jurakit.form.event();
     jurakit.form.filter();
     jurakit.form.toggle();
 });
 $(document).on('pjax:success', function(event, data, status, xhr, options) {
     //jurakit.form.ajax();
+    jurakit.form.event();
     jurakit.form.filter();
     jurakit.form.toggle();
 });
