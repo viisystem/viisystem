@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function actionIndex()
     {
-        echo 'Frontend';
+        return $this->render('index');
     }
 }

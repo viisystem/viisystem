@@ -1,13 +1,13 @@
 <?php
-namespace app\themes\inspinia\assets;
+namespace app\themes\inspinia\backend\assets;
 
 use yii\web\AssetBundle;
 
-class AppAsset extends AssetBundle
+class BackendAsset extends AssetBundle
 {
     //public $basePath = '@webroot';
     //public $baseUrl = '@web';
-	public $sourcePath = '@app/themes/inspinia/assets/publish';
+	public $sourcePath = '@app/themes/inspinia/backend/assets/publish';
 	
     public $css = [
 		'vendor/inspinia/font-awesome/css/font-awesome.css',

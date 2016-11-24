@@ -9,7 +9,7 @@ $config = [
 			'errorAction' => 'dashboard/frontend/error',
 		],
 		'urlManager' => [
-            'enablePrettyUrl' => true,
+            'enablePrettyUrl' => false,
             'showScriptName' => true,
             'rules' => [
                 //'gii/<controller:\w+>' => 'gii/<controller>/index',
@@ -35,9 +35,13 @@ $config = [
 		],
 		'mongodb' => [
             'class' => '\yii\mongodb\Connection',
-            'dsn' => 'mongodb://viidev:khongphaiem123!@#@52.77.56.164:27017/viidev',
+            //'dsn' => 'mongodb://viidev:khongphaiem123!@#@52.77.56.164:27017/viidev',
+			'dsn' => 'mongodb://127.0.0.1:27017/viidev',
         ],
 	],
+	
+	'layout' => 'frontend',
+	'layoutPath' => '@app/themes/inspinia/frontend/layouts',
 ];
 
 $configs = array_replace_recursive($common, $config);
