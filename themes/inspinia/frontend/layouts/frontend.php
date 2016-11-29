@@ -42,7 +42,7 @@ app\themes\inspinia\frontend\assets\FrontendAsset::register($this);
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
                 '<li>'
-                . Html::beginForm(['/account/backend/login/logout'], 'post', ['class' => 'navbar-form'])
+                . Html::beginForm(['/account/backend/auth/logout'], 'post', ['class' => 'navbar-form'])
                 . Html::submitButton(
                     'Logout (' . Yii::$app->user->identity->username . ')',
                     ['class' => 'btn btn-link']

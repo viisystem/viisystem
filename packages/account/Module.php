@@ -14,7 +14,7 @@ class Module extends \app\classes\Module
 				'class' => AccessControl::className(),
 				'rules' => [
 					[
-						'controllers'=>['account/backend/login'],
+						'controllers'=>['account/backend/auth'],
 						'allow'=>true,
 					],
 					[

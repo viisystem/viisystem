@@ -41,7 +41,7 @@ use yii\widgets\Breadcrumbs;
                                 <li class="divider"></li>
 								<?php if(!Yii::$app->user->isGuest) { ?>
                                 <li>
-									<?=Html::beginForm(['/account/backend/login/logout'], 'post')
+									<?=Html::beginForm(['/account/backend/auth/logout'], 'post')
 										. Html::submitButton(
 											'Logout (' . Yii::$app->user->identity->username . ')',
 											['class' => 'btn btn-link logout']
@@ -211,7 +211,7 @@ use yii\widgets\Breadcrumbs;
 
 
                 <li>
-					<?=Html::beginForm(['/account/backend/login/logout'], 'post')
+					<?=Html::beginForm(['/account/backend/auth/logout'], 'post')
 					. Html::submitButton(
 						'<i class="fa fa-sign-out"></i> Log out',
 						['class' => 'btn btn-link logout', 'style'=>['padding' => '20px 10px', 'color'=>'#999c9e', 'font-weight'=>'600']]
