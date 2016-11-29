@@ -8,4 +8,9 @@ class Module extends \yii\base\Module
 	{
 		return [];
 	}
+	
+	public function getDIYWidgets()
+	{
+		return [];
+	}
 }

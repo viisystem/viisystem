@@ -15,7 +15,8 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+			'loginUrl' => ['account/backend/login'],
+            'identityClass' => 'app\packages\account\models\User',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -71,6 +72,9 @@ $config = [
 		],
 		'article' => [
 			'class' => 'app\packages\article\Module',
+		],
+		'diy' => [
+			'class' => 'app\packages\diy\Module',
 		],
 
 		// Duy

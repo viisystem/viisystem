@@ -6,6 +6,25 @@ use yii\filters\AccessControl;
 class Module extends \app\classes\Module
 {
     public $controllerNamespace = 'app\packages\account\controllers';
+	
+	public function behaviors()
+    {
+        return [
+			'access' => [
+				'class' => AccessControl::className(),
+				'rules' => [
+					[
+						'controllers'=>['account/backend/login'],
+						'allow'=>true,
+					],
+					[
+						'allow' => true,
+						'roles' => ['@'],
+					],
+				],
+			],
+        ];
+    }
 
     public function init()
     {

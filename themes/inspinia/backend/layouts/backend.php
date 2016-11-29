@@ -21,7 +21,7 @@ use yii\widgets\Breadcrumbs;
 	<title><?= Html::encode($this->title) ?></title>
 	<?php $this->head() ?>
 </head>
-<body>
+<body class="no-skin-config">
 	<?php $this->beginBody() ?>
     <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
@@ -39,7 +39,16 @@ use yii\widgets\Breadcrumbs;
                                 <li><a href="contacts.html">Contacts</a></li>
                                 <li><a href="mailbox.html">Mailbox</a></li>
                                 <li class="divider"></li>
-                                <li><a href="login.html">Logout</a></li>
+								<?php if(!Yii::$app->user->isGuest) { ?>
+                                <li>
+									<?=Html::beginForm(['/account/backend/login/logout'], 'post')
+										. Html::submitButton(
+											'Logout (' . Yii::$app->user->identity->username . ')',
+											['class' => 'btn btn-link logout']
+										)
+										. Html::endForm()?>
+								</li>
+								<?php } ?>
                             </ul>
                         </div>
                         <div class="logo-element">
@@ -202,9 +211,12 @@ use yii\widgets\Breadcrumbs;
 
 
                 <li>
-                    <a href="login.html">
-                        <i class="fa fa-sign-out"></i> Log out
-                    </a>
+					<?=Html::beginForm(['/account/backend/login/logout'], 'post')
+					. Html::submitButton(
+						'<i class="fa fa-sign-out"></i> Log out',
+						['class' => 'btn btn-link logout', 'style'=>['padding' => '20px 10px', 'color'=>'#999c9e', 'font-weight'=>'600']]
+					)
+					. Html::endForm()?>
                 </li>
                 <li>
                     <a class="right-sidebar-toggle">

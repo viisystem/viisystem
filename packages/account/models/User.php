@@ -23,7 +23,7 @@ use Yii;
  * @property mixed $last_login_datetime
  * @property mixed $data
  */
-class User extends UserBase
+class User extends UserBase implements \yii\web\IdentityInterface
 {
 	public function attributeLabels()
 	{
@@ -81,5 +81,106 @@ class User extends UserBase
 			return $this->addresses;
 		}
 		return null;
+	}
+	
+	public static function findIdentity($id)
+	{
+		return static::findOne($id);
+	}
+	
+	/**
+	* @inheritdoc
+	*/
+	public static function findIdentityByAccessToken($token, $type = null)
+	{
+		return static::findOne(['access_token' => $token]);
+		//throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+	}
+	
+	/**
+	* Finds user by username
+	*
+	* @param  string      $username
+	* @return static|null
+	*/
+	public static function findByUsername($username)
+	{
+		return static::findOne(['username' => $username]);
+	}
+	
+	public function getId()
+	{
+		return $this->getPrimaryKey()->__toString();
+	}
+	
+	/**
+	* @inheritdoc
+	*/
+	public function getAuthKey()
+	{
+		return $this->auth_key;
+	}
+
+	/**
+	* @inheritdoc
+	*/
+	public function validateAuthKey($authKey)
+	{
+		return $this->auth_key === $authKey;
+	}
+	
+	public function validatePassword($password)
+	{
+		try
+		{
+			$pass = $this->password;
+			return Yii::$app->security->validatePassword($password, $this->password);
+		}
+		catch (\Exception $ex)
+		{
+			$user = User::findByUsername($this->username);
+			if($user != null)
+			{
+				$user->password = Yii::$app->security->generatePasswordHash($user->password);
+				$this->password = $user->password;
+				$user->save();
+			}
+		}
+		return Yii::$app->security->validatePassword($password, $this->password);
+	}
+	
+	/**
+	* Generates password hash from password and sets it to the model
+	*
+	* @param string $password
+	*/
+	public function setPassword($password)
+	{
+		//$this->password = \yii\helpers\Security::generatePasswordHash($password);
+		$this->password = $password;
+	}
+
+	/**
+	* Generates "remember me" authentication key
+	*/
+	public function generateAuthKey()
+	{
+		$this->auth_key = Yii::$app->security->generateRandomString(); // Security::generateRandomKey();
+	}
+
+	/**
+	* Generates new password reset token
+	*/
+	public function generatePasswordResetToken()
+	{
+		$this->password_reset_token = Security::generateRandomKey() . '_' . time();
+	}
+
+	/**
+	* Removes password reset token
+	*/
+	public function removePasswordResetToken()
+	{
+		$this->password_reset_token = null;
 	}
 }
