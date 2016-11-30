@@ -1,6 +1,5 @@
 <?=app\packages\diy\widgets\Position::widget([
 	'options' => [
-		'id' => 'sample-1',
 		'class' => 'diy-dropable',
 	]
 ])?>
@@ -8,7 +7,24 @@
 <br/>
 <?=app\packages\diy\widgets\Position::widget([
 	'options' => [
-		'id' => 'sample-2',
 		'class' => 'diy-dropable',
+	]
+])?>
+
+<?=letyii\jstree\JsTreeInput::widget([
+	'name' => 'JLS',
+	'items' => [
+		'Simple root node',
+		[
+			'text' => 'root node 2',
+			'state' => [
+				'opened' => true,
+				'selected' => true,
+			],
+			'children' => [
+				['text' => 'child 1'],
+				'child 2',
+			]
+		],
 	]
 ])?>

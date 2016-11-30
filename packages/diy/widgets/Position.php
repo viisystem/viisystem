@@ -19,8 +19,10 @@ class Position extends \yii\base\Widget
 	public $options = [];
 	public static $widgets = null;
 	
-	public function init() {
+	public function init()
+	{
 		parent::init();
+		if(!isset($this->options['id'])) { $this->options['id'] = $this->getId(); }
 		\app\packages\diy\widgets\bundles\DIYAsset::register($this->getView());
 	}
 
@@ -38,6 +40,28 @@ class Position extends \yii\base\Widget
 			$str_widgets .= '</div></div>';
 			self::$widgets = $str_widgets;
 		}
+		
+		// Render storage widgets
+		$str_render = '';
+		$storage = \app\packages\diy\models\DiyStorage::findOne([
+			'page' => \Yii::$app->controller->id . '/' . \Yii::$app->controller->action->id,
+			'position' => $this->options['id'],
+		]);
+		if($storage != null)
+		{
+			if(!empty($storage->settings) && is_array($storage->settings))
+			{
+				foreach ($storage->settings as $one)
+				{
+					$widget = new $one['widget']['class']([
+						'settings' => $one
+					]);
+					$str_render .= $widget->getContent();
+				}
+			}
+		}
+		/////////////////////////////////////////////////////////////////////////
+		
 		return $str_widgets . \yii\helpers\Html::tag('div', '', $this->options);
 	}
 }

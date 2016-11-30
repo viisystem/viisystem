@@ -19,13 +19,41 @@ $(document).ready(function(){
 			var clone = draggable.clone();
 			clone.addClass('diy-sortable');
 			clone.appendTo(droppable);
+			
+			// Lưu widget
+			var arr = [];
+			droppable.children().each(function(){
+				arr.push($(this).data('settings'));
+			});
+			$.ajax({
+				url:'/viisystem/users/default/admin.php/diy/process/save-widget',
+				data:{
+					page:encodeURIComponent(clone.data('page')),
+					position:encodeURIComponent(droppable.attr('id')),
+					widgets:encodeURIComponent(JSON.stringify(arr))
+				},
+				success:function(response) {
+					
+				}
+			});
+			
+			// Load nội dung
+			$.ajax({
+				url:'/viisystem/users/default/admin.php/diy/process/get-content',
+				data:{data:encodeURIComponent(JSON.stringify(clone.data('settings')))},
+				success:function(response) {
+					clone.append(response);
+				}
+			});
 		}
 	}).sortable({
 		items: ".diy-sortable",
 		sort: function () {
 			// gets added unintentionally by droppable interacting with sortable
 			// using connectWithSortable fixes this, but doesn't allow you to customize active/hoverClass options
-			$(this).removeClass("ui-state-default");
+			//$(this).removeClass("ui-state-default");
+			console.log('sort');
+			console.log($(this));
 		}
      });
 });

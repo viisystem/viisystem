@@ -19,4 +19,10 @@ class Sample extends Widget
 		parent::init();
 		$this->settings['widget']['title'] = 'SAMPLE';
 	}
+	
+	// Hàm này sẽ trả về nội dung hiển thị
+	public function getContent()
+	{
+		return '<div><h3>Widget mẫu</h3>Đây là một widget mẫu</div>';
+	}
 }

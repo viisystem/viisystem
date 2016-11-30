@@ -20,7 +20,8 @@
 		"yiisoft/yii2-swiftmailer": "*",
 		"yiisoft/yii2-jui": "*",
 		"yiisoft/yii2-mongodb": "~2.1.0",
-		"kartik-v/yii2-widgets": "*"
+		"kartik-v/yii2-widgets": "*",
+		"letyii/yii2-jstree": "*"
 	},
 	"require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
