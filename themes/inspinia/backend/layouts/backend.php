@@ -56,20 +56,20 @@ use yii\widgets\Breadcrumbs;
                         </div>
                     </li>
                     <li class="active">
-                        <a href="<?=yii\helpers\Url::to(['/dashboard/backend/default'])?>"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
+                        <a href="<?=yii\helpers\Url::to(['/dashboard/default'])?>"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
                     </li>
 					<li>
                         <a href="javascript:void(0)"><i class="fa fa-user"></i> <span class="nav-label">Account</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="<?=yii\helpers\Url::to(['/account/backend/user'])?>">User</a></li>
-							<li><a href="<?=yii\helpers\Url::to(['/account/backend/permission'])?>">Permission</a></li>
+                            <li><a href="<?=yii\helpers\Url::to(['/account/user'])?>">User</a></li>
+							<li><a href="<?=yii\helpers\Url::to(['/account/permission'])?>">Permission</a></li>
                         </ul>
                     </li>
 					<li>
                         <a href="javascript:void(0)"><i class="fa fa-newspaper-o"></i> <span class="nav-label">Article</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-							<li><a href="<?=yii\helpers\Url::to(['/article/backend/category'])?>">Category</a></li>
-							<li><a href="<?=yii\helpers\Url::to(['/article/backend/post'])?>">Post</a></li>
+							<li><a href="<?=yii\helpers\Url::to(['/article/category'])?>">Category</a></li>
+							<li><a href="<?=yii\helpers\Url::to(['/article/post'])?>">Post</a></li>
                         </ul>
                     </li>
 

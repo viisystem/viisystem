@@ -9,7 +9,7 @@ $config = [
 			'errorAction' => 'dashboard/frontend/error',
 		],
 		'urlManager' => [
-            'enablePrettyUrl' => false,
+            'enablePrettyUrl' => true,
             'showScriptName' => true,
             'rules' => [
                 //'gii/<controller:\w+>' => 'gii/<controller>/index',
