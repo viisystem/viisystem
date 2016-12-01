@@ -35,5 +35,6 @@ class BackendAsset extends AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
 		'yii\bootstrap\BootstrapPluginAsset',
+		'vii\assets\JurakitAsset',
     ];
 }

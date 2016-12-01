@@ -23,11 +23,12 @@ class SortBehavior extends Behavior
 
     public function beforeSave()
     {
+        /** @var $owner \yii\mongodb\ActiveRecord */
         $owner = $this->owner;
         $value = (int) $owner->{$this->attribute};
 
         if ($value == 0) {
-            $value = (int) $this->owner->find()->max($this->attribute) + 1;
+            $value = (int) $owner->find()->max($this->attribute) + 1;
         }
 
         $owner->{$this->attribute} = $value;

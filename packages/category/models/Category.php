@@ -32,6 +32,14 @@ class Category extends BaseCategory
 
     public $items = [];
 
+    public $entityTable;
+    public $entityCache;
+    public $entityRoute;
+    public $entityId;
+    public $entityKey;
+    public $entityLanguage;
+    public $entityApplication;
+
     public static $tableName = 'category';
 
     private static $_instance;
@@ -152,6 +160,49 @@ class Category extends BaseCategory
         if ($cacheData === false) {
             $cacheData = static::findOne($id);
             //Yii::$app->cache->set($cacheKey, $cacheData, 86400, CacheHelper::getFileDependency('category'));
+        }
+
+        return $cacheData;
+    }
+
+    public function getOptions($key = null, $parent = null, $language = null)
+    {
+        if ($key == null)
+            $key = $this->entityKey;
+
+        if ($language == null)
+            $language = $this->entityLanguage;
+
+        if ($language == null)
+            $language = Yii::$app->language;
+
+        $cacheKey = md5("category.Category.getOptions.{$this->entityCache}.{$language}.{$key}.{$parent}");
+        $cacheData = Yii::$app->cache->get($cacheKey);
+        if ($cacheData === false) {
+            $query = static::find();
+            $query->where(['language' => $language, 'key' => $key]);
+
+            if ($parent != null) {
+                $query->andWhere(['_id' => $parent]);
+            } else {
+                $query->andWhere(['lft' => 1]);
+            }
+
+            if (($model = $query->one()) === null) {
+                return [];
+            }
+
+            if (($items = $model->children()->all()) === null) {
+                return [];
+            }
+
+            $result = [];
+            foreach ($items as $item) {
+                $result[(string) $item->_id] = str_repeat('-- ', $item->depth - 1) . $item->title;
+            }
+
+            $cacheData = $result;
+            //Yii::$app->cache->set($cacheKey, $cacheData, 86400);
         }
 
         return $cacheData;

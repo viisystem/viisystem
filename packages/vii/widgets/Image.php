@@ -2,6 +2,7 @@
 
 namespace vii\widgets;
 
+use vii\helpers\FileHelper;
 use vii\helpers\Html;
 use vii\helpers\Url;
 use kartik\file\FileInput;
@@ -26,7 +27,7 @@ class Image extends FileInput
         $initialPreview = [];
         $initialPreviewConfig = [];
         if ($this->model->{$this->attributeSave} != null) {
-            $initialPreview[] = Html::img($this->model->{$this->attributeSave}, ['class' => 'file-preview-image']);
+            $initialPreview[] = Html::img(FileHelper::getUploadSrc($this->model->{$this->attributeSave}), ['class' => 'file-preview-image']);
             //$initialPreviewConfig[] = ['width' => '120px', 'url' => $this->initialPreviewDelete, 'key' => "fileId-{$this->model->getId()}"];
         }
 //
