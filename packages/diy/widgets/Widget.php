@@ -34,11 +34,9 @@ class Widget extends \yii\base\Widget
 	// Hàm này dùng để trả về cái draggable icon. Cái icon này nằm ở thanh sidebar, user sẽ kéo thả vào giao diện
 	public function getDraggableIcon()
 	{
-		return \yii\helpers\Html::tag('div',
-			$this->settings['widget']['title'] /*. \yii\helpers\Json::encode($this->settings)*/, [
-			'class' => 'diy-draggable',
-			'data-settings' => \yii\helpers\Json::encode($this->settings),
-			'data-page' => \Yii::$app->controller->id . '/' . \Yii::$app->controller->action->id,
+		return $this->render('widget-icon', [
+			'settings' => $this->settings,
+			'page' => \Yii::$app->controller->id . '/' . \Yii::$app->controller->action->id,
 		]);
 	}
 

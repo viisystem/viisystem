@@ -16,7 +16,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<script type="text/javascript">Role.settings.urlAssignment = '<?=  yii\helpers\Url::to(['/account/backend/assignment/set-role'])?>';</script>
+			<script type="text/javascript">Role.settings.urlAssignment = '<?=yii\helpers\Url::to(['/account/assignment/set-role'])?>';</script>
 			<?php $i = 1; foreach($roles as $role) { ?>
 			<tr class="vii-row">
 				<td><input type="checkbox" onchange="Role.SetRole(this, '<?=$user?>', '<?=$role->name?>')"/></td>

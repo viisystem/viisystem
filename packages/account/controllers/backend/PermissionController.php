@@ -167,6 +167,6 @@ class PermissionController extends Controller
 				}
 			}
 		}
-		return $this->redirect(['/account/backend/permission']);
+		return $this->redirect(['/account/permission']);
 	}
 }

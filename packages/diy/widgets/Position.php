@@ -15,32 +15,35 @@ namespace app\packages\diy\widgets;
 
 class Position extends \yii\base\Widget
 {
+	const MODE_DRAG = 1;
+	const MODE_VIEW = 0;
+	
 	// Dùng chính thuộc tính html id của widget làm id của position
 	public $options = [];
+	public $mode = self::MODE_VIEW;
 	public static $widgets = null;
 	
 	public function init()
 	{
 		parent::init();
-		if(!isset($this->options['id'])) { $this->options['id'] = $this->getId(); }
-		\app\packages\diy\widgets\bundles\DIYAsset::register($this->getView());
-	}
-
-	public function run() {
-		$str_widgets = '';
-		if(self::$widgets === null)
+		
+		if(!isset($this->options['id']))
 		{
-			$str_widgets = '<div style="" class="diy-tool-bar"><div class="diy-tool-bar-title">Widgets</div><div style="padding: 4px 10px 4px 10px;">';
-			$widgets = \app\packages\diy\DIYManagement::AllDIYWidgets();
-			foreach($widgets as $widget)
-			{
-				$obj = new $widget();
-				$str_widgets .= $obj->getDraggableIcon();
-			}
-			$str_widgets .= '</div></div>';
-			self::$widgets = $str_widgets;
+			$this->options['id'] = $this->getId();
 		}
 		
+		if(\Yii::$app->user->can('diy.admin'))
+		{
+			\app\packages\diy\widgets\bundles\DIYAsset::register($this->getView());
+		}
+		else
+		{
+			$this->mode = self::MODE_VIEW;
+		}
+	}
+
+	public function run()
+	{
 		// Render storage widgets
 		$str_render = '';
 		$storage = \app\packages\diy\models\DiyStorage::findOne([
@@ -56,12 +59,52 @@ class Position extends \yii\base\Widget
 					$widget = new $one['widget']['class']([
 						'settings' => $one
 					]);
-					$str_render .= $widget->getContent();
+					if($this->mode === self::MODE_DRAG)
+					{
+						$str_render .= $this->render('widget-loaded',[
+							'settings' => $one,
+							'page' => $storage->page,
+							'content' => $widget->getContent(),
+						]);
+					}
+					else
+					{
+						$str_render .=  $widget->getContent();
+					}
 				}
 			}
 		}
 		/////////////////////////////////////////////////////////////////////////
+		return $this->renderWidgetToolbar() . $this->render('position',[
+			'options' => $this->options,
+			'content' => $str_render,
+			'mode' => $this->mode
+		]);
 		
-		return $str_widgets . \yii\helpers\Html::tag('div', '', $this->options);
+		//\yii\helpers\Html::tag('div', $str_render, $this->options);
+	}
+	
+	private function renderWidgetToolbar()
+	{
+		if(self::$widgets === null)
+		{
+			if(\Yii::$app->user->can('diy.admin'))
+			{
+				if($this->mode == Position::MODE_DRAG)
+				{
+					self::$widgets = $this->render('widget-toolbar');
+				}
+				else
+				{
+					self::$widgets = $this->render('edit-button');
+				}
+			}
+			else
+			{
+				self::$widgets = '';
+			}
+			return self::$widgets;
+		}
+		return '';
 	}
 }

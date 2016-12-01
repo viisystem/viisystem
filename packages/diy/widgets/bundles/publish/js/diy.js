@@ -42,7 +42,7 @@ $(document).ready(function(){
 				url:'/viisystem/users/default/admin.php/diy/process/get-content',
 				data:{data:encodeURIComponent(JSON.stringify(clone.data('settings')))},
 				success:function(response) {
-					clone.append(response);
+					clone.find('.diy-content').html(response);
 				}
 			});
 		}

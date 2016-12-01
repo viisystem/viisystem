@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				</div>
 				<div class="ibox-content">
 					<p style="text-align:right">
-						<a data-toggle="modal" class="btn btn-default" href="<?=yii\helpers\Url::to(['/account/backend/assignment', 'user'=>strval($model->_id)])?>" data-target="#myModal">Assign</a>
+						<a data-toggle="modal" class="btn btn-default" href="<?=yii\helpers\Url::to(['/account/assignment', 'user'=>strval($model->_id)])?>" data-target="#myModal">Assign</a>
 						<?= Html::a(Yii::t('account', 'Update'), ['update', 'id' => (string)$model->_id], ['class' => 'btn btn-primary']) ?>
 						<?= Html::a(Yii::t('account', 'Delete'), ['delete', 'id' => (string)$model->_id], [
 							'class' => 'btn btn-danger',

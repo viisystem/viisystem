@@ -1,17 +1,13 @@
 <?=app\packages\diy\widgets\Position::widget([
-	'options' => [
-		'class' => 'diy-dropable',
-	]
+	'mode' => (!empty($_GET['diy']) ? (int)$_GET['diy'] : app\packages\diy\widgets\Position::MODE_VIEW),
 ])?>
 <br/>
 <br/>
 <?=app\packages\diy\widgets\Position::widget([
-	'options' => [
-		'class' => 'diy-dropable',
-	]
+	'mode' => (!empty($_GET['diy']) ? (int)$_GET['diy'] : app\packages\diy\widgets\Position::MODE_VIEW),
 ])?>
 
-<?=letyii\jstree\JsTreeInput::widget([
+<?php /* letyii\jstree\JsTreeInput::widget([
 	'name' => 'JLS',
 	'items' => [
 		'Simple root node',
@@ -27,4 +23,4 @@
 			]
 		],
 	]
-])?>
+]) */ ?>

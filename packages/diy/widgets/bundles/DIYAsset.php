@@ -26,6 +26,7 @@ class DIYAsset extends AssetBundle
 			'js/diy'.(YII_DEBUG ? '' : $minext).'.js',
 		];
 		$this->css = [
+			'css/font-awesome.min.css',
 			'css/diy'.(YII_DEBUG ? '' : $minext).'.css',
 		];
 		parent::init();

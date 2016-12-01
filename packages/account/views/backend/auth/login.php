@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <style type="text/css">
 	.form-control { height:auto; }
 </style>
-<div class="site-login" style="width:380px">
+<div class="site-login">
     <h2><?= Html::encode($this->title) ?></h2>
     <p>Please fill out the following fields to login:</p>
 	

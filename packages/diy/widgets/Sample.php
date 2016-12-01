@@ -15,7 +15,8 @@ namespace app\packages\diy\widgets;
 
 class Sample extends Widget
 {
-	public function init() {
+	public function init()
+	{
 		parent::init();
 		$this->settings['widget']['title'] = 'SAMPLE';
 	}
