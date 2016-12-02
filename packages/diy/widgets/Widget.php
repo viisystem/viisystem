@@ -28,7 +28,7 @@ class Widget extends \yii\base\Widget
 	{
 		parent::init();
 		$this->settings['widget']['class'] = self::className();
-		\app\packages\diy\widgets\bundles\DIYAsset::register($this->getView());
+		\app\packages\diy\bundles\DIYAsset::register($this->getView());
 	}
 
 	// Hàm này dùng để trả về cái draggable icon. Cái icon này nằm ở thanh sidebar, user sẽ kéo thả vào giao diện

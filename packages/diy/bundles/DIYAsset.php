@@ -11,13 +11,13 @@
  *
  * @author Minh
  */
-namespace app\packages\diy\widgets\bundles;
+namespace app\packages\diy\bundles;
 
 use yii\web\AssetBundle;
 
 class DIYAsset extends AssetBundle
 {
-	public $sourcePath = '@app/packages/diy/widgets/bundles/publish';
+	public $sourcePath = '@app/packages/diy/bundles/publish';
 
 	public function init()
 	{

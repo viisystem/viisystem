@@ -32,10 +32,13 @@ class Position extends \yii\base\Widget
 			$this->options['id'] = $this->getId();
 		}
 		
+		// Check mode by request
+		$this->mode = (!empty(\Yii::$app->request->get('diy')) ? (int)\Yii::$app->request->get('diy') : self::MODE_VIEW);
+		
 		//if(\Yii::$app->user->can('diy.admin'))
 		if(!\Yii::$app->user->isGuest)
 		{
-			\app\packages\diy\widgets\bundles\DIYAsset::register($this->getView());
+			\app\packages\diy\bundles\DIYAsset::register($this->getView());
 		}
 		else
 		{

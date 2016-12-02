@@ -1,11 +1,7 @@
-<?=app\packages\diy\widgets\Position::widget([
-	'mode' => (!empty($_GET['diy']) ? (int)$_GET['diy'] : app\packages\diy\widgets\Position::MODE_VIEW),
-])?>
+<?=app\packages\diy\widgets\Position::widget()?>
 <br/>
 <br/>
-<?=app\packages\diy\widgets\Position::widget([
-	'mode' => (!empty($_GET['diy']) ? (int)$_GET['diy'] : app\packages\diy\widgets\Position::MODE_VIEW),
-])?>
+<?=app\packages\diy\widgets\Position::widget()?>
 
 <?php /* letyii\jstree\JsTreeInput::widget([
 	'name' => 'JLS',
