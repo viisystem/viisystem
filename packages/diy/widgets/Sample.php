@@ -26,4 +26,15 @@ class Sample extends Widget
 	{
 		return '<div><h3>Widget mẫu</h3>Đây là một widget mẫu</div>';
 	}
+	
+	public function getSettingForm()
+	{
+		
+	}
+
+	// Hàm này là để display widget sau khi kéo thả. Khi thả widget vào layout thì hàm này sẽ render 1 cái box, phần nội dung bên trong thì do hàm widget() trả về, nghĩa là sẽ hiển thị như frontend. Và title cái box sẽ hiển thị icon setting, icon setting này sẽ có cái link, click vào thì lên dialog cho hiện lên cái getSettingForm
+	public function getSettingBar()
+	{
+		
+	}
 }

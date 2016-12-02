@@ -39,7 +39,7 @@ app\themes\inspinia\frontend\assets\FrontendAsset::register($this);
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+                ['label' => 'Login', 'url' => ['/account/backend/auth/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/account/backend/auth/logout'], 'post', ['class' => 'navbar-form'])

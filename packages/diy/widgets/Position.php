@@ -32,7 +32,8 @@ class Position extends \yii\base\Widget
 			$this->options['id'] = $this->getId();
 		}
 		
-		if(\Yii::$app->user->can('diy.admin'))
+		//if(\Yii::$app->user->can('diy.admin'))
+		if(!\Yii::$app->user->isGuest)
 		{
 			\app\packages\diy\widgets\bundles\DIYAsset::register($this->getView());
 		}
@@ -88,7 +89,8 @@ class Position extends \yii\base\Widget
 	{
 		if(self::$widgets === null)
 		{
-			if(\Yii::$app->user->can('diy.admin'))
+			//if(\Yii::$app->user->can('diy.admin'))
+			if(!\Yii::$app->user->isGuest)
 			{
 				if($this->mode == Position::MODE_DRAG)
 				{
