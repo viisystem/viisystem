@@ -1,12 +1,5 @@
 <?php
 /**
- * JuraKIT (http://www.jurakit.com)
- *
- * @package yii2-nested-sets-mongodb
- * @author Mai Ba Duy <maibaduy@gmail.com>
- * @copyright Copyright (c) 2015 JuraKIT
- * @license http://www.jurakit.com/license
- * @version 1.0.0
  * @link https://github.com/maibaduy/yii2-nested-sets-mongodb
  */
 
@@ -54,10 +47,6 @@ class NestedSetsQueryBehavior extends Behavior
             $columns = [$model->treeAttribute => SORT_ASC] + $columns;
         }
 
-        // // jurakit
-        // $this->owner
-        //     ->andWhere([$model->rightAttribute => new Expression($db->quoteColumnName($model->leftAttribute) . '+ 1')])
-        //     ->addOrderBy($columns);
         $this->owner
             ->andWhere(['$where' => "this.{$model->rightAttribute} = this.{$model->leftAttribute} + 1"])
             ->addOrderBy($columns);

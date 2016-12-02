@@ -38,7 +38,7 @@ class BooleanColumn extends DataColumn
         $url = 'javascript:';
 
         if (!$this->readonly) {
-            $routes = [$this->route, 'id' => $model->getId()];
+            $routes = [$this->route, 'id' => (string) $model->primaryKey];
             if ($this->route == null) {
                 $routes[0] = '/' . Yii::$app->controller->uniqueId . '/' . str_replace('_', '-', $this->attribute);
             }

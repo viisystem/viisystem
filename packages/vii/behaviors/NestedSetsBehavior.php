@@ -1,14 +1,5 @@
 <?php
 /**
- * JuraKIT (http://www.jurakit.com)
- *
- * Note: Reference from https://github.com/creocoder/yii2-nested-sets
- *
- * @package yii2-nested-sets-mongodb
- * @author Mai Ba Duy <maibaduy@gmail.com>
- * @copyright Copyright (c) 2015 JuraKIT
- * @license http://www.jurakit.com/license
- * @version 1.0.0
  * @link https://github.com/maibaduy/yii2-nested-sets-mongodb
  */
 
@@ -203,12 +194,6 @@ class NestedSetsBehavior extends Behavior
             return false;
         }
 
-        // // jurakit
-        // $condition = [
-        //     'and',
-        //     ['>=', $this->leftAttribute, $this->owner->getAttribute($this->leftAttribute)],
-        //     ['<=', $this->rightAttribute, $this->owner->getAttribute($this->rightAttribute)]
-        // ];
         $condition = [
             'and',
             [$this->leftAttribute => ['$gte' => $this->owner->getAttribute($this->leftAttribute)]],
@@ -231,22 +216,12 @@ class NestedSetsBehavior extends Behavior
      */
     public function parents($depth = null)
     {
-        // // jurakit
-        // $condition = [
-        //     'and',
-        //     ['<', $this->leftAttribute, $this->owner->getAttribute($this->leftAttribute)],
-        //     ['>', $this->rightAttribute, $this->owner->getAttribute($this->rightAttribute)],
-        // ];
         $condition = [
             'and',
             [$this->leftAttribute => ['$lt' => $this->owner->getAttribute($this->leftAttribute)]],
             [$this->rightAttribute => ['$gt' => $this->owner->getAttribute($this->rightAttribute)]],
         ];
 
-        // // jurakit
-        // if ($depth !== null) {
-        //     $condition[] = ['>=', $this->depthAttribute, $this->owner->getAttribute($this->depthAttribute) - $depth];
-        // }
         if ($depth !== null) {
             $condition[] = [$this->depthAttribute => ['$gte' => $this->owner->getAttribute($this->depthAttribute) - $depth]];
         }
@@ -263,22 +238,12 @@ class NestedSetsBehavior extends Behavior
      */
     public function children($depth = null)
     {
-        // // jurakit
-        // $condition = [
-        //     'and',
-        //     ['>', $this->leftAttribute, $this->owner->getAttribute($this->leftAttribute)],
-        //     ['<', $this->rightAttribute, $this->owner->getAttribute($this->rightAttribute)],
-        // ];
         $condition = [
             'and',
             [$this->leftAttribute => ['$gt' => $this->owner->getAttribute($this->leftAttribute)]],
             [$this->rightAttribute => ['$lt' => $this->owner->getAttribute($this->rightAttribute)]],
         ];        
 
-        // // jurakit        
-        // if ($depth !== null) {
-        //     $condition[] = ['<=', $this->depthAttribute, $this->owner->getAttribute($this->depthAttribute) + $depth];
-        // }
         if ($depth !== null) {
             $condition[] = [$this->depthAttribute => ['$lte' => $this->owner->getAttribute($this->depthAttribute) + $depth]];
         }
@@ -294,13 +259,6 @@ class NestedSetsBehavior extends Behavior
      */
     public function leaves()
     {
-        // // jurakit
-        // $condition = [
-        //     'and',
-        //     ['>', $this->leftAttribute, $this->owner->getAttribute($this->leftAttribute)],
-        //     ['<', $this->rightAttribute, $this->owner->getAttribute($this->rightAttribute)],
-        //     [$this->rightAttribute => new Expression($this->owner->getDb()->quoteColumnName($this->leftAttribute) . '+ 1')],
-        // ];
         $condition = [
             'and',
             [$this->leftAttribute => ['$gt' => $this->owner->getAttribute($this->leftAttribute)]],
@@ -546,27 +504,6 @@ class NestedSetsBehavior extends Behavior
         $depthValue = $this->owner->getAttribute($this->depthAttribute);
         $rootValue = $this->owner->getAttribute($this->rootAttribute);
 
-//        // jurakit: unuse
-//        $leftAttribute = $db->quoteColumnName($this->leftAttribute);
-//        $rightAttribute = $db->quoteColumnName($this->rightAttribute);
-//        $depthAttribute = $db->quoteColumnName($this->depthAttribute);
-
-        // //jurakit
-        // $this->owner->updateAll(
-        //     [
-        //         $this->leftAttribute => new Expression($leftAttribute . sprintf('%+d', 1 - $leftValue)),
-        //         $this->rightAttribute => new Expression($rightAttribute . sprintf('%+d', 1 - $leftValue)),
-        //         $this->depthAttribute => new Expression($depthAttribute  . sprintf('%+d', -$depthValue)),
-        //         $this->rootAttribute => $this->owner->getPrimaryKey(),
-        //     ],
-        //     [
-        //         'and',
-        //         ['>=', $this->leftAttribute, $leftValue],
-        //         ['<=', $this->rightAttribute, $rightValue],
-        //         [$this->rootAttribute => $rootValue]
-        //     ]
-        // );
-
         $this->owner->updateAll(
             [
                 '$inc' => [
@@ -600,9 +537,6 @@ class NestedSetsBehavior extends Behavior
         $rightValue = $this->owner->getAttribute($this->rightAttribute);
         $depthValue = $this->owner->getAttribute($this->depthAttribute);
 
-        // // jurakit
-        //$depthAttribute = $db->quoteColumnName($this->depthAttribute);
-
         $depth = $this->node->getAttribute($this->depthAttribute) - $depthValue + $depth;
 
         if ($this->rootAttribute === false
@@ -615,8 +549,6 @@ class NestedSetsBehavior extends Behavior
                 $rightValue += $delta;
             }
 
-            // // jurakit
-            // $condition = ['and', ['>=', $this->leftAttribute, $leftValue], ['<=', $this->rightAttribute, $rightValue]];
             $condition = [
                 'and',
                 [$this->leftAttribute => ['$gte' => $leftValue]],
@@ -625,11 +557,6 @@ class NestedSetsBehavior extends Behavior
 
             $this->applyTreeAttributeCondition($condition);
 
-            // // jurakit
-            // $this->owner->updateAll(
-            //     [$this->depthAttribute => new Expression($depthAttribute . sprintf('%+d', $depth))],
-            //     $condition
-            // );
             $this->owner->updateAll(
                 [
                     '$inc' => [
@@ -639,19 +566,7 @@ class NestedSetsBehavior extends Behavior
                 $condition
             );
 
-            // // jurakit
-            // foreach ([$this->leftAttribute, $this->rightAttribute] as $attribute) {
-            //     $condition = ['and', ['>=', $attribute, $leftValue], ['<=', $attribute, $rightValue]];
-            //     $this->applyTreeAttributeCondition($condition);
-
-            //     $this->owner->updateAll(
-            //         [$attribute => new Expression($db->quoteColumnName($attribute) . sprintf('%+d', $value - $leftValue))],
-            //         $condition
-            //     );
-            // }
             foreach ([$this->leftAttribute, $this->rightAttribute] as $attribute) {
-                // // jurakit
-                // $condition = ['and', ['>=', $attribute, $leftValue], ['<=', $attribute, $rightValue]];            
                 $condition = [
                     'and',
                     [$attribute => ['$gte' => $leftValue]],
@@ -673,18 +588,8 @@ class NestedSetsBehavior extends Behavior
 
             $this->shiftLeftRightAttribute($rightValue + 1, -$delta);
         } else {
-//            // jurakit
-//            $leftAttribute = $db->quoteColumnName($this->leftAttribute);
-//            $rightAttribute = $db->quoteColumnName($this->rightAttribute);
             $nodeRootValue = $this->node->getAttribute($this->rootAttribute);
 
-            // // jurakit
-            // foreach ([$this->leftAttribute, $this->rightAttribute] as $attribute) {
-            //     $this->owner->updateAll(
-            //         [$attribute => new Expression($db->quoteColumnName($attribute) . sprintf('%+d', $rightValue - $leftValue + 1))],
-            //         ['and', ['>=', $attribute, $value], [$this->rootAttribute => $nodeRootValue]]
-            //     );
-            // }
             foreach ([$this->leftAttribute, $this->rightAttribute] as $attribute) {
                 $this->owner->updateAll(
                     [
@@ -701,22 +606,6 @@ class NestedSetsBehavior extends Behavior
             }
 
             $delta = $value - $leftValue;
-
-            // //jurakit
-            // $this->owner->updateAll(
-            //     [
-            //         $this->leftAttribute => new Expression($leftAttribute . sprintf('%+d', $delta)),
-            //         $this->rightAttribute => new Expression($rightAttribute . sprintf('%+d', $delta)),
-            //         $this->depthAttribute => new Expression($depthAttribute . sprintf('%+d', $depth)),
-            //         $this->rootAttribute => $nodeRootValue,
-            //     ],
-            //     [
-            //         'and',
-            //         ['>=', $this->leftAttribute, $leftValue],
-            //         ['<=', $this->rightAttribute, $rightValue],
-            //         [$this->rootAttribute => $this->owner->getAttribute($this->rootAttribute)],
-            //     ]
-            // );
 
             $this->owner->updateAll(
                 [
@@ -769,12 +658,6 @@ class NestedSetsBehavior extends Behavior
         if ($this->owner->isLeaf() || $this->operation === self::OPERATION_DELETE_WITH_CHILDREN) {
             $this->shiftLeftRightAttribute($rightValue + 1, $leftValue - $rightValue - 1);
         } else {
-            // // jurakit
-            // $condition = [
-            //     'and',
-            //     ['>=', $this->leftAttribute, $this->owner->getAttribute($this->leftAttribute)],
-            //     ['<=', $this->rightAttribute, $this->owner->getAttribute($this->rightAttribute)]
-            // ];
             $condition = [
                 'and',
                 [$this->leftAttribute => ['$gte' => $this->owner->getAttribute($this->leftAttribute)]],
@@ -784,15 +667,6 @@ class NestedSetsBehavior extends Behavior
             $this->applyTreeAttributeCondition($condition);
             $db = $this->owner->getDb();
 
-            // // jurakit
-            // $this->owner->updateAll(
-            //     [
-            //         $this->leftAttribute => new Expression($db->quoteColumnName($this->leftAttribute) . sprintf('%+d', -1)),
-            //         $this->rightAttribute => new Expression($db->quoteColumnName($this->rightAttribute) . sprintf('%+d', -1)),
-            //         $this->depthAttribute => new Expression($db->quoteColumnName($this->depthAttribute) . sprintf('%+d', -1)),
-            //     ],
-            //     $condition
-            // );
             $this->owner->updateAll(
                 [
                     '$inc' => [
@@ -819,16 +693,10 @@ class NestedSetsBehavior extends Behavior
     {
         $db = $this->owner->getDb();
 
-        foreach ([$this->leftAttribute, $this->rightAttribute] as $attribute) {            
-            //$condition = ['>=', $attribute, $value];
+        foreach ([$this->leftAttribute, $this->rightAttribute] as $attribute) {
             $condition = [$attribute => ['$gte' => $value]];
             
             $this->applyTreeAttributeCondition($condition);
-
-            // $this->owner->updateAll(
-            //     [$attribute => new Expression($db->quoteColumnName($attribute) . sprintf('%+d', $delta))],
-            //     $condition
-            // );
             
             $this->owner->updateAll(                
                 [
@@ -839,10 +707,6 @@ class NestedSetsBehavior extends Behavior
                 ,
                 $condition
             );
-            // $this->owner->updateAll(
-            //     ['$inc' => [$attribute => $delta]],
-            //     $condition
-            // );
         }
     }
 

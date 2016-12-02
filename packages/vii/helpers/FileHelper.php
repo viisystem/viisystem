@@ -4,9 +4,11 @@ namespace vii\helpers;
 
 use Yii;
 
-class FileHelper extends \yii\helpers\FileHelper {
+class FileHelper extends \yii\helpers\FileHelper
+{
 
-    public static function getExtention($file) {
+    public static function getExtention($file)
+    {
         if (($ext = pathinfo($file, PATHINFO_EXTENSION)) !== '')
             return strtolower($ext);
         return FALSE;
@@ -106,7 +108,8 @@ class FileHelper extends \yii\helpers\FileHelper {
         } else return false;
     }
 
-    public static function readFile($path) {
+    public static function readFile($path)
+    {
         if (file_exists($path) AND is_file($path)) {
             return file_get_contents($path);
         }
@@ -114,7 +117,8 @@ class FileHelper extends \yii\helpers\FileHelper {
         return '';
     }
 
-    public static function writeFile($path, $data, $mode = 0755, $recursive = true) {
+    public static function writeFile($path, $data, $mode = 0755, $recursive = true)
+    {
         $pathDir = pathinfo($path, PATHINFO_DIRNAME);
         if (!is_dir($pathDir)) {
             mkdir($pathDir, $mode, $recursive);
@@ -207,10 +211,11 @@ class FileHelper extends \yii\helpers\FileHelper {
      * @param array $ignore
      * @return array
      */
-    public static function findDirectories($dir, $ignore = array()) {
-        $dirList = glob($dir . '/*' , GLOB_ONLYDIR);
+    public static function findDirectories($dir, $ignore = array())
+    {
+        $dirList = glob($dir . '/*', GLOB_ONLYDIR);
         $result = [];
-        foreach($dirList as $dir) {
+        foreach ($dirList as $dir) {
             $name = basename($dir);
             if (!in_array($name, $ignore))
                 $result[$name] = $name;

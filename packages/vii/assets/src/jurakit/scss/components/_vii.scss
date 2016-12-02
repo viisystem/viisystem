@@ -1,0 +1,14 @@
+.vii-form {
+  .nav-tabs > li.active > a {
+    &,
+    &:hover,
+    &:focus {
+      border-bottom-color: #fff !important;
+    }
+  }
+}
+
+.vii-table > tbody > tr > td {
+  vertical-align: middle !important;
+}
+

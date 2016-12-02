@@ -26,6 +26,7 @@ class SourceBehavior extends Behavior
 
     public function afterSave()
     {
+        /** @var $owner \yii\mongodb\ActiveRecord */
         $owner = $this->owner;
 
         if ($owner->{$this->attribute} == null) {
@@ -47,6 +48,7 @@ class SourceBehavior extends Behavior
 
     public function afterDelete()
     {
+        /** @var $owner \yii\mongodb\ActiveRecord */
         $owner = $this->owner;
         $models = $owner::find()->where([$this->attribute => $owner->primaryKey])->all();
 
@@ -60,5 +62,4 @@ class SourceBehavior extends Behavior
 
         return true;
     }
-
 }

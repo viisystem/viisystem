@@ -69,13 +69,17 @@ class ActiveForm extends \yii\bootstrap\ActiveForm
 {
 
     public $enableClientValidation = true;
-    public $options = ['role' => 'form', 'enctype' => 'multipart/form-data'];
+    public $options = [
+        'id' => 'form-main',
+        'class' => 'vii-form',
+        'role' => 'form',
+        'enctype' => 'multipart/form-data'
+    ];
 
     /**
      * @var string the default field class name when calling [[field()]] to create a new field.
      * @see fieldConfig
      */
-    //public $fieldClass = 'yii\bootstrap\ActiveField';
     public $fieldClass = 'vii\widgets\ActiveField';
 
     /**
@@ -89,9 +93,8 @@ class ActiveForm extends \yii\bootstrap\ActiveForm
      * override these defaults through [[fieldConfig]].
      * @see \yii\bootstrap\ActiveField for details on Bootstrap 3 field configuration
      */
-    public $layout = 'default';
-
-
+    public $layout = 'horizontal';
+    
     /**
      * @inheritdoc
      */
