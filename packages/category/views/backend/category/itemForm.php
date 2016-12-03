@@ -20,15 +20,9 @@ use vii\widgets\Select;
     <div class="modal-scroll-form">
         <div class="p-20 p-15-xs-down">
 
-            <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'title') ?>
 
-            <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
-
-            <?= $form->field($model, 'classes')->textInput(['maxlength' => true]) ?>
-
-            <?= $form->field($model, 'skin')->textInput(['maxlength' => true]) ?>
-
-            <?= $form->field($model, 'is_active')->widget(Select::className(), ['options' => ['id' => 'category_item-is_active']]) ?>
+            <?= $form->field($model, 'slug') ?>
 
         </div>
     </div>

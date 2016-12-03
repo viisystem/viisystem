@@ -3,6 +3,7 @@
 namespace app\packages\category\models;
 
 use vii\behaviors\NestedSetsBehavior;
+use vii\behaviors\SluggableBehavior;
 use vii\behaviors\SourceBehavior;
 
 use vii\helpers\ArrayHelper;
@@ -83,6 +84,7 @@ class Category extends BaseCategory
             parent::behaviors(), [
                 ['class' => NestedSetsBehavior::className()],
                 ['class' => SourceBehavior::className(), 'attributeSync' => ['skin', 'is_active']],
+                ['class' => SluggableBehavior::className(), 'uniqueValidator' => []],
             ]
         );
     }

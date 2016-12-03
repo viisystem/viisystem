@@ -33,9 +33,10 @@ foreach ($modelItem as $n => $item) {
                     <span title="Click to show/hide children" class="nestsortable-item-close ui-icon ui-icon-minusthick"></span>
                     <span>'.Html::encode($item->title).'</span>
                 </div>
-                <div class="pull-right">
+                <div class="pull-right">                
                     <a href="javascript:" class="grid-action" data-class="body-full" data-url="'.Url::to(["{$controllerId}/item-insert", 'id' => $model->getId(), 'item' => $item->getId(), 'operation' => Category::OPERATION_APPEND_TO]).'" data-id="' . $gridId . '" data-ajax-container="nestsortable-container" data-func-success="jurakit.nestsortable.init()" onclick="jurakit.form.modal($(this)); return false"><i class="fa fa-plus-square-o"></i></a>
-                    <a href="javascript:" class="grid-action" data-class="body-full" data-url="'.Url::to(["{$controllerId}/item-update", 'id' => $model->getId(), 'item' => $item->getId()]).'" data-id="' . $gridId . '" data-ajax-container="nestsortable-container" data-func-success="jurakit.nestsortable.init()" onclick="jurakit.form.modal($(this)); return false"><i class="fa fa-pencil-square-o"></i></a>
+                    <a class="grid-action" data-class="body-full" href="'.Url::to(["{$controllerId}/item-update-full", 'id' => $model->getId(), 'item' => $item->getId(), 'returnUrl' => Yii::$app->request->getUrl()]).'" data-id="' . $gridId . '" data-ajax-container="nestsortable-container" data-func-success="jurakit.nestsortable.init()"><i class="fa fa-pencil-square-o"></i></a>
+                    <a href="javascript:" class="grid-action hidden" data-class="body-full" data-url="'.Url::to(["{$controllerId}/item-update", 'id' => $model->getId(), 'item' => $item->getId()]).'" data-id="' . $gridId . '" data-ajax-container="nestsortable-container" data-func-success="jurakit.nestsortable.init()" onclick="jurakit.form.modal($(this)); return false"><i class="fa fa-pencil-square-o"></i></a>
                     <a href="javascript:" class="grid-action" data-class="body-full" data-url="'.Url::to(["{$controllerId}/item-delete", 'id' => $model->getId(), 'item' => $item->getId()]).'" data-id="' . $gridId . '" data-ajax-container="nestsortable-container" data-func-success="jurakit.nestsortable.init()" onclick="jurakit.grid.delete($(this)); return false"><i class="fa fa-trash-o"></i></a>
 
                     <div class="btn-group">

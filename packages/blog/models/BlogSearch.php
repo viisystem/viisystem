@@ -18,7 +18,7 @@ class BlogSearch extends Blog
     public function rules()
     {
         return [
-            [['_id', 'title', 'slug', 'image', 'category', 'excerpt', 'content', 'seo_title', 'seo_keyword', 'seo_description', 'tags', 'skin', 'sort', 'is_promotion', 'is_active', 'created_at', 'created_by', 'updated_at', 'updated_by', 'language', 'source_id'], 'safe'],
+            [['_id', 'title', 'slug', 'image', 'category', 'excerpt', 'content', 'meta_title', 'meta_keyword', 'meta_description', 'tags', 'skin', 'sort', 'is_promotion', 'is_active', 'created_at', 'created_by', 'updated_at', 'updated_by', 'language', 'source_id'], 'safe'],
         ];
     }
 
@@ -70,9 +70,9 @@ class BlogSearch extends Blog
             ->andFilterWhere(['like', 'category', $this->category])
             ->andFilterWhere(['like', 'excerpt', $this->excerpt])
             ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'seo_title', $this->seo_title])
-            ->andFilterWhere(['like', 'seo_keyword', $this->seo_keyword])
-            ->andFilterWhere(['like', 'seo_description', $this->seo_description])
+            ->andFilterWhere(['like', 'meta_title', $this->meta_title])
+            ->andFilterWhere(['like', 'meta_keyword', $this->meta_keyword])
+            ->andFilterWhere(['like', 'meta_description', $this->meta_description])
             ->andFilterWhere(['like', 'tags', $this->tags])
             ->andFilterWhere(['like', 'skin', $this->skin])
             ->andFilterWhere(['like', 'sort', $this->sort])

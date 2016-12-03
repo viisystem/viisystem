@@ -29,11 +29,11 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'content') ?>
 
-    <?php // echo $form->field($model, 'seo_title') ?>
+    <?php // echo $form->field($model, 'meta_title') ?>
 
-    <?php // echo $form->field($model, 'seo_keyword') ?>
+    <?php // echo $form->field($model, 'meta_keyword') ?>
 
-    <?php // echo $form->field($model, 'seo_description') ?>
+    <?php // echo $form->field($model, 'meta_description') ?>
 
     <?php // echo $form->field($model, 'tags') ?>
 
