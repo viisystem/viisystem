@@ -53,10 +53,18 @@ class Blog extends BaseBlog
     {
         return ArrayHelper::merge(
             parent::rules(), [
+                [['title'], 'required'],
                 ['image_form', 'file', 'extensions' => ['png', 'jpg', 'gif'], 'maxSize' => 5*1024*1024],
                 ['image_form', 'image', 'extensions' => ['png', 'jpg', 'gif'], 'minWidth' => 100, 'maxWidth' => 2048, 'minHeight' => 100, 'maxHeight' => 2048],
             ]
         );
+    }
+
+    public function attributeLabels()
+    {
+        return ArrayHelper::merge(parent::attributeLabels(), [
+            'image_form' => Yii::t('blog', 'Image Form')
+        ]);
     }
 
     public function setDefaultValues()

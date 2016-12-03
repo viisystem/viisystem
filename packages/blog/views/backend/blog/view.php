@@ -32,8 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'slug',
             'image',
-            'cover',
-            'gallery',
             'category',
             'excerpt',
             'content',

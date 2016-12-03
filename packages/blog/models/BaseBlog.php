@@ -11,8 +11,6 @@ use Yii;
  * @property mixed $title
  * @property mixed $slug
  * @property mixed $image
- * @property mixed $cover
- * @property mixed $gallery
  * @property mixed $category
  * @property mixed $excerpt
  * @property mixed $content
@@ -51,8 +49,6 @@ class BaseBlog extends \yii\mongodb\ActiveRecord
             'title',
             'slug',
             'image',
-            'cover',
-            'gallery',
             'category',
             'excerpt',
             'content',
@@ -79,7 +75,7 @@ class BaseBlog extends \yii\mongodb\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'slug', 'image', 'cover', 'gallery', 'category', 'excerpt', 'content', 'seo_title', 'seo_keyword', 'seo_description', 'tags', 'skin', 'sort', 'is_promotion', 'is_active', 'created_at', 'created_by', 'updated_at', 'updated_by', 'language', 'source_id'], 'safe']
+            [['title', 'slug', 'image', 'category', 'excerpt', 'content', 'seo_title', 'seo_keyword', 'seo_description', 'tags', 'skin', 'sort', 'is_promotion', 'is_active', 'created_at', 'created_by', 'updated_at', 'updated_by', 'language', 'source_id'], 'safe']
         ];
     }
 
@@ -93,8 +89,6 @@ class BaseBlog extends \yii\mongodb\ActiveRecord
             'title' => Yii::t('blog', 'Title'),
             'slug' => Yii::t('blog', 'Slug'),
             'image' => Yii::t('blog', 'Image'),
-            'cover' => Yii::t('blog', 'Cover'),
-            'gallery' => Yii::t('blog', 'Gallery'),
             'category' => Yii::t('blog', 'Category'),
             'excerpt' => Yii::t('blog', 'Excerpt'),
             'content' => Yii::t('blog', 'Content'),

@@ -17,9 +17,9 @@ class Image extends FileInput
 
     public function init()
     {
-//        if (empty($this->initialPreviewDelete)) {
-//            $this->initialPreviewDelete = Url::to(['delete-image', 'id' => $this->model->getId()]);
-//        }
+        if (empty($this->initialPreviewDelete)) {
+            $this->initialPreviewDelete = Url::to(['delete-image', 'id' => (string)$this->model->primaryKey]);
+        }
         if (empty($this->options['accept'])) {
             $this->options['accept'] = 'image/*';
         }
@@ -28,9 +28,9 @@ class Image extends FileInput
         $initialPreviewConfig = [];
         if ($this->model->{$this->attributeSave} != null) {
             $initialPreview[] = Html::img(FileHelper::getUploadSrc($this->model->{$this->attributeSave}), ['class' => 'file-preview-image']);
-            //$initialPreviewConfig[] = ['width' => '120px', 'url' => $this->initialPreviewDelete, 'key' => "fileId-{$this->model->getId()}"];
+            $initialPreviewConfig[] = ['url' => $this->initialPreviewDelete, 'key' => 'fileId-' . (string)$this->model->primaryKey];
         }
-//
+
         if (empty($this->pluginOptions)) {
             $this->pluginOptions = [
                 'showPreview' => true,

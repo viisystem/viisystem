@@ -44,9 +44,9 @@ use vii\helpers\Html;
 class CheckboxColumn extends Column
 {
 
-    public $headerOptions = ['class' => 'hidden-print w-30'];
+    public $headerOptions = ['class' => 'hidden-print w-32 text-center'];
 
-    public $contentOptions = ['class' => 'hidden-print w-30'];
+    public $contentOptions = ['class' => 'hidden-print w-32 text-center'];
 
     /**
      * @var string the name of the input checkbox input fields. This will be appended with `[]` to ensure it is an array.

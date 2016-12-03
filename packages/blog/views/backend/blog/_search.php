@@ -23,10 +23,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'image') ?>
 
-    <?= $form->field($model, 'cover') ?>
-
-    <?php // echo $form->field($model, 'gallery') ?>
-
     <?php // echo $form->field($model, 'category') ?>
 
     <?php // echo $form->field($model, 'excerpt') ?>

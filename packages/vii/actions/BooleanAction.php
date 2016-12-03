@@ -1,11 +1,10 @@
 <?php
 namespace vii\actions;
 
+use vii\helpers\DataHelper;
+
 use Yii;
 use yii\base\Action;
-
-use vii\helpers\DataHelper;
-use vii\helpers\StringHelper;
 
 class BooleanAction extends Action
 {
@@ -17,7 +16,7 @@ class BooleanAction extends Action
         Yii::$app->response->format = 'json';
 
         $obj = Yii::createObject($this->modelClass);
-        $query = $obj::find()->where(['_id' => StringHelper::getId($id)]);
+        $query = $obj::find()->where(['_id' => $id]);
 
         if ($query->hasMethod('access')) {
             $query->access();
