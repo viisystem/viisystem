@@ -23,21 +23,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'image') ?>
 
-    <?= $form->field($model, 'cover') ?>
-
-    <?php // echo $form->field($model, 'gallery') ?>
-
     <?php // echo $form->field($model, 'category') ?>
 
     <?php // echo $form->field($model, 'excerpt') ?>
 
     <?php // echo $form->field($model, 'content') ?>
 
-    <?php // echo $form->field($model, 'seo_title') ?>
+    <?php // echo $form->field($model, 'meta_title') ?>
 
-    <?php // echo $form->field($model, 'seo_keyword') ?>
+    <?php // echo $form->field($model, 'meta_keyword') ?>
 
-    <?php // echo $form->field($model, 'seo_description') ?>
+    <?php // echo $form->field($model, 'meta_description') ?>
 
     <?php // echo $form->field($model, 'tags') ?>
 

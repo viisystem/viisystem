@@ -144,6 +144,24 @@ class CategoryController extends Controller
         ];
     }
 
+    public function actionItemUpdateFull($id, $item)
+    {
+        $model = $this->findModel($id);
+        $modelItem = $this->findModel($item);
+        if ($model === null || $modelItem === null) {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+
+        $modelItem->scenario = 'item';
+
+        if ($modelItem->load(Yii::$app->request->post()) && $modelItem->save()) {
+            $returnUrl = Yii::$app->request->get('returnUrl', Url::to(['index']));
+            return $this->redirect($returnUrl);
+        }
+
+        return $this->render('itemFormFull', ['model' => $modelItem]);
+    }
+
     public function actionItemDelete($id, $item)
     {
         Yii::$app->response->format = 'json';

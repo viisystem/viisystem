@@ -7,8 +7,8 @@ use Yii;
 class DataHelper
 {
 
-    const BOOLEAN_ON = 1;
-    const BOOLEAN_OFF = 0;
+    const BOOLEAN_ON = '1';
+    const BOOLEAN_OFF = '0';
 
     public static function string2array($tags)
     {

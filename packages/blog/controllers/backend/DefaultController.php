@@ -10,6 +10,7 @@ class DefaultController extends Controller
 {
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->redirect(['/blog/blog']);
+        //return $this->render('index');
     }
 }

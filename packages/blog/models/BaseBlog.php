@@ -11,14 +11,12 @@ use Yii;
  * @property mixed $title
  * @property mixed $slug
  * @property mixed $image
- * @property mixed $cover
- * @property mixed $gallery
  * @property mixed $category
  * @property mixed $excerpt
  * @property mixed $content
- * @property mixed $seo_title
- * @property mixed $seo_keyword
- * @property mixed $seo_description
+ * @property mixed $meta_title
+ * @property mixed $meta_keyword
+ * @property mixed $meta_description
  * @property mixed $tags
  * @property mixed $skin
  * @property mixed $sort
@@ -51,14 +49,12 @@ class BaseBlog extends \yii\mongodb\ActiveRecord
             'title',
             'slug',
             'image',
-            'cover',
-            'gallery',
             'category',
             'excerpt',
             'content',
-            'seo_title',
-            'seo_keyword',
-            'seo_description',
+            'meta_title',
+            'meta_keyword',
+            'meta_description',
             'tags',
             'skin',
             'sort',
@@ -79,7 +75,7 @@ class BaseBlog extends \yii\mongodb\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'slug', 'image', 'cover', 'gallery', 'category', 'excerpt', 'content', 'seo_title', 'seo_keyword', 'seo_description', 'tags', 'skin', 'sort', 'is_promotion', 'is_active', 'created_at', 'created_by', 'updated_at', 'updated_by', 'language', 'source_id'], 'safe']
+            [['title', 'slug', 'image', 'category', 'excerpt', 'content', 'meta_title', 'meta_keyword', 'meta_description', 'tags', 'skin', 'sort', 'is_promotion', 'is_active', 'created_at', 'created_by', 'updated_at', 'updated_by', 'language', 'source_id'], 'safe']
         ];
     }
 
@@ -93,14 +89,12 @@ class BaseBlog extends \yii\mongodb\ActiveRecord
             'title' => Yii::t('blog', 'Title'),
             'slug' => Yii::t('blog', 'Slug'),
             'image' => Yii::t('blog', 'Image'),
-            'cover' => Yii::t('blog', 'Cover'),
-            'gallery' => Yii::t('blog', 'Gallery'),
             'category' => Yii::t('blog', 'Category'),
             'excerpt' => Yii::t('blog', 'Excerpt'),
             'content' => Yii::t('blog', 'Content'),
-            'seo_title' => Yii::t('blog', 'Seo Title'),
-            'seo_keyword' => Yii::t('blog', 'Seo Keyword'),
-            'seo_description' => Yii::t('blog', 'Seo Description'),
+            'meta_title' => Yii::t('blog', 'Meta Title'),
+            'meta_keyword' => Yii::t('blog', 'Meta Keyword'),
+            'meta_description' => Yii::t('blog', 'Meta Description'),
             'tags' => Yii::t('blog', 'Tags'),
             'skin' => Yii::t('blog', 'Skin'),
             'sort' => Yii::t('blog', 'Sort'),

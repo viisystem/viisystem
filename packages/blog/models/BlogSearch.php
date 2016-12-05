@@ -18,7 +18,7 @@ class BlogSearch extends Blog
     public function rules()
     {
         return [
-            [['_id', 'title', 'slug', 'image', 'cover', 'gallery', 'category', 'excerpt', 'content', 'seo_title', 'seo_keyword', 'seo_description', 'tags', 'skin', 'sort', 'is_promotion', 'is_active', 'created_at', 'created_by', 'updated_at', 'updated_by', 'language', 'source_id'], 'safe'],
+            [['_id', 'title', 'slug', 'image', 'category', 'excerpt', 'content', 'meta_title', 'meta_keyword', 'meta_description', 'tags', 'skin', 'sort', 'is_promotion', 'is_active', 'created_at', 'created_by', 'updated_at', 'updated_by', 'language', 'source_id'], 'safe'],
         ];
     }
 
@@ -46,6 +46,12 @@ class BlogSearch extends Blog
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'sort' => SORT_DESC,
+                    'created_at' => SORT_DESC
+                ]
+            ]
         ]);
 
         $this->load($params);
@@ -61,14 +67,12 @@ class BlogSearch extends Blog
             ->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'slug', $this->slug])
             ->andFilterWhere(['like', 'image', $this->image])
-            ->andFilterWhere(['like', 'cover', $this->cover])
-            ->andFilterWhere(['like', 'gallery', $this->gallery])
             ->andFilterWhere(['like', 'category', $this->category])
             ->andFilterWhere(['like', 'excerpt', $this->excerpt])
             ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'seo_title', $this->seo_title])
-            ->andFilterWhere(['like', 'seo_keyword', $this->seo_keyword])
-            ->andFilterWhere(['like', 'seo_description', $this->seo_description])
+            ->andFilterWhere(['like', 'meta_title', $this->meta_title])
+            ->andFilterWhere(['like', 'meta_keyword', $this->meta_keyword])
+            ->andFilterWhere(['like', 'meta_description', $this->meta_description])
             ->andFilterWhere(['like', 'tags', $this->tags])
             ->andFilterWhere(['like', 'skin', $this->skin])
             ->andFilterWhere(['like', 'sort', $this->sort])

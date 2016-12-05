@@ -15,7 +15,7 @@ class ImageColumn extends DataColumn
     public $attribute = 'image';
     public $format = 'raw';
     public $headerOptions = ['class' => 'w-80'];
-    public $contentOptions = ['class' => 'w-80'];
+    public $contentOptions = ['class' => 'w-80 text-center'];
     public $filter = false;
 
     public function getDataCellValue($model, $key, $index)

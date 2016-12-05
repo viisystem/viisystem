@@ -1,4 +1,30 @@
 <?php
 return [
 	'Module Name' => 'Blog',
+
+	'Blogs' => 'Blog',
+	'Create Blog' => 'Thêm mới',
+	'Update Blog' => 'Cập nhật',
+
+	'Title' => 'Tiêu đề',
+	'Slug' => 'Slug',
+	'Image' => 'Hình ảnh',
+	'Image Form' => 'Hình ảnh',
+	'Category' => 'Danh mục',
+	'Excerpt' => 'Trích dẫn',
+	'Content' => 'Nội dung',
+	'Meta Title' => 'Meta Tag Title',
+	'Meta Keyword' => 'Meta Tag Keyword',
+	'Meta Description' => 'Meta Tag Description',
+	'Tags' => 'Tags',
+	'Skin' => 'Skin',
+	'Sort' => 'Sắp xếp',
+	'Is Promotion' => 'Nổi bật',
+	'Is Active' => 'Hiển thị',
+	'Created At' => 'Ngày tạo',
+	'Created By' => 'Người tạo',
+	'Updated At' => 'Ngày cập nhật',
+	'Updated By' => 'Người cập nhật',
+	'Language' => 'Ngôn ngữ',
+	'Source ID' => 'Dịch từ',
 ];

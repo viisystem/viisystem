@@ -22,7 +22,7 @@ class GridView extends \yii\grid\GridView
      * @var array the HTML attributes for the grid table element.
      * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
      */
-    public $tableOptions = ['class' => 'table table-striped table-borderedX vii-table'];
+    public $tableOptions = ['class' => 'table table-striped table-bordered vii-table'];
 
     /**
      * @var array the HTML attributes for the container tag of the grid view.
@@ -41,5 +41,5 @@ class GridView extends \yii\grid\GridView
      * - `{sorter}`: the sorter. See [[renderSorter()]].
      * - `{pager}`: the pager. See [[renderPager()]].
      */
-    public $layout = "{items}\n{pager}\n{summary}";
+    public $layout = "{summary}\n{items}\n{pager}";
 }
