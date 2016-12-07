@@ -19,6 +19,26 @@ class Sample extends Widget
 	{
 		parent::init();
 		$this->settings['widget']['title'] = 'SAMPLE';
+		$this->settings['params'] = [
+			[
+				'name' => 'number_of_article',
+				'value' => 3,
+				'label' => 'Number of article',
+				'type' => 'text',
+				'cols' => 12,
+			],
+			[
+				'name' => 'category_id',
+				'value' => 1,
+				'label' => 'Category',
+				'type' => 'select',
+				'items' => [
+					'1' => 'News',
+					'2' => 'Article',
+				],
+				'cols' => 12,
+			]
+		];
 	}
 	
 	// Hàm này sẽ trả về nội dung hiển thị

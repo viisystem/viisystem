@@ -22,6 +22,9 @@ class Widget extends \yii\base\Widget
 			'title' => 'DIY Widget',
 			'description' => 'Description',
 		],
+		'params' => [
+			
+		],
 	];
 	
 	public function init()

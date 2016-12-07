@@ -19,6 +19,10 @@ $config = [
             'identityClass' => 'app\packages\account\models\User',
             'enableAutoLogin' => true,
         ],
+		'authManager' => [
+			//'class' => 'yii\rbac\DbManager',
+			'class' => 'yii\mongodb\rbac\MongoDbManager',
+		],
         'errorHandler' => [
             'errorAction' => 'dashboard/backend/error',
         ],

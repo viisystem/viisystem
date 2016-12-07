@@ -17,6 +17,11 @@ use yii\web\Controller;
 
 class ProcessController extends Controller
 {
+	public function actionGetSetting($data)
+	{
+		
+	}
+	
     public function actionGetContent($data)
     {
 		$json = urldecode($data);
@@ -27,8 +32,14 @@ class ProcessController extends Controller
 		echo $widget->getContent(); 
     }
 	
-	public function actionSaveWidget($page, $position, $widgets)
+	public function actionSaveWidget($page = null, $position = null, $widgets = null)
 	{
+		if($page == null)
+		{
+			$page = \Yii::$app->request->post('page');
+			$position = \Yii::$app->request->post('position');
+			$widgets = \Yii::$app->request->post('widgets');
+		}
 		$str_page = urldecode($page);
 		$str_position = urldecode($position);
 		$json = urldecode($widgets);
@@ -48,6 +59,6 @@ class ProcessController extends Controller
 			$model->settings = $results;
 			$model->save();
 		}
-		echo 'Saved!';
+		echo 'saved!';
 	}
 }

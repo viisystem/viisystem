@@ -3,7 +3,49 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+var DIY = new function(){
+	this.saveAllWidgets = function(container, pageid){
+		// Lưu widget
+		var arr = [];
+		container = $(container);
+		container.children().each(function(){
+			arr.push($(this).data('settings'));
+		});
+		$.ajax({
+			url:'/viisystem/users/default/admin.php/diy/process/save-widget',
+			method:"POST",
+			data:{
+				page:encodeURIComponent(pageid),
+				position:encodeURIComponent(container.attr('id')),
+				widgets:encodeURIComponent(JSON.stringify(arr))
+			},
+			success:function(response) {
+				// Xử lý kết quả
+			}
+		});
+	};
+	
+	this.loadContent = function(clone){
+		DIY.createSettingForm(clone);
+		$.ajax({
+			url:'/viisystem/users/default/admin.php/diy/process/get-content',
+			data:{data:encodeURIComponent(JSON.stringify(clone.data('settings')))},
+			success:function(response) {
+				clone.find('.diy-content').html(response);
+			}
+		});
+	};
+	
+	this.createSettingForm = function(widget){
+		var settings = $(widget).data('settings');
+		var params = settings.params;
+		var str_form = '<div>';
+		$.each(params, function(i, item){
+			str_form += '<input type="text" />';
+		});
+		$(widget).find('.setting-form').html(str_form);
+	};
+};
 
 $(document).ready(function(){
 	$('.diy-draggable').draggable({
@@ -21,30 +63,10 @@ $(document).ready(function(){
 			clone.appendTo(droppable);
 			
 			// Lưu widget
-			var arr = [];
-			droppable.children().each(function(){
-				arr.push($(this).data('settings'));
-			});
-			$.ajax({
-				url:'/viisystem/users/default/admin.php/diy/process/save-widget',
-				data:{
-					page:encodeURIComponent(clone.data('page')),
-					position:encodeURIComponent(droppable.attr('id')),
-					widgets:encodeURIComponent(JSON.stringify(arr))
-				},
-				success:function(response) {
-					
-				}
-			});
+			DIY.saveAllWidgets(droppable, clone.data('page'));
 			
 			// Load nội dung
-			$.ajax({
-				url:'/viisystem/users/default/admin.php/diy/process/get-content',
-				data:{data:encodeURIComponent(JSON.stringify(clone.data('settings')))},
-				success:function(response) {
-					clone.find('.diy-content').html(response);
-				}
-			});
+			DIY.loadContent(clone);
 		}
 	}).sortable({
 		items: ".diy-sortable",
