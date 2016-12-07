@@ -19,7 +19,7 @@ class FeaturePost extends \app\packages\diy\widgets\Widget
 	{
 		parent::init();
 		$this->settings['widget']['title'] = 'FEATURE POST';
-		if(count($this->settings['params']) <= 0) // Set cái này là để nếu không có load trong db thì mới lấy cái default ở trong
+		if(empty($this->settings['params']))
 		{
 			$this->settings['params'] = [
 				[
