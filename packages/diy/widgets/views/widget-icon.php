@@ -1,4 +1,4 @@
-<div class="diy-draggable"
+<div class="diy-draggable diy-widget"
 	data-settings="<?=yii\helpers\Html::encode(\yii\helpers\Json::encode($settings))?>"
 	data-page="<?=yii\helpers\Html::encode($page)?>">
 	<div class="diy-header">

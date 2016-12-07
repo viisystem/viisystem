@@ -37,4 +37,9 @@ class Module extends \app\classes\Module
     {
         return require(__DIR__ . '/permissions.php');
     }
+	
+	public function getDIYWidgets()
+	{
+		return require (__DIR__ . '/diywidgets.php');
+	}
 }

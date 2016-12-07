@@ -59,20 +59,22 @@ class Position extends \yii\base\Widget
 			{
 				foreach ($storage->settings as $one)
 				{
-					$widget = new $one['widget']['class']([
-						'settings' => $one
-					]);
-					if($this->mode === self::MODE_DRAG)
-					{
-						$str_render .= $this->render('widget-loaded',[
-							'settings' => $one,
-							'page' => $storage->page,
-							'content' => $widget->getContent(),
+					if(class_exists($one['widget']['class'])) {
+						$widget = new $one['widget']['class']([
+							'settings' => $one
 						]);
-					}
-					else
-					{
-						$str_render .=  $widget->getContent();
+						if($this->mode === self::MODE_DRAG)
+						{
+							$str_render .= $this->render('widget-loaded',[
+								'settings' => $one,
+								'page' => $storage->page,
+								'content' => $widget->getContent(),
+							]);
+						}
+						else
+						{
+							$str_render .=  $widget->getContent();
+						}
 					}
 				}
 			}
