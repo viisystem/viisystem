@@ -24,10 +24,12 @@ class DIYAsset extends AssetBundle
 		$minext = ''; //'.min'
 		$this->js = [
 			'js/diy'.(YII_DEBUG ? '' : $minext).'.js',
+			'js/diy-builder'.(YII_DEBUG ? '' : $minext).'.js',
 		];
 		$this->css = [
 			'css/font-awesome.min.css',
 			'css/diy'.(YII_DEBUG ? '' : $minext).'.css',
+			'css/diy-builder'.(YII_DEBUG ? '' : $minext).'.css',
 		];
 		parent::init();
 	}
@@ -36,5 +38,6 @@ class DIYAsset extends AssetBundle
 		'yii\web\JqueryAsset',
 		'yii\jui\JuiAsset',
 		'yii\web\YiiAsset',
+		'yii\bootstrap\BootstrapAsset',
     ];
 }
