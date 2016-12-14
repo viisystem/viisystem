@@ -9,9 +9,10 @@ use vii\helpers\Html;
 
 class LanguageColumn extends DataColumn
 {
+
     public $attribute = 'language';
-    public $headerOptions = ['class' => 'hidden-print w-90'];
-    public $contentOptions = ['class' => 'hidden-print w-90 text-xs-center'];
+    public $headerOptions = ['class' => 'text-center w-100'];
+    public $contentOptions = ['class' => 'text-center'];
     public $format = 'raw';
 
     /**
@@ -21,11 +22,6 @@ class LanguageColumn extends DataColumn
      */
     public function init()
     {
-//        $this->filter = [
-//            DataHelper::BOOLEAN_ON => Yii::t('common', 'BOOLEAN_ON'),
-//            DataHelper::BOOLEAN_OFF => Yii::t('common', 'BOOLEAN_OFF'),
-//        ];
-
         if (!Yii::$app->params['multilingual']) {
             $this->visible = false;
         }
@@ -38,9 +34,11 @@ class LanguageColumn extends DataColumn
 
         $html = [];
         foreach ($languageSupport as $langKey => $langTitle) {
-            $html[] = (isset($languages[$langKey]))
-                ? Html::a(Html::img(Yii::getAlias('@assets-url') . "/img/flag/16/{$langKey}.png"), ['update', 'id' => $languages[$langKey]['_id']], ['data-pjax' => '0', 'class' => 'i18n-flag active'])
-                : Html::a(Html::img(Yii::getAlias('@assets-url') . "/img/flag/16/{$langKey}.png"), ['translate', 'id' => $model->getId(), 'language' => $langKey], ['data-pjax' => '0', 'class' => 'i18n-flag']);
+            if (isset($languages[$langKey])) {
+                $html[] = Html::a($langKey, ['update', 'id' => (string)$languages[$langKey]['_id']], ['data-pjax' => '0', 'class' => "i18n-flag i18n-flag-{$langKey} active"]);
+            } else {
+                $html[] = Html::a($langKey, ['translate', 'id' => (string)$model->primaryKey, 'language' => $langKey], ['data-pjax' => '0', 'class' => "i18n-flag i18n-flag-{$langKey}"]);
+            }
         }
 
         return implode('', $html);

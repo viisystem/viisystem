@@ -31,7 +31,7 @@ $gridId = 'blog-grid';
                         <li><a class="dropdown-item" href="javascript:" onclick="jurakit.grid.bulkDelete('<?= $gridId ?>', '<?= Url::to(['bulk-delete']) ?>')"><?= Yii::t('common', 'Delete') ?></a></li>
                     </ul>
                 </div>
-                <a class="btn btn-info" href="javascript:"><i class="fa fa-filter"></i></a>
+                <a class="btn btn-info" data-toggle="collapse" href="#panel-fiter"><i class="fa fa-filter"></i></a>
             </div>
             <div class="ibox-title-rgt">
                 <?= Html::a(Yii::t('common', 'Create'), ['create'], ['class' => 'btn btn-primary']) ?>
@@ -39,6 +39,7 @@ $gridId = 'blog-grid';
             <div class="clearfix"></div>
         </div>
         <div class="ibox-content">
+            <?= $this->render('_search', ['model' => $searchModel]); ?>
             <?php Pjax::begin(['id' => $pjaxId, 'enablePushState' => false]); ?>
             <?= GridView::widget([
                 'id' => $gridId,
@@ -49,24 +50,17 @@ $gridId = 'blog-grid';
                     ['class' => 'vii\grid\CheckboxColumn'],
                     ['class' => 'vii\grid\ImageColumn'],
                     'title',
-                    // 'category',
-                    // 'excerpt',
-                    // 'content',
-                    // 'meta_title',
-                    // 'meta_keyword',
-                    // 'meta_description',
-                    // 'tags',
-                    // 'skin',
-                    // 'sort',
-                    // 'is_promotion',
-                    // 'is_active',
-                    // 'created_at',
-                    // 'created_by',
-                    // 'updated_at',
-                    // 'updated_by',
-                    // 'language',
-                    // 'source_id',
-
+                    [
+                        'attribute' => 'category',
+                        'headerOptions' => ['class' => 'hidden-md-down w-160'],
+                        'contentOptions' => ['class' => 'hidden-md-down w-160'],
+                        'format' => 'raw',
+                        'filter' => $searchModel->getCategory()->getOptions(),
+                        'value' => function ($data) {
+                            /* @var $data app\packages\blog\models\Blog */
+                            return $data->getCategory()->getCategoriesText($data->category);
+                        }
+                    ],
                     ['class' => 'vii\grid\BooleanColumn', 'attribute' => 'is_promotion'],
                     ['class' => 'vii\grid\BooleanColumn', 'attribute' => 'is_active'],
                     ['class' => 'vii\grid\LanguageColumn'],
@@ -75,7 +69,7 @@ $gridId = 'blog-grid';
                         'template' => '{update} {delete}',
                         'headerOptions' => ['class' => 'hidden-md-down hidden-print w-100']
                     ]
-                ],
+                ]
             ]); ?>
             <?php Pjax::end(); ?>
         </div>

@@ -31,3 +31,23 @@
   vertical-align: middle !important;
 }
 
+
+.i18n-flag {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  text-indent: -9999px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.i18n-flag-en {
+  background-image: url('../img/flag/16/en.png');
+}
+.i18n-flag-vi {
+  background-image: url('../img/flag/16/vi.png');
+}
+
+.category-view .i18n-flag {
+  height: 32px !important;
+}
+

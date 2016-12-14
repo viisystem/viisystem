@@ -8,6 +8,7 @@ use vii\behaviors\SourceBehavior;
 
 use vii\helpers\ArrayHelper;
 use vii\helpers\DataHelper;
+use vii\helpers\Html;
 use vii\helpers\StringHelper;
 
 use Yii;
@@ -83,7 +84,7 @@ class Category extends BaseCategory
         return ArrayHelper::merge(
             parent::behaviors(), [
                 ['class' => NestedSetsBehavior::className()],
-                ['class' => SourceBehavior::className(), 'attributeSync' => ['skin', 'is_active']],
+                ['class' => SourceBehavior::className(), 'attributeSync' => ['is_active', 'lft', 'rgt', 'depth']],
                 ['class' => SluggableBehavior::className(), 'uniqueValidator' => []],
             ]
         );
@@ -142,16 +143,16 @@ class Category extends BaseCategory
         $this->is_active = DataHelper::BOOLEAN_ON;
     }
 
-    /**
-     * @param $language string
-     * @param $modelSource static
-     */
-    public function setTranslateValues($language, $modelSource)
+    public function setTranslateValues($root, $language, $modelSource)
     {
+        $this->attributes = $modelSource->attributes;
         $this->language = $language;
         $this->source_id = $modelSource->primaryKey;
-        $this->key = $modelSource->key;
-        $this->title = $modelSource->title;
+        $this->root = $root;
+        $this->lft = $modelSource->lft;
+        $this->rgt = $modelSource->rgt;
+        $this->depth = $modelSource->depth;
+        $this->slug = null;
     }
 
     public function getData($id)
@@ -210,4 +211,24 @@ class Category extends BaseCategory
         return $cacheData;
     }
 
+    public function getCategoriesText($categories = [])
+    {
+        if (empty($categories)) {
+            return '';
+        }
+
+        if (is_string($categories) && ($model = Category::getData($categories)) != null) {
+            return $model->title;
+        }
+
+        if (is_array($categories) && ($models = static::find()->where(['_id' => $categories])->all()) != null) {
+            $html = '';
+            foreach ($models as $model) {
+                $html .= Html::tag('div', $model->title);
+            }
+            return $html;
+        }
+
+        return '';
+    }
 }

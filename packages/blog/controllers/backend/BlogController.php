@@ -158,6 +158,28 @@ class BlogController extends Controller
         }
     }
 
+    public function actionTranslate($id, $language)
+    {
+        $modelSource = $this->findModel($id);
+
+        $model = new Blog();
+        $model->setDefaultValues();
+        $model->setTranslateValues($language, $modelSource);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('alert', Yii::t('common', 'Your data has been successfully saved'));
+
+            $returnUrl = Yii::$app->request->get('returnUrl', Url::to(['index']));
+            return (Yii::$app->request->post('action', 'save') == 'save')
+                ? $this->redirect(['update', 'id' => (string)$model->_id, 'returnUrl' => $returnUrl])
+                : $this->redirect($returnUrl);
+        } else {
+            return $this->render('translate', [
+                'model' => $model,
+            ]);
+        }
+    }
+
     /**
      * Deletes an existing Blog model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

@@ -26,6 +26,20 @@ foreach ($modelItem as $n => $item) {
         }
     }
 
+    $languages = $item->languages;
+    $languageSupport = Yii::$app->params['languageSupport'];
+
+    $htmlLang = [];
+    if (Yii::$app->params['multilingual'] == 1) {
+        foreach ($languageSupport as $langKey => $langTitle) {
+            if (isset($languages[$langKey])) {
+                $htmlLang[] = Html::a($langKey, ['update', 'id' => $item->getId(), 'returnUrl' => Yii::$app->request->url], ['data-pjax' => '0', 'class' => "i18n-flag i18n-flag-{$langKey} active"]);
+            } else {
+                $htmlLang[] = Html::a($langKey, ['translate', 'id' => $item->getId(), 'language' => $langKey, 'returnUrl' => Yii::$app->request->url], ['data-pjax' => '0', 'class' => "i18n-flag i18n-flag-{$langKey}"]);
+            }
+        }
+    }
+
     $html .= Html::beginTag('li', array('id' => "nestsortable-item-{$item->getId()}", 'class' => 'nestsortable-wrap mjs-nestedSortable-branch mjs-nestedSortable-expanded', 'data-url' => Url::to(["{$controllerId}/item-move", 'id' => $model->getId(), 'item' => $item->getId()])));
     $html .= '
             <div class="nestsortable-item clearfix">
@@ -33,7 +47,8 @@ foreach ($modelItem as $n => $item) {
                     <span title="Click to show/hide children" class="nestsortable-item-close ui-icon ui-icon-minusthick"></span>
                     <span>'.Html::encode($item->title).'</span>
                 </div>
-                <div class="pull-right">                
+                <div class="pull-right">
+                    <div class="inline w-100">'.implode('', $htmlLang).'</div>
                     <a href="javascript:" class="grid-action" data-class="body-full" data-url="'.Url::to(["{$controllerId}/item-insert", 'id' => $model->getId(), 'item' => $item->getId(), 'operation' => Category::OPERATION_APPEND_TO]).'" data-id="' . $gridId . '" data-ajax-container="nestsortable-container" data-func-success="jurakit.nestsortable.init()" onclick="jurakit.form.modal($(this)); return false"><i class="fa fa-plus-square-o"></i></a>
                     <a class="grid-action" data-class="body-full" href="'.Url::to(["{$controllerId}/item-update-full", 'id' => $model->getId(), 'item' => $item->getId(), 'returnUrl' => Yii::$app->request->getUrl()]).'" data-id="' . $gridId . '" data-ajax-container="nestsortable-container" data-func-success="jurakit.nestsortable.init()"><i class="fa fa-pencil-square-o"></i></a>
                     <a href="javascript:" class="grid-action hidden" data-class="body-full" data-url="'.Url::to(["{$controllerId}/item-update", 'id' => $model->getId(), 'item' => $item->getId()]).'" data-id="' . $gridId . '" data-ajax-container="nestsortable-container" data-func-success="jurakit.nestsortable.init()" onclick="jurakit.form.modal($(this)); return false"><i class="fa fa-pencil-square-o"></i></a>

@@ -1,61 +1,51 @@
 <?php
 
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use vii\helpers\Html;
+use vii\widgets\ActiveForm;
+use vii\widgets\Select;
 
 /* @var $this yii\web\View */
 /* @var $model app\packages\blog\models\BlogSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="blog-search">
+<div class="blog-search collapse <?= isset($_GET['BlogSearch']) ? 'in' : '' ?>" id="panel-fiter">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
+        'layout' => 'default'
     ]); ?>
 
-    <?= $form->field($model, '_id') ?>
+    <div class="row">
+        <div class="col-md-3">
+            <?= $form->field($model, 'title') ?>
+        </div>
+        <div class="col-md-3">
+            <?= $form->field($model, 'category')->widget(Select::className(), ['clear' => true, 'data' => $model->getCategory()->getOptions()]) ?>
+        </div>
+        <div class="col-md-3">
+            <?= $form->field($model, 'is_promotion')->widget(Select::className(), ['clear' => true]) ?>
+        </div>
+        <div class="col-md-3">
+            <?= $form->field($model, 'is_active')->widget(Select::className(), ['clear' => true]) ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'title') ?>
-
-    <?= $form->field($model, 'slug') ?>
-
-    <?= $form->field($model, 'image') ?>
-
-    <?php // echo $form->field($model, 'category') ?>
-
-    <?php // echo $form->field($model, 'excerpt') ?>
-
-    <?php // echo $form->field($model, 'content') ?>
-
-    <?php // echo $form->field($model, 'meta_title') ?>
-
-    <?php // echo $form->field($model, 'meta_keyword') ?>
-
-    <?php // echo $form->field($model, 'meta_description') ?>
-
-    <?php // echo $form->field($model, 'tags') ?>
-
-    <?php // echo $form->field($model, 'skin') ?>
-
-    <?php // echo $form->field($model, 'sort') ?>
-
-    <?php // echo $form->field($model, 'is_promotion') ?>
-
-    <?php // echo $form->field($model, 'is_active') ?>
-
-    <?php // echo $form->field($model, 'created_at') ?>
-
-    <?php // echo $form->field($model, 'created_by') ?>
-
-    <?php // echo $form->field($model, 'updated_at') ?>
-
-    <?php // echo $form->field($model, 'updated_by') ?>
-
-    <?php // echo $form->field($model, 'language') ?>
-
-    <?php // echo $form->field($model, 'source_id') ?>
+    <div class="row hidden">
+        <div class="col-md-3">
+            <?php  echo $form->field($model, 'created_by') ?>
+        </div>
+        <div class="col-md-3">
+            <?php  echo $form->field($model, 'updated_by') ?>
+        </div>
+        <div class="col-md-3">
+            <?php  echo $form->field($model, 'created_at') ?>
+        </div>
+        <div class="col-md-3">
+            <?php  echo $form->field($model, 'updated_at') ?>
+        </div>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('blog', 'Search'), ['class' => 'btn btn-primary']) ?>

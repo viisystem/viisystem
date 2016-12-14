@@ -38,14 +38,37 @@ class BlogSearch extends Blog
      *
      * @return ActiveDataProvider
      */
+
+    /*
+        $query = static::find();
+        $query->where(['language' => Yii::$app->params['languageDefault']]);
+        $query->orderBy(['sort' => SORT_DESC, 'create_time' => SORT_DESC]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => $pageSize,
+            ],
+            'sort' => [
+                'attributes' => [
+                    'name',
+                    'status'
+                ]
+            ]
+        ]);
+     */
     public function search($params)
     {
         $query = Blog::find();
 
         // add conditions that should always apply here
+        $query->where(['language' => Yii::$app->params['languageDefault']]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 20
+            ],
             'sort' => [
                 'defaultOrder' => [
                     'sort' => SORT_DESC,
