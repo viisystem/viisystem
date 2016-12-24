@@ -278,7 +278,7 @@
 
 
 var DIY = new function(){
-	this.saveAllWidgets = function(container, pageid){
+	/*this.saveAllWidgets = function(container, pageid){
 		// Lưu widget
 		var arr = [];
 		container = $(container);
@@ -292,6 +292,46 @@ var DIY = new function(){
 				page:encodeURIComponent(pageid),
 				position:encodeURIComponent(container.attr('id')),
 				widgets:encodeURIComponent(JSON.stringify(arr))
+			},
+			success:function(response) {
+				// Xử lý kết quả
+			}
+		});
+	};*/
+	
+	this.saveAllWidgets = function(container, pageid){
+		// Lưu widget
+		var $container = $("#super-container");
+		if(pageid == 0) { pageid = $container.data("page"); }
+		var $positions = $container.find('.diy-dropable');
+		var positions = [];
+		$positions.each(function(){
+			var arr = [];
+			$(this).children().each(function(){
+				arr.push($(this).data('settings'));
+			});
+			positions.push({
+				position:$(this).parent().attr("id"),
+				widgets:arr
+			});
+		});
+
+		var $template = $container.clone();
+		var childs = $template.find('.diy-dropable');
+		childs.each(function(){
+			var parent_id = $(this).parent().attr("id");
+			$(this).replaceWith('{{' + parent_id + '}}');
+		});
+		
+		$.ajax({
+			url:'/viisystem/users/default/admin.php/diy/process/save-widget',
+			method:"POST",
+			data:{
+				page:encodeURIComponent(pageid),
+				positions:encodeURIComponent(JSON.stringify(positions)),
+				html:encodeURIComponent(JSON.stringify({
+					template:$template.html()
+				}))
 			},
 			success:function(response) {
 				// Xử lý kết quả
@@ -395,38 +435,51 @@ var DIY = new function(){
 		
 		$(widget).find('.setting-form').replaceWith(modal);
 	};
+	
+	this.createWidgetSource = function(obj) {
+		$(obj).draggable({
+			revert: "invalid",
+			stack: ".diy-draggable",
+			helper: 'clone'
+		});
+	};
+	
+	this.createWidgetContainer = function(obj) {
+		$(obj).droppable({
+		accept:function(ele) { 
+			if(ele.hasClass("diy-widget")&&!ele.hasClass("ui-sortable-helper")){ 
+				return true;
+			}
+			return false;
+		},
+		drop: function(event, ui) {
+				var droppable = $(this);
+				var draggable = ui.draggable;
+				var clone = draggable.clone();
+				clone.addClass('diy-sortable');
+				clone.appendTo(droppable);
+
+				// Lưu widget
+				DIY.saveAllWidgets(droppable, clone.data('page'));
+
+				// Generate setting form
+				DIY.createSettingForm(clone);
+
+				// Load nội dung
+				DIY.loadContent(clone);
+			}
+		}).sortable({
+			items: ".diy-sortable",
+			stop: function (event, ui) {
+				var $widget = $(ui.item);
+				var $container = $widget.closest('.diy-dropable');
+				DIY.saveAllWidgets($container, $widget.data('page'));
+			}
+		});
+	};
 };
 
 $(document).ready(function(){
-	$('.diy-draggable').draggable({
-		revert: "invalid",
-		stack: ".diy-draggable",
-		helper: 'clone'
-	});
-	$('.diy-dropable').droppable({
-		accept: ":not(.ui-sortable-helper)",
-		drop: function(event, ui) {
-			var droppable = $(this);
-			var draggable = ui.draggable;
-			var clone = draggable.clone();
-			clone.addClass('diy-sortable');
-			clone.appendTo(droppable);
-			
-			// Lưu widget
-			DIY.saveAllWidgets(droppable, clone.data('page'));
-			
-			// Generate setting form
-			DIY.createSettingForm(clone);
-			
-			// Load nội dung
-			DIY.loadContent(clone);
-		}
-	}).sortable({
-		items: ".diy-sortable",
-		stop: function (event, ui) {
-			var $widget = $(ui.item);
-			var $container = $widget.closest('.diy-dropable');
-			DIY.saveAllWidgets($container, $widget.data('page'));
-		}
-     });
+	DIY.createWidgetSource($('.diy-tool-bar').find('.diy-draggable'));
+	DIY.createWidgetContainer($('.diy-dropable'));
 });

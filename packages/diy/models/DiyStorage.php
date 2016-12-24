@@ -22,8 +22,8 @@ class DiyStorage extends \yii\mongodb\ActiveRecord
         return [
             '_id',
             'page',
-            'position',
-            'settings',
+            'positions',
+            'template',
         ];
     }
 

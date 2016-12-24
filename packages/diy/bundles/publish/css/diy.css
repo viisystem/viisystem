@@ -8,7 +8,7 @@ and open the template in the editor.
     Author     : Minh
 */
 
-.diy-draggable {
+.diy-draggable, .diy-row-icon-tool {
 	border: dashed 1px steelblue;
 	padding: 8px;
 	cursor: pointer;

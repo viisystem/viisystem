@@ -32,6 +32,40 @@ class ProcessController extends Controller
 		echo $widget->getContent(); 
     }
 	
+	public function actionSaveWidget($page = null, $positions = null, $html = null)
+	{
+		if($page == null)
+		{
+			$page = \Yii::$app->request->post('page');
+			$positions = \Yii::$app->request->post('positions');
+			$html = \Yii::$app->request->post('html');
+		}
+		$str_page = urldecode($page);
+		$str_positions = urldecode($positions);
+		$str_html = urldecode($html);
+		
+		$results = \yii\helpers\Json::decode($str_positions);
+		$template = \yii\helpers\Json::decode($str_html);
+		
+		$model = \app\packages\diy\models\DiyStorage::findOne(['page'=>$str_page]);
+		if($model != null)
+		{
+			$model->positions = $results;
+			$model->template = $template['template'];
+			$model->save();
+		}
+		else
+		{
+			$model = new \app\packages\diy\models\DiyStorage();
+			$model->page = $str_page;
+			$model->positions = $results;
+			$model->template = $template['template'];
+			$model->save();
+		}
+		
+		echo 'saved!';
+	}
+	/*
 	public function actionSaveWidget($page = null, $position = null, $widgets = null)
 	{
 		if($page == null)
@@ -60,5 +94,5 @@ class ProcessController extends Controller
 			$model->save();
 		}
 		echo 'saved!';
-	}
+	}*/
 }

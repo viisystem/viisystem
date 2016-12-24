@@ -10,7 +10,7 @@
 		</a>
 	</div>
 	<div style="padding: 4px;">
-		<div class="diy-row">ROW</div>
+		<div class="diy-row diy-row-icon-tool">ROW</div>
 		<?php
 		$widgets = \app\packages\diy\DIYManagement::AllDIYWidgets();
 		foreach($widgets as $widget) {
