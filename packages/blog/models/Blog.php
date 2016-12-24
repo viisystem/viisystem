@@ -77,13 +77,18 @@ class Blog extends BaseBlog
 
     /**
      * @param $language string
-     * @param $modelSource static
+     * @param $modelSource \app\packages\blog\models\Blog
      */
     public function setTranslateValues($language, $modelSource)
     {
         $this->language = $language;
         $this->source_id = $modelSource->primaryKey;
         $this->title = $modelSource->title;
+    }
+
+    public function getLanguages()
+    {
+        return static::find()->select(['_id', 'language'])->where(['source_id' => $this->source_id])->indexBy('language')->asArray()->all();
     }
 
     /**
@@ -94,6 +99,9 @@ class Blog extends BaseBlog
     public function getCategory($key = null, $language = null) {
         if ($key === null)
             $key = $this->lookupCategory;
+
+        if ($language == null)
+            $language = $this->language;
 
         if ($language == null)
             $language = Yii::$app->language;

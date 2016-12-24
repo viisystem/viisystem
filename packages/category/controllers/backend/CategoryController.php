@@ -2,7 +2,7 @@
 
 namespace app\packages\category\controllers\backend;
 
-use vii\helpers\StringHelper;
+use MongoDB\BSON\ObjectID;
 
 use Yii;
 use yii\helpers\Url;
@@ -71,11 +71,32 @@ class CategoryController extends Controller
             }
         }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $returnUrl = Yii::$app->request->get('returnUrl', Url::to(['index']));
-            return (Yii::$app->request->post('action', 'save') == 'save')
-                ? $this->redirect(['update', 'id' => $model->getId(), 'returnUrl' => $returnUrl])
-                : $this->redirect($returnUrl);
+        $languageRoots = [];
+        $languageRoots[$this->languageId] = (string)$model->primaryKey;
+        if (Yii::$app->params['multilingual'] == 1) {
+            $languageSupport = Yii::$app->params['languageSupport'];
+            unset($languageSupport[$this->languageId]);
+
+            foreach ($languageSupport as $language => $languageTitle) {
+                if (($modelRoot = $obj::findTable($this->categoryTable)->where(['lft' => 1, 'key' => $this->keyCategory, 'language' => $language])->one()) === null) {
+                    $modelSource = $model;
+                    $rootId = new ObjectID(null);
+
+                    /* @var $modelItem \app\packages\category\models\Category */
+                    $modelItem = Yii::createObject($this->categoryClass);
+                    $modelItem->setScenario('item');
+                    $modelItem->setTableName($this->categoryTable);
+                    $modelItem->setTranslateValues($rootId, $language, $modelSource);
+
+                    $attributes = $modelItem->attributes;
+                    $attributes['_id'] = $rootId;
+
+                    $collection = Yii::$app->mongodb->getCollection('category');
+                    $collection->insert($attributes);
+                } else {
+//                    $languageRoots[$language][(string)$modelRoot->]
+                }
+            }
         }
 
         $model->items = $model->children()->all();
@@ -246,6 +267,11 @@ class CategoryController extends Controller
                 'rgt' => $item['rgt'],
                 'depth' => $item['depth']
             ]);
+
+            // Fix translate
+            if (($modelUpdate = Category::findOne($item['id'])) !== null) {
+                $modelUpdate->save();
+            }
         }
 
         $model->refresh();
@@ -256,6 +282,42 @@ class CategoryController extends Controller
                 'modelItem' => $model->children()->all()
             ])
         ];
+    }
+
+    public function actionTranslate($id, $language)
+    {
+        /* @var $modelSource \app\packages\category\models\Category */
+        $modelSource = $this->findModel($id);
+        if ($modelSource === null) {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+
+        /* @var $modelRoot \app\packages\category\models\Category */
+        $obj = Yii::createObject($this->categoryClass);
+        if (($modelRoot = $obj::findTable($this->categoryTable)->where(['lft' => 1, 'key' => $this->keyCategory, 'language' => $language])->one()) === null) {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+
+        /* @var $modelItem \app\packages\category\models\Category */
+        $modelItem = Yii::createObject($this->categoryClass);
+        $modelItem->setScenario('item');
+        $modelItem->setTableName($this->categoryTable);
+        $modelItem->setTranslateValues($modelRoot->primaryKey, $language, $modelSource);
+
+        if ($modelItem->load(Yii::$app->request->post()) && $modelItem->validate()) {
+            $attributes = $modelItem->attributes;
+            if (empty($attributes['_id'])) {
+                $attributes['_id'] = new ObjectID(null);
+            }
+
+            $collection = Yii::$app->mongodb->getCollection(Category::collectionName());
+            $collection->insert($attributes);
+
+            $returnUrl = Yii::$app->request->get('returnUrl', Url::to(['index']));
+            return $this->redirect($returnUrl);
+        }
+
+        return $this->render('itemFormFull', ['model' => $modelItem]);
     }
 
 }
