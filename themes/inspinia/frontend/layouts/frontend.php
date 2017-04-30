@@ -3,74 +3,290 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\themes\inspinia\frontend\assets\FrontendAsset;
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
+use yii\helpers\Url;
+use vii\components\MobileDetect;
 
-app\themes\inspinia\frontend\assets\FrontendAsset::register($this);
+$detect = new MobileDetect;
+FrontendAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-    <meta charset="<?= Yii::$app->charset ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?= Html::csrfMetaTags() ?>
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<!-- Web Fonts -->
+	<?php $this->registerCssFile('//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin', ['depends' => FrontendAsset::className()]); ?>
 </head>
+
 <body>
 <?php $this->beginBody() ?>
+	<div class="wrapper">
+		<!--=== Header ===-->
+		<div class="header">
+			<div class="container">
+				<!-- Logo -->
+				<a class="logo" href="<?= Url::home(); ?>">
+					<img src="<?= $this->theme->baseUrl ?>/assets/publish/img/themes/logo1-blue.png" alt="Logo">
+				</a>
+				<!-- End Logo -->
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => 'My Company',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/dashboard/default']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/account/backend/auth/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/account/backend/auth/logout'], 'post', ['class' => 'navbar-form'])
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();
-    ?>
+				<!-- Topbar -->
+				<div class="topbar">
+					<ul class="loginbar pull-right">
+						<!-- <li class="hoverSelector">
+							<a>Dịch vụ</a>
+							<ul class="languages hoverSelectorBlock">
+								<li><a href="<?= Url::to(['/services/frontend/default/index', 'slug' => 'vay-mua-nha']); ?>">Vay mua nhà</a></li>
+								<li><a href="<?= Url::to(['/services/frontend/default/index', 'slug' => 'vay-mua-o-to']); ?>">Vay mua ô tô</a></li>
+								<li><a href="<?= Url::to(['/services/frontend/default/index', 'slug' => 'vay-tin-chap-tieu-dung']); ?>">Vay tín chấp tiêu dùng</a></li>
+								<li><a href="<?= Url::to(['/services/frontend/default/index', 'slug' => 'the-tin-dung']); ?>">Thẻ tín dụng</a></li>
+							</ul>
+						</li>
+						<li class="topbar-devider"></li> -->
+						<!-- <li><a href="<?= Url::to(['/account/frontend/default/login']); ?>">Đăng nhập</a></li> -->
+						<!-- <li class="topbar-devider"></li> -->
+						<li>
+							<?php if ($detect->isMobile()): ?>
+								<a href="tel:0962 767 222">Hot Line:  0962 767 222</a>
+							<?php else: ?>
+								<span style="color: #7c8082; font-size: 11px; text-transform: uppercase;">Hot Line:  0962 767 222</span>
+							<?php endif; ?>
+						</li>
+					</ul>
+				</div>
+				<!-- End Topbar -->
 
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= $content ?>
-    </div>
-</div>
+				<!-- Toggle get grouped for better mobile display -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="fa fa-bars"></span>
+				</button>
+				<!-- End Toggle -->
+			</div><!--/end container-->
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
+				<div class="container">
+					<ul class="nav navbar-nav">
+						<!-- Home -->
+						<li class="active">
+							<a href="<?= Url::home(); ?>">
+								Trang Chủ
+							</a>
+						</li>
+						<!-- End Home -->
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+								Dịch vụ
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="<?= Url::to(['/services/frontend/default/index', 'slug' => 'vay-mua-nha']); ?>">Vay mua nhà</a></li>
+								<li><a href="<?= Url::to(['/services/frontend/default/index', 'slug' => 'vay-mua-o-to']); ?>">Vay mua ô tô</a></li>
+								<li><a href="<?= Url::to(['/services/frontend/default/index', 'slug' => 'vay-tin-chap-tieu-dung']); ?>">Vay tín chấp tiêu dùng</a></li>
+								<li><a href="<?= Url::to(['/services/frontend/default/index', 'slug' => 'the-tin-dung']); ?>">Thẻ tín dụng</a></li>
+							</ul>
+						</li>
+						
+						<!-- Pages -->
+						<li>
+							<a href="#">
+								Về Chúng Tôi
+							</a>
+						</li>
+						<!-- End Pages -->
 
+						<!-- Blog -->
+						<li>
+							<a href="<?= Url::to(['/article/frontend/category/news']); ?>">
+								Tin Tức
+							</a>
+						</li>
+						<!-- End Blog -->
+
+						<!-- Portfolio -->
+						<li>
+							<a href="<?= Url::to(['/contact/frontend/default/index']); ?>">
+								Liên Hệ
+							</a>
+						</li>
+						<!-- End Portfolio -->
+
+						<!-- Search Block -->
+						<li>
+							<i class="search fa fa-search search-btn"></i>
+							<div class="search-open">
+								<div class="input-group animated fadeInDown">
+									<input type="text" class="form-control" placeholder="Search">
+									<span class="input-group-btn">
+										<button class="btn-u" type="button">Go</button>
+									</span>
+								</div>
+							</div>
+						</li>
+						<!-- End Search Block -->
+					</ul>
+				</div><!--/end container-->
+			</div><!--/navbar-collapse-->
+		</div>
+		<!--=== End Header ===-->
+
+		<?= $content ?>
+
+		<!--=== Footer Version 1 ===-->
+		<div class="footer-v1">
+			<div class="footer">
+				<div class="container">
+					<div class="row">
+						<!-- About -->
+						<div class="col-md-3 md-margin-bottom-40">
+							<a href="index.html"><img id="logo-footer" class="footer-logo" src="<?= $this->theme->baseUrl ?>/assets/publish/img/themes/logo2-blue.png" alt=""></a>
+							<p class="text-justify">FindBank là 1 công ty thuộc lĩnh vực tài chính công nghệ, cung cấp thông tin và so sánh tài chính, lãi suất chi tiết các khoản vay của tất cả các ngân hàng tại Việt Nam. </p>
+							<p class="text-justify">Chúng tôi mang đến cho các khách hàng dịch vụ vay với lãi suất ưu đãi nhất, thời gian nhanh nhất, thủ tục đơn giản nhất.</p>
+						</div><!--/col-md-3-->
+						<!-- End About -->
+
+						<!-- Latest -->
+						<div class="col-md-3 md-margin-bottom-40 hidden-xs hidden-sm">
+							<div class="posts">
+								<div class="headline"><h2>Tin mới nhất</h2></div>
+								<ul class="list-unstyled latest-list">
+									<?= \app\packages\article\widgets\Articles::widget([
+										'settings' => [
+											'params' => [
+												[
+													'name' => 'view',
+													'value' => 'article-promotion',
+												],
+												[
+													'name' => 'number_of_post',
+													'value' => 3,
+												],
+											]
+										]
+									]); ?>
+								</ul>
+							</div>
+						</div><!--/col-md-3-->
+						<!-- End Latest -->
+
+						<!-- Link List -->
+						<div class="col-md-3 md-margin-bottom-40 hidden-xs hidden-sm">
+							<div class="headline"><h2>Useful Links</h2></div>
+							<ul class="list-unstyled link-list">
+								<li><a href="#">About us</a><i class="fa fa-angle-right"></i></li>
+								<li><a href="#">Portfolio</a><i class="fa fa-angle-right"></i></li>
+								<li><a href="#">Latest jobs</a><i class="fa fa-angle-right"></i></li>
+								<li><a href="#">Community</a><i class="fa fa-angle-right"></i></li>
+								<li><a href="#">Contact us</a><i class="fa fa-angle-right"></i></li>
+							</ul>
+						</div><!--/col-md-3-->
+						<!-- End Link List -->
+
+						<!-- Address -->
+						<div class="col-md-3 map-img md-margin-bottom-40">
+							<div class="headline"><h2>Liên hệ</h2></div>
+							<address class="md-margin-bottom-40 text-justify">
+								Số 51, đường Trung Yên 9, phường Yên Hòa <br />
+								Quận Cầu Giấy, Hà Nội <br />
+								Phone: 0962 767 222 / 0968 715 558 <br />
+								Fax: 0437833187 <br />
+								Email: <a href="mailto:contact@findbank.vn" class="">contact@findbank.vn</a>
+							</address>
+						</div><!--/col-md-3-->
+						<!-- End Address -->
+					</div>
+				</div>
+			</div><!--/footer-->
+
+			<div class="copyright">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6">
+							<p>
+								2016 &copy; All Rights Reserved.
+								<a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+							</p>
+						</div>
+
+						<!-- Social Links -->
+						<div class="col-md-6">
+							<ul class="footer-socials list-inline">
+								<li>
+									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+										<i class="fa fa-facebook"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Skype">
+										<i class="fa fa-skype"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Google Plus">
+										<i class="fa fa-google-plus"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Linkedin">
+										<i class="fa fa-linkedin"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest">
+										<i class="fa fa-pinterest"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+										<i class="fa fa-twitter"></i>
+									</a>
+								</li>
+								<li>
+									<a href="#" class="tooltips" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dribbble">
+										<i class="fa fa-dribbble"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<!-- End Social Links -->
+					</div>
+				</div>
+			</div><!--/copyright-->
+		</div>
+		<!--=== End Footer Version 1 ===-->
+	</div><!--/wrapper-->
+	<?php
+		$this->registerJs("
+			App.init();
+			OwlCarousel.initOwlCarousel();
+			RevolutionSlider.initRSfullWidth();
+			StyleSwitcher.initStyleSwitcher();
+			ParallaxSlider.initParallaxSlider();
+		", yii\web\View::POS_READY);
+	?>
+	<!--[if lt IE 9]>
+		<script src="<?= $this->theme->baseUrl ?>/assets/publish/plugins/respond.js"></script>
+		<script src="<?= $this->theme->baseUrl ?>/assets/publish/plugins/html5shiv.js"></script>
+		<script src="<?= $this->theme->baseUrl ?>/assets/publish/plugins/placeholder-IE-fixes.js"></script>
+		<script src="<?= $this->theme->baseUrl ?>/assets/publish/plugins/sky-forms-pro/skyforms/js/sky-forms-ie8.js"></script>
+	<![endif]-->
 <?php $this->endBody() ?>
 </body>
 </html>

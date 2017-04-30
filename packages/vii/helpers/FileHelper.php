@@ -83,6 +83,11 @@ class FileHelper extends \yii\helpers\FileHelper
         return Yii::$app->params['uploadUrl'] . '/' . Yii::$app->params['uploadDir'] . '/' . $path;
     }
 
+    public static function getUploadDir($path)
+    {
+        return Yii::$app->params['uploadPath'] . '/' . Yii::$app->params['uploadDir'] . '/' . $path;
+    }
+
 
     public static function getUploadSource($path)
     {

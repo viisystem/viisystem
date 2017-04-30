@@ -1,0 +1,11 @@
+/* Add here all your css styles (customizations) */
+.text-ellipsis{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 0;
+}
+.news-v3-in img {
+	max-width: 100%;
+	height: auto;
+}

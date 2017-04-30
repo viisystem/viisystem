@@ -22,7 +22,9 @@
 		"yiisoft/yii2-imagine": "*",
 		"yiisoft/yii2-mongodb": "~2.1.0",
 		"kartik-v/yii2-widgets": "*",
-		"letyii/yii2-jstree": "*"
+		"letyii/yii2-jstree": "*",
+		"miloschuman/yii2-highcharts-widget": "*",
+		"letyii/yii2-imagecache": "*"
 	},
 	"require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

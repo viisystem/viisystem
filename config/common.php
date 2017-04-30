@@ -7,6 +7,17 @@ $config = [
 		'@vii' => dirname(__DIR__) . '/packages/vii'
 	],
     'components' => [
+    	'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'thousandSeparator' => '.',
+            'decimalSeparator' => ',',
+            'currencyCode' => 'VND',
+        ],
+        'imageCache' => [
+            'class' => 'letyii\imagecache\imageCache',
+            'cachePath' => '@app/uploads/cache',
+            'cacheUrl' => '@web/uploads/cache',
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'lwA4Hg541EcQiC7VCrybYDVi6j7X1sOyfwaoPFRI',
@@ -17,7 +28,7 @@ $config = [
         'user' => [
 			'loginUrl' => ['account/backend/auth/login'],
             'identityClass' => 'app\packages\account\models\User',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => false,
         ],
 		'authManager' => [
 			//'class' => 'yii\rbac\DbManager',
@@ -48,7 +59,22 @@ $config = [
 					'class' => 'yii\i18n\PhpMessageSource',
 					'basePath' => '@app/messages'
 				],
-
+				'contact' => [
+					'class' => 'yii\i18n\PhpMessageSource',
+					'basePath' => '@app/packages/contact/messages'
+				],
+				'article' => [
+					'class' => 'yii\i18n\PhpMessageSource',
+					'basePath' => '@app/packages/article/messages'
+				],
+				'services' => [
+					'class' => 'yii\i18n\PhpMessageSource',
+					'basePath' => '@app/packages/services/messages'
+				],
+				'banner' => [
+					'class' => 'yii\i18n\PhpMessageSource',
+					'basePath' => '@app/packages/banner/messages'
+				],
 				// DUY
 				'blog' => [
 					'class' => 'yii\i18n\PhpMessageSource',
@@ -80,6 +106,12 @@ $config = [
 		'diy' => [
 			'class' => 'app\packages\diy\Module',
 		],
+		'services' => [
+			'class' => 'app\packages\services\Module',
+		],
+		'banner' => [
+			'class' => 'app\packages\banner\Module',
+		],
 
 		// Duy
 		'blog' => [
@@ -90,6 +122,11 @@ $config = [
 		],
 		'setting' => [
 			'class' => 'app\packages\setting\Module',
+		],
+
+		// Phongnv
+		'contact' => [
+			'class' => 'app\packages\contact\Module',
 		],
 	],
     'params' => [
@@ -105,6 +142,7 @@ $config = [
 
 		'uploadUrl' => pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME),
 		'uploadDir' => 'uploads',
+		'uploadPath' => dirname(__FILE__) . '/..',
 
 		'mobileDetect' => [
 			'isDesktop' => true

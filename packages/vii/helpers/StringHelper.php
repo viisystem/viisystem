@@ -38,6 +38,16 @@ class StringHelper extends BaseStringHelper
         return $url;
     }
 
+     public static function asUrl($str = '') {
+        $str = self::generateSlug($str);
+        $str = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '-', $str);
+        $str = strtolower($str);
+        $str = preg_replace("/[\/_|+ -]+/", '-', $str);
+
+        $str = trim($str, '-');
+        return $str;
+    }
+
     public static function generateSlug($str)
     {
         $str = trim(mb_strtolower($str, 'UTF-8'));

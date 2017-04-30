@@ -1,0 +1,65 @@
+<?php
+
+namespace app\packages\services\models;
+
+use Yii;
+
+/**
+ * This is the model class for collection "services_form".
+ *
+ * @property \MongoDB\BSON\ObjectID|string $_id
+ * @property mixed $borrow_money
+ * @property mixed $borrow_time
+ * @property mixed $fullname
+ * @property mixed $email
+ * @property mixed $phone
+ */
+class ServicesFormBase extends \vii\components\ActiveRecord
+{
+    /**
+     * @inheritdoc
+     */
+    public static function collectionName()
+    {
+        return 'services_form';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributes()
+    {
+        return [
+            '_id',
+            'borrow_money',
+            'borrow_time',
+            'fullname',
+            'email',
+            'phone',
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['borrow_money', 'borrow_time', 'fullname', 'email', 'phone'], 'safe']
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'borrow_money' => Yii::t('services', 'Borrow Money'),
+            'borrow_time' => Yii::t('services', 'Borrow Time'),
+            'fullname' => Yii::t('services', 'Full Name'),
+            'phone' => Yii::t('services', 'Phone'),
+            'email' => Yii::t('services', 'Email'),
+        ];
+    }
+}

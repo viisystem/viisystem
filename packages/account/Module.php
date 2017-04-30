@@ -14,8 +14,13 @@ class Module extends \app\classes\Module
 				'class' => AccessControl::className(),
 				'rules' => [
 					[
-						'controllers'=>['account/backend/auth'],
+						// 'controllers'=>['account/backend/auth'],
 						'allow'=>true,
+						// 'matchCallback' => function($rule, $action) {
+      //                       if(strpos($action->controller->id, 'frontend/') !== false)
+      //                           return true;
+      //                       return false;
+      //                   }
 					],
 					[
 						'allow' => true,
