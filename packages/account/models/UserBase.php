@@ -30,7 +30,7 @@ class UserBase extends \yii\mongodb\ActiveRecord
      */
     public static function collectionName()
     {
-        return ['viidev', 'user'];
+        return 'user';
     }
 
     /**
