@@ -36,7 +36,7 @@ class DefaultController extends Controller
         if (!Yii::$app->user->isGuest) {
             $fullname = ArrayHelper::getValue(Yii::$app->user->identity->name, 'first') . " " . ArrayHelper::getValue(Yii::$app->user->identity->name, 'middle') . " " . ArrayHelper::getValue(Yii::$app->user->identity->name, 'last');
             $model->fullname = $fullname;
-            $model->email = ArrayHelper::getValue(Yii::$app->user->identity->emails, 'address');
+            $model->email = Yii::$app->user->identity->displayEmails;
             $model->phone = ArrayHelper::getValue(Yii::$app->user->identity->phone, 'mobile');
         }
 
