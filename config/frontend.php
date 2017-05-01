@@ -10,7 +10,7 @@ $config = [
 		],
 		'urlManager' => [
             'enablePrettyUrl' => true,
-            'showScriptName' => true,
+            'showScriptName' => false,
             'rules' => [
                 //'gii/<controller:\w+>' => 'gii/<controller>/index',
                 //'gii/<controller:\w+>/<action:\w+>' => 'gii/<controller>/<action>',
