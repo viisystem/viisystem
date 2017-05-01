@@ -140,7 +140,7 @@ $config = [
 			'en' => 'English'
 		],
 
-		'uploadUrl' => pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME),
+		'uploadUrl' => (pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME) === '/') ? null : pathinfo($_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME),
 		'uploadDir' => 'uploads',
 		'uploadPath' => dirname(__FILE__) . '/..',
 
