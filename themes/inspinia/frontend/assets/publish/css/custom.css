@@ -9,3 +9,7 @@
 	max-width: 100%;
 	height: auto;
 }
+.pagination li a {
+    color: #777;
+    padding: 6px 15px;
+}

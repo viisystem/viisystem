@@ -133,10 +133,11 @@ FrontendAsset::register($this);
 							<i class="search fa fa-search search-btn"></i>
 							<div class="search-open">
 								<div class="input-group animated fadeInDown">
-									<input type="text" class="form-control" placeholder="Search">
-									<span class="input-group-btn">
-										<button class="btn-u" type="button">Go</button>
-									</span>
+									<?= \app\packages\dashboard\widgets\Search::widget([
+										'_params' => [
+											'view' => 'search_head'
+										]
+									]); ?>
 								</div>
 							</div>
 						</li>

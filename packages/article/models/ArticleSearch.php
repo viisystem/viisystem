@@ -12,6 +12,7 @@ use app\packages\article\models\Article;
  */
 class ArticleSearch extends Article
 {
+    public $keyword;
     /**
      * @inheritdoc
      */
@@ -107,6 +108,35 @@ class ArticleSearch extends Article
             ->andFilterWhere(['like', 'updated_by', $this->updated_by])
             ->andFilterWhere(['like', 'language', $this->language])
             ->andFilterWhere(['like', 'source_id', $this->source_id]);
+
+        return $dataProvider;
+    }
+
+    public function searchFrontend($params, $pageSize = 20)
+    {
+        $query = static::find();
+        $query->where(['language' => Yii::$app->language, 'status' => '1']);
+        $query->orderBy(['sort' => SORT_ASC]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => $pageSize,
+            ]
+        ]);
+
+        $this->load($params);
+        if (!$this->validate()) {
+            return $dataProvider;
+        }
+
+        // condition here
+        if (!empty($this->keyword)) {
+            $query->andFilterWhere(['or',
+                ['like', 'name', $this->keyword],
+                ['like', 'content', $this->keyword],
+            ]);
+        }
 
         return $dataProvider;
     }

@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Url;
+use app\themes\inspinia\frontend\assets\FrontendAsset;
 ?>
 <!--=== Slider ===-->
 <div class="tp-banner-container">
@@ -20,8 +21,8 @@ use yii\helpers\Url;
 			<p style="font-size: 16px;">Bằng việc ứng dụng công nghệ cùng đội ngũ nhân viên chuyên nghiệp, <strong>FindBank</strong> không chỉ mang đến cho khách hàng thông tin chi tiết về các sản phẩm của ngân hàng, mà còn giúp người vay vay được tiền <strong>nhanh hơn</strong>, <strong>thuận tiện hơn</strong></p>
 		</div>
 
-		<div class="row service-box-v1">
-			<a href="<?= Url::to(['/services/frontend/default/index', 'slug' => 'vay-mua-nha']); ?>">
+		<div class="row">
+			<!-- <a href="<?= Url::to(['/services/frontend/default/index', 'slug' => 'vay-mua-nha']); ?>">
 				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
 					<div class="service-block service-block-default">
 						<i class="icon-custom icon-lg icon-bg-u rounded-x fa fa-home"></i>
@@ -72,7 +73,58 @@ use yii\helpers\Url;
 						</ul>
 					</div>
 				</div>
-			</a>
+			</a> -->
+			<!-- Tabs -->
+			<div class="tab-v1">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#muanha" data-toggle="tab">Vay mua nhà</a></li>
+					<li><a href="#muaoto" data-toggle="tab">Vay mua ô tô</a></li>
+					<li><a href="#tinchap" data-toggle="tab">Vay tín chấp tiêu dùng</a></li>
+					<li><a href="#tindung" data-toggle="tab">Thẻ tín dụng</a></li>
+				</ul>
+				<div class="tab-content">
+					<!-- Datepicker Forms -->
+					<div class="tab-pane fade in active" id="muanha">
+						<?= app\packages\services\widgets\Services::widget([
+							'_params' => [
+								'slug' => 'vay-mua-nha'
+							]
+						]) ?>
+					</div>
+					<!-- End Datepicker Forms -->
+
+					<!-- Validation Forms -->
+					<div class="tab-pane fade" id="muaoto">
+						<?= app\packages\services\widgets\Services::widget([
+							'_params' => [
+								'slug' => 'vay-mua-o-to'
+							]
+						]) ?>
+					</div>
+					<!-- End Validation Forms -->
+
+					<!-- Masking Forms -->
+					<div class="tab-pane fade" id="tinchap">
+						<?= app\packages\services\widgets\Services::widget([
+							'_params' => [
+								'slug' => 'vay-tin-chap-tieu-dung'
+							]
+						]) ?>
+					</div>
+					<!-- End Masking Forms -->
+
+					<!-- Masking Forms -->
+					<div class="tab-pane fade" id="tindung">
+						<?= app\packages\services\widgets\Services::widget([
+							'_params' => [
+								'slug' => 'the-tin-dung'
+							]
+						]) ?>
+					</div>
+					<!-- End Masking Forms -->
+				</div>
+			</div>
+			<!-- End Tabs-->
 		</div>
 	</div>
 </section>
@@ -167,3 +219,7 @@ use yii\helpers\Url;
 	</div>
 	<!-- End Recent Works -->
 </div><!--/end container-->
+<?php
+$this->registerCssFile($this->theme->baseUrl . '/assets/publish/plugins/sky-forms-pro/skyforms/css/sky-forms.css', ['depends' => FrontendAsset::className()]);
+$this->registerCssFile($this->theme->baseUrl . '/assets/publish/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css', ['depends' => FrontendAsset::className()]);
+?>

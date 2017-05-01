@@ -5,7 +5,7 @@ use yii\widgets\MaskedInput;
 use miloschuman\highcharts\Highcharts;
 use vii\helpers\ArrayHelper;
 
-ServicesAsset::register($this); 
+ServicesAsset::register($this);
 ?>
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs">
@@ -62,7 +62,7 @@ ServicesAsset::register($this);
 							</div>
 						</div>
 					</div>
-
+					
 					<label>Họ và Tên <span class="color-red">*</span></label>
 					<div class="row sky-space-20">
 						<div class="col-md-4 col-sm-6 col-xs-6 col-md-offset-0">
@@ -99,7 +99,7 @@ ServicesAsset::register($this);
 				</div>
 			<?php ActiveForm::end(); ?>
 
-			<?php if (\Yii::$app->request->post()): ?>
+			<?php if (\Yii::$app->request->post() AND !empty($arrBankChart)): ?>
 				<div class="headline"><h2>Kết quả So sánh <?= strtolower($serviceName) ?></h2></div>
 				<!-- Tabs -->
 				<div class="tab-v1" style="margin-top: 30px;">

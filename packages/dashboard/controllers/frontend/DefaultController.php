@@ -8,6 +8,7 @@ class DefaultController extends Controller
 {
     public function actionIndex()
     {
+    	\Yii::$app->view->title = 'Findbank.vn';
         return $this->render('index');
     }
 }

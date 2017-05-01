@@ -11,7 +11,9 @@ use Yii;
 class DefaultController extends Controller
 {
     public function actionIndex() {
-    	$slug = Yii::$app->request->get('slug');
+        $slug = Yii::$app->request->get('slug');
+
+    	$is_borrow = Yii::$app->request->post('is_borrow');
 
     	// Get service by slug
     	$arrRewrite = [
@@ -27,7 +29,48 @@ class DefaultController extends Controller
     	// List bank for service
     	$banks = $this->getBankServices($index_type);
 
-    	$model = new ServicesForm;
+    	$model = $this->builData($is_borrow);
+
+        // List bank chart
+        $arrBankChart = [];
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $cookies = Yii::$app->response->cookies;
+            $cookies->remove('services_form');
+            // add a new cookie to the response to be sent
+            $cookies->add(new \yii\web\Cookie([
+                'name' => 'services_form',
+                'value' => $model->attributes,
+            ]));
+
+            $arrBankChart = $this->generateArrBankChart($model, $index_type);
+        }
+
+        Yii::$app->view->title = 'Dịch vụ ' . strtolower($serviceName);
+
+    	return $this->render('index', ['serviceName' => $serviceName, 'banks' => $banks, 'model' => $model, 'arrBankChart' => $arrBankChart]);
+    }
+
+    private function generateArrBankChart($model, $index_type) {
+        $arrBankChart = [];
+        $banks_chart = $this->getBankServicesQuery($index_type)->all();
+        foreach ($banks_chart as $item) {
+            $borrow_money = round($model->borrow_money * (($item->rate / 100) / $model->borrow_time));
+            $current_price = round($model->borrow_money / $model->borrow_time);
+
+            $arrBankChart['rate_special'][$item->bank] = $item->rate_special;
+            $arrBankChart['rate'][$item->bank] = $item->rate;
+            $arrBankChart['borrow_money'][$item->bank] = $borrow_money;
+            $arrBankChart['current_price'][$item->bank] = $current_price;
+            $arrBankChart['current_borrow'][$item->bank] = $borrow_money + $current_price;
+        }
+
+        return $arrBankChart;
+    }
+
+    private function builData($is_borrow = null) {
+        $model = new ServicesForm;
+        if (empty($is_borrow))
+            $model->scenario = 'borrow';
 
         $cookies = Yii::$app->request->cookies;
         // get the cookie value
@@ -48,34 +91,7 @@ class DefaultController extends Controller
                 $model->$attribute = $value;
             }
         }
-
-        // List bank chart
-        $arrBankChart = [];
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $cookies = Yii::$app->response->cookies;
-            $cookies->remove('services_form');
-            // add a new cookie to the response to be sent
-            $cookies->add(new \yii\web\Cookie([
-                'name' => 'services_form',
-                'value' => $model->attributes,
-            ]));
-
-            $banks_chart = $this->getBankServicesQuery($index_type)->all();
-            foreach ($banks_chart as $item) {
-                $borrow_money = round($model->borrow_money * (($item->rate / 100) / $model->borrow_time));
-                $current_price = round($model->borrow_money / $model->borrow_time);
-
-                $arrBankChart['rate_special'][$item->bank] = $item->rate_special;
-                $arrBankChart['rate'][$item->bank] = $item->rate;
-                $arrBankChart['borrow_money'][$item->bank] = $borrow_money;
-                $arrBankChart['current_price'][$item->bank] = $current_price;
-                $arrBankChart['current_borrow'][$item->bank] = $borrow_money + $current_price;
-            }
-        }
-
-        Yii::$app->view->title = 'Dịch vụ ' . strtolower($serviceName);
-
-    	return $this->render('index', ['serviceName' => $serviceName, 'banks' => $banks, 'model' => $model, 'arrBankChart' => $arrBankChart]);
+        return $model;
     }
 
     public function actionDetail() {

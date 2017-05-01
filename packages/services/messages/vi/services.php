@@ -18,4 +18,6 @@ return [
 	'Consumer creadit' => 'Vay tín chấp tiêu dùng',
 	'Borrow Money' => 'Số tiền vay',
 	'Borrow Time' => 'thời gian vay',
+	'Full Name' => 'Họ tên',
+	'Phone' => 'Số điện thoại',
 ];

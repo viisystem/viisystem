@@ -10,7 +10,7 @@ $config = [
 		],
 		'urlManager' => [
             'enablePrettyUrl' => true,
-            'showScriptName' => true,
+            'showScriptName' => false,
             'rules' => [
                 //'gii/<controller:\w+>' => 'gii/<controller>/index',
                 //'gii/<controller:\w+>/<action:\w+>' => 'gii/<controller>/<action>',
@@ -21,6 +21,7 @@ $config = [
                 //'diy/<controller:\w+>' => 'diy/<controller>/index',
                 //'diy/<controller:\w+>/<action:\w+>' => 'diy/<controller>/<action>',
                 
+                'tim-kiem' => 'dashboard/frontend/search/index',
                 'lien-he' => 'contact/frontend/default/index',
                 'dang-nhap' => 'account/frontend/default/login',
                 'dich-vu-<slug:[\d\w\-_]+>' => 'services/frontend/default/index',
