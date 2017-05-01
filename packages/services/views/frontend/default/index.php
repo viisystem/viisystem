@@ -24,7 +24,7 @@ ServicesAsset::register($this);
 	<div class="row margin-bottom-30">
 		<div class="col-md-12 mb-margin-bottom-30">
 			<div class="tag-box tag-box-v3">
-				<ul class="list-unstyled text-left" style="padding: 0; margin-bottom: 0;">
+				<ul class="list-unstyled text-justify" style="padding: 0; margin-bottom: 0;">
 					<li style="margin: 0; font-size: 13px; border-top: 0;"><i class="fa fa-check color-green"></i> <i>Lãi suất ưu đãi là lãi suất tại thời điểm bắt đầu kí kết hợp đồng tín dụng giữa ngân hàng với khách hàng.</i></li>
 					<li style="margin: 0; font-size: 13px; border-top: 0;"><i class="fa fa-check color-green"></i> <i>Lãi suất thường là lãi suất tham khảo khi hết lãi suất ưu đãi. Trong từng ngân hàng, có thể có sự chênh lệch lãi suất đối với với từng khách hàng, từng chi nhánh.</i></li>
 					<li style="margin: 0; font-size: 13px; border-top: 0;"><i class="fa fa-check color-green"></i> <i>Gốc, lãi tối đa  tính theo nguyên tắc dư nợ giảm dần</i></li>

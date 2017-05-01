@@ -22,7 +22,7 @@ use yii\helpers\Url;
 
 		<div class="row service-box-v1">
 			<a href="<?= Url::to(['/services/frontend/default/index', 'slug' => 'vay-mua-nha']); ?>">
-				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
 					<div class="service-block service-block-default">
 						<i class="icon-custom icon-lg icon-bg-u rounded-x fa fa-home"></i>
 						<h2 class="heading-md">Vay Mua Nhà</h2>
@@ -35,7 +35,7 @@ use yii\helpers\Url;
 				</div>
 			</a>
 			<a href="<?= Url::to(['/services/frontend/default/index', 'slug' => 'vay-mua-o-to']); ?>">
-				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
 					<div class="service-block service-block-default">
 						<i class="icon-custom icon-lg icon-bg-u rounded-x fa fa-car"></i>
 						<h2 class="heading-sm">Vay Mua Ô Tô</h2>
@@ -48,7 +48,7 @@ use yii\helpers\Url;
 				</div>
 			</a>
 			<a href="<?= Url::to(['/services/frontend/default/index', 'slug' => 'vay-tin-chap-tieu-dung']); ?>">
-				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
 					<div class="service-block service-block-default">
 						<i class="icon-custom icon-lg icon-bg-u rounded-x fa fa-money"></i>
 						<h2 class="heading-sm">Vay Tín Chấp Tiêu Dùng</h2>
@@ -61,7 +61,7 @@ use yii\helpers\Url;
 				</div>
 			</a>
 			<a href="<?= Url::to(['/services/frontend/default/index', 'slug' => 'the-tin-dung']); ?>">
-				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6">
+				<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
 					<div class="service-block service-block-default">
 						<i class="icon-custom icon-lg icon-bg-u rounded-x fa fa-credit-card"></i>
 						<h2 class="heading-sm">Thẻ Tín Dụng</h2>

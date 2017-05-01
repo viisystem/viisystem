@@ -27,7 +27,7 @@ use vii\helpers\FileHelper;
 				<div class="news-v3 bg-color-white margin-bottom-30">
 					<div class="news-v3-in">
 						<h2><a href="<?= Url::to(['/article/frontend/default/view', 'slug' => $item->slug, 'id' => $item->_id]) ?>"><?= $item->title ?></a></h2>
-						<?= $item->excerpt ?>
+						<strong><?= $item->excerpt ?></strong>
 						<?= Yii::$app->imageCache->img(FileHelper::getUploadDir($item->image), '848x536', ['class' => 'img-responsive full-width', 'style' => 'margin: 10px 0;']); ?>
 						<?= $item->content ?>
 					</div>
