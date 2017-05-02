@@ -6,6 +6,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Url;
 
 ?>
 <!--== Content Part ===-->
@@ -20,7 +21,7 @@ use yii\bootstrap\ActiveForm;
 				<li><a class="rounded-x social_googleplus" data-original-title="Google Plus" href="#"></a></li>
 				<li><a class="rounded-x social_linkedin" data-original-title="Linkedin" href="#"></a></li>
 			</ul>
-			<p>Bạn chưa có tài khoản? Click <a class="color-green" href="page_registration1.html">Đăng ký</a> để tạo tài khoản.</p>
+			<p>Bạn chưa có tài khoản? Click <a class="color-green" href="<?= Url::to(['/account/frontend/default/register']); ?>">Đăng ký</a> để tạo tài khoản.</p>
 		</div>
 		<?php $form = ActiveForm::begin([
 			'id' => 'login-form',
@@ -29,18 +30,16 @@ use yii\bootstrap\ActiveForm;
 			],
 			//'layout' => 'horizontal',
 			'fieldConfig' => [
-				'template' => "{input}",
+				'template' => "<div class='input-group margin-bottom-20'>{icon}{input}</div>{error}",
 				'labelOptions' => ['class' => 'col-lg-1 control-label'],
 			],
 		]); ?>
-		<div class="input-group margin-bottom-20">
-			<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-			<?= $form->field($model, 'username')->textInput(['autofocus' => true, 'placeholder'=>'Tài khoản']) ?>
-		</div>
-		<div class="input-group margin-bottom-20">
-			<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-			<?= $form->field($model, 'password')->passwordInput(['placeholder'=>'Mật khẩu']) ?>
-		</div>
+		
+		
+		<?= str_replace('{icon}', '<span class="input-group-addon"><i class="fa fa-envelope"></i></span>', $form->field($model, 'username')->textInput(['autofocus' => true, 'placeholder'=>'Tài khoản'])) ?>
+
+		<?= str_replace('{icon}', '<span class="input-group-addon"><i class="fa fa-lock"></i></span>', $form->field($model, 'password')->passwordInput(['placeholder'=>'Mật khẩu'])) ?>
+
 		<hr>
 
 		<!-- <div class="checkbox">

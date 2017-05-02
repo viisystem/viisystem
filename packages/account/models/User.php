@@ -25,14 +25,64 @@ use Yii;
  */
 class User extends UserBase implements \yii\web\IdentityInterface
 {
+	public $confirm_password;
+
+	public $new_pass;
+
 	public function attributeLabels()
 	{
 		return array_merge(parent::attributeLabels(),[
 			'displayName' => Yii::t('account', 'Name'),
             'displayEmails' => Yii::t('account', 'Email'),
             'displayAddresses' => Yii::t('account', 'Address'),
+            'confirm_password' => Yii::t('account', 'Confirm password'),
+            'new_pass' => Yii::t('account', 'Password'),
 		]);
 	}
+
+	public function attributes()
+	{
+		return array_merge(parent::attributes(),[
+            'confirm_password'
+		]);
+	}
+
+	public function rules()
+	{
+		return array_merge(parent::rules(),[
+			[['username', 'password', 'confirm_password', 'phone'], 'required', 'on' => 'register'],
+			['username', 'unique', 'message' => Yii::t('account', 'This username has already been taken.'), 'on' => 'register'],
+            ['confirm_password', 'compare', 'compareAttribute'=>'password', 'message'=>Yii::t('account', "Passwords don't match"), 'on' => 'register'],  
+            ['confirm_password', 'compare', 'compareAttribute'=>'new_pass', 'message'=>Yii::t('account', "Passwords don't match"), 'on' => 'infomation'],  
+		]);
+	}
+
+	/**
+     * @inheritdoc
+     */
+    public function scenarios()
+    {
+        return array_merge(parent::rules(),[
+            'register' => ['username', 'password', 'name', 'birth_date', 'gender', 'emails', 'phone', 'addresses', 'description', 'auth_key', 'token', 'created_date', 'updated_date', 'last_login_datetime', 'data', 'confirm_password'],
+            'default' => ['username', 'password', 'name', 'birth_date', 'gender', 'emails', 'phone', 'addresses', 'description', 'auth_key', 'token', 'created_date', 'updated_date', 'last_login_datetime', 'data', 'confirm_password', 'new_pass'],
+            'infomation' => ['username', 'password', 'name', 'birth_date', 'gender', 'emails', 'phone', 'addresses', 'description', 'auth_key', 'token', 'created_date', 'updated_date', 'last_login_datetime', 'data', 'confirm_password', 'new_pass'],
+//            'addrole' => ['name'],
+        ]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if (!empty($this->new_pass)) {
+                $this->password = Yii::$app->getSecurity()->generatePasswordHash($this->new_pass);
+            }
+            return true;
+        }
+        return false;
+    }
 	
 	public function getDisplayName()
 	{

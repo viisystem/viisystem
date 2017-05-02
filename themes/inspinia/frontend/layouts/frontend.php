@@ -59,8 +59,17 @@ FrontendAsset::register($this);
 							</ul>
 						</li>
 						<li class="topbar-devider"></li> -->
-						<!-- <li><a href="<?= Url::to(['/account/frontend/default/login']); ?>">Đăng nhập</a></li> -->
-						<!-- <li class="topbar-devider"></li> -->
+						<?php if(!Yii::$app->user->isGuest) { ?>
+							<li class="hoverSelector"><a>Chào bạn: <?= Yii::$app->user->identity->displayName ?></a>
+								<ul class="languages hoverSelectorBlock">
+									<li><a href="<?= Url::to(['/account/frontend/default/infomation']); ?>">Thông tin cá nhân</a></li>
+									<li><a href="<?= Url::to(['/account/frontend/default/logout']); ?>">Đăng xuất</a></li>
+								</ul>
+							</li>
+						<?php } else { ?>
+							<li><a href="<?= Url::to(['/account/frontend/default/login']); ?>">Đăng nhập</a></li>
+						<?php } ?>
+						<li class="topbar-devider"></li>
 						<li>
 							<?php if ($detect->isMobile()): ?>
 								<a href="tel:0962 767 222">Hot Line:  0962 767 222</a>

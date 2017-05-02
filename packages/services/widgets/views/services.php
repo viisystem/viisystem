@@ -8,6 +8,7 @@ use yii\helpers\Url;
 		<div class="form-group col-md-6">
 		    <label for="exampleInputName2">Bạn muốn vay bao nhiêu? </label>
 		    <?= $form->field($model, 'borrow_money')->widget(MaskedInput::className(), [
+		    	'options' => ['id' => uniqid(), 'class' => 'form-control'],
 	            'clientOptions' => [
 	                'alias' =>  'decimal',
 	                'groupSeparator' => '.',
@@ -33,7 +34,7 @@ use yii\helpers\Url;
 
 	<div class="row">
 		<div class="form-group col-md-6">
-		    <label class="checkbox"><input type="checkbox" name="is_borrow"><i></i>Chưa có nhu cầu vay</label>
+		    <label class="checkbox"><input type="checkbox" name="is_borrow"><i></i>Tham khảo lãi suất</label>
 		</div>
 		<div class="col-md-6">
 			<button type="submit" class="btn-u btn-u-blue pull-right" style="margin-right: 15px;">Tìm ngân hàng tốt nhất</button>

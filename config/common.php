@@ -63,6 +63,10 @@ $config = [
 					'class' => 'yii\i18n\PhpMessageSource',
 					'basePath' => '@app/packages/contact/messages'
 				],
+				'account' => [
+					'class' => 'yii\i18n\PhpMessageSource',
+					'basePath' => '@app/packages/account/messages'
+				],
 				'article' => [
 					'class' => 'yii\i18n\PhpMessageSource',
 					'basePath' => '@app/packages/article/messages'
