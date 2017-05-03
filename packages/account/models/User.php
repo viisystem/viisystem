@@ -3,6 +3,7 @@
 namespace app\packages\account\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for collection "user".
@@ -131,6 +132,22 @@ class User extends UserBase implements \yii\web\IdentityInterface
 			return $this->addresses;
 		}
 		return null;
+	}
+
+	public static function getDisplayNames() {
+		$fullname = Yii::$app->user->identity->displayName;
+		$email = Yii::$app->user->identity->displayEmails;
+		$phone = Yii::$app->user->identity->phone;
+		$displayName = null;
+
+		if (!empty($fullname))
+			$displayName = $fullname;
+		else if (!empty($email))
+			$displayName = $email;
+		else
+			$displayName = ArrayHelper::getValue($phone, 'mobile');
+
+		return $displayName;
 	}
 	
 	public static function findIdentity($id)

@@ -7,6 +7,7 @@ use app\themes\inspinia\frontend\assets\FrontendAsset;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use vii\components\MobileDetect;
+use app\packages\account\models\User;
 
 $detect = new MobileDetect;
 FrontendAsset::register($this);
@@ -49,28 +50,18 @@ FrontendAsset::register($this);
 				<!-- Topbar -->
 				<div class="topbar">
 					<ul class="loginbar pull-right">
-						<!-- <li class="hoverSelector">
-							<a>Dịch vụ</a>
-							<ul class="languages hoverSelectorBlock">
-								<li><a href="<?= Url::to(['/services/frontend/default/index', 'slug' => 'vay-mua-nha']); ?>">Vay mua nhà</a></li>
-								<li><a href="<?= Url::to(['/services/frontend/default/index', 'slug' => 'vay-mua-o-to']); ?>">Vay mua ô tô</a></li>
-								<li><a href="<?= Url::to(['/services/frontend/default/index', 'slug' => 'vay-tin-chap-tieu-dung']); ?>">Vay tín chấp tiêu dùng</a></li>
-								<li><a href="<?= Url::to(['/services/frontend/default/index', 'slug' => 'the-tin-dung']); ?>">Thẻ tín dụng</a></li>
-							</ul>
-						</li>
-						<li class="topbar-devider"></li> -->
 						<?php if(!Yii::$app->user->isGuest) { ?>
-							<li class="hoverSelector"><a>Chào bạn: <?= Yii::$app->user->identity->displayName ?></a>
+							<li class="hoverSelector hidden-xs hidden-sm"><a><?= User::getDisplayNames(); ?></a>
 								<ul class="languages hoverSelectorBlock">
 									<li><a href="<?= Url::to(['/account/frontend/default/infomation']); ?>">Thông tin cá nhân</a></li>
 									<li><a href="<?= Url::to(['/account/frontend/default/logout']); ?>">Đăng xuất</a></li>
 								</ul>
 							</li>
 						<?php } else { ?>
-							<li><a href="<?= Url::to(['/account/frontend/default/login']); ?>">Đăng nhập</a></li>
+							<li class="hidden-xs hidden-sm"><a href="<?= Url::to(['/account/frontend/default/login']); ?>">Đăng nhập</a></li>
 						<?php } ?>
-						<li class="topbar-devider"></li>
-						<li>
+						<li class="topbar-devider hidden-xs hidden-sm"></li>
+						<li class="hidden-xs hidden-sm">
 							<?php if ($detect->isMobile()): ?>
 								<a href="tel:0962 767 222">Hot Line:  0962 767 222</a>
 							<?php else: ?>
@@ -197,14 +188,24 @@ FrontendAsset::register($this);
 						<!-- End Latest -->
 
 						<!-- Link List -->
-						<div class="col-md-3 md-margin-bottom-40 hidden-xs hidden-sm">
-							<div class="headline"><h2>Useful Links</h2></div>
+						<div class="col-md-3 md-margin-bottom-40">
+							<div class="headline"><h2><?php if (!Yii::$app->user->isGuest) { 
+								echo User::getDisplayNames();
+							} else {
+								echo 'Thông tin khách hàng';
+							}
+							?></h2></div>
 							<ul class="list-unstyled link-list">
-								<li><a href="#">About us</a><i class="fa fa-angle-right"></i></li>
-								<li><a href="#">Portfolio</a><i class="fa fa-angle-right"></i></li>
-								<li><a href="#">Latest jobs</a><i class="fa fa-angle-right"></i></li>
-								<li><a href="#">Community</a><i class="fa fa-angle-right"></i></li>
-								<li><a href="#">Contact us</a><i class="fa fa-angle-right"></i></li>
+								<?php if (!Yii::$app->user->isGuest) { ?>
+									<li><a href="<?= Url::to(['/account/frontend/default/infomation']); ?>">Thông tin cá nhân</a><i class="fa fa-angle-right"></i></li>
+									<li><a href="<?= Url::to(['/account/frontend/default/logout']); ?>">Đăng xuất</a><i class="fa fa-angle-right"></i></li>
+								<?php } else { ?>
+									<li><a href="<?= Url::to(['/account/frontend/default/login']); ?>">Đăng nhập</a><i class="fa fa-angle-right"></i></li>
+								<?php } ?>
+								<li>
+									<a href="tel:0962 767 222">Hot Line:  0962 767 222</a><i class="fa fa-angle-right"></i>
+								</li>
+						</li>
 							</ul>
 						</div><!--/col-md-3-->
 						<!-- End Link List -->

@@ -74,57 +74,59 @@ use app\themes\inspinia\frontend\assets\FrontendAsset;
 					</div>
 				</div>
 			</a> -->
-			<!-- Tabs -->
-			<div class="tab-v1">
-				<ul class="nav nav-tabs">
-					<li class="active"><a href="#muanha" data-toggle="tab">Vay mua nhà</a></li>
-					<li><a href="#muaoto" data-toggle="tab">Vay mua ô tô</a></li>
-					<li><a href="#tinchap" data-toggle="tab">Vay tín chấp tiêu dùng</a></li>
-					<li><a href="#tindung" data-toggle="tab">Thẻ tín dụng</a></li>
-				</ul>
-				<div class="tab-content">
-					<!-- Datepicker Forms -->
-					<div class="tab-pane fade in active" id="muanha">
-						<?= app\packages\services\widgets\Services::widget([
-							'_params' => [
-								'slug' => 'vay-mua-nha'
-							]
-						]) ?>
-					</div>
-					<!-- End Datepicker Forms -->
+			<div class="container">
+				<!-- Tabs -->
+				<div class="tab-v1">
+					<ul class="nav nav-tabs tab-header">
+						<li class="active"><a href="#muanha" data-toggle="tab"><span class="fa fa-home"></span> Vay mua nhà</a></li>
+						<li><a href="#muaoto" data-toggle="tab"><span class="fa fa-car"></span> Vay mua ô tô</a></li>
+						<li><a href="#tinchap" data-toggle="tab"><span class="fa fa-shopping-bag"></span> Vay tiêu dùng</a></li>
+						<li><a href="#tindung" data-toggle="tab"><span class="fa fa-credit-card"></span> Thẻ tín dụng</a></li>
+					</ul>
+					<div class="tab-content">
+						<!-- Datepicker Forms -->
+						<div class="tab-pane fade in active" id="muanha">
+							<?= app\packages\services\widgets\Services::widget([
+								'_params' => [
+									'slug' => 'vay-mua-nha'
+								]
+							]) ?>
+						</div>
+						<!-- End Datepicker Forms -->
 
-					<!-- Validation Forms -->
-					<div class="tab-pane fade" id="muaoto">
-						<?= app\packages\services\widgets\Services::widget([
-							'_params' => [
-								'slug' => 'vay-mua-o-to'
-							]
-						]) ?>
-					</div>
-					<!-- End Validation Forms -->
+						<!-- Validation Forms -->
+						<div class="tab-pane fade" id="muaoto">
+							<?= app\packages\services\widgets\Services::widget([
+								'_params' => [
+									'slug' => 'vay-mua-o-to'
+								]
+							]) ?>
+						</div>
+						<!-- End Validation Forms -->
 
-					<!-- Masking Forms -->
-					<div class="tab-pane fade" id="tinchap">
-						<?= app\packages\services\widgets\Services::widget([
-							'_params' => [
-								'slug' => 'vay-tin-chap-tieu-dung'
-							]
-						]) ?>
-					</div>
-					<!-- End Masking Forms -->
+						<!-- Masking Forms -->
+						<div class="tab-pane fade" id="tinchap">
+							<?= app\packages\services\widgets\Services::widget([
+								'_params' => [
+									'slug' => 'vay-tin-chap-tieu-dung'
+								]
+							]) ?>
+						</div>
+						<!-- End Masking Forms -->
 
-					<!-- Masking Forms -->
-					<div class="tab-pane fade" id="tindung">
-						<?= app\packages\services\widgets\Services::widget([
-							'_params' => [
-								'slug' => 'the-tin-dung'
-							]
-						]) ?>
+						<!-- Masking Forms -->
+						<div class="tab-pane fade" id="tindung">
+							<?= app\packages\services\widgets\Services::widget([
+								'_params' => [
+									'slug' => 'the-tin-dung'
+								]
+							]) ?>
+						</div>
+						<!-- End Masking Forms -->
 					</div>
-					<!-- End Masking Forms -->
 				</div>
+				<!-- End Tabs-->
 			</div>
-			<!-- End Tabs-->
 		</div>
 	</div>
 </section>

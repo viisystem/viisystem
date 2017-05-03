@@ -22,8 +22,8 @@ use yii\widgets\ActiveForm;
 				<?php endif; ?>
 				<div class="tab-v1">
 					<ul class="nav nav-justified nav-tabs">
-						<li class="active"><a data-toggle="tab" href="#profile">Thông tin cá nhân</a></li>
-						<li><a data-toggle="tab" href="#passwordTab">Thay đổi mật khẩu</a></li>
+						<li class="active"><a data-toggle="tab" href="#profile"><i class="fa fa-user-circle" aria-hidden="true"></i> Thông tin cá nhân</a></li>
+						<li><a data-toggle="tab" href="#passwordTab"><i class="icon-append fa fa-lock"></i> Thay đổi mật khẩu</a></li>
 					</ul>
 					<div class="tab-content">
 						<div id="profile" class="profile-edit tab-pane fade in active">
@@ -33,8 +33,7 @@ use yii\widgets\ActiveForm;
 								]
 							]); ?>
 							<dl class="dl-horizontal">
-								<dt><strong>Họ Tên </strong></dt>
-								<dd>
+								<dd style="margin: 0;">
 									<?= $form->field($model, 'name[first]')->label('Họ') ?>
 									<?= $form->field($model, 'name[middle]')->label('Tên đệm') ?>
 									<?= $form->field($model, 'name[last]')->label('Tên') ?>

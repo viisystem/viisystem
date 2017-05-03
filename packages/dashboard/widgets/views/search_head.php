@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Url;
 ?>
-<input type="text" class="form-control" onkeyup="searchvalue(this);" placeholder="Bạn cần tìm gì hôm nay?">
+<input type="text" class="form-control" onkeyup="searchvalue(this);" value="<?= \Yii::$app->request->get('keyword') ?>" placeholder="Bạn cần tìm gì hôm nay?">
 <span class="input-group-btn">
 	<button class="btn-u" onclick="submitForm()" type="button">Tìm kiếm</button>
 </span>
