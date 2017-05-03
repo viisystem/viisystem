@@ -29,3 +29,37 @@
         flex-direction: column;
 	}
 }
+.outside-more-articles {
+    position: fixed;
+    width: 100%;
+    box-shadow: 0 0 6px 0 rgba(0,0,0,.13);
+    list-style: none;
+    padding: 0;
+    font-size: 31px;
+    z-index: 9991;
+    bottom: 0;
+    background: #fff;
+    margin: 0;
+}
+.outside-more-articles a {
+    color: #3498db;
+    text-decoration: none;
+}
+.outside-more-articles .custom_infomation p {
+    font-size: 13px;
+    margin: 0;
+    color: #3498db;
+}
+.outside-more-articles .hotline p, .outside-more-articles .hotline a {
+    color: white;
+}
+.outside-more-articles .hotline {
+    background: #72c02c;
+    color: white;
+}
+.outside-more-articles .custom_infomation {
+    /*border-right: 1px solid #3498db;*/
+}
+.outside-more-articles .custom_infomation:last-child {
+    border-right: 0;
+}

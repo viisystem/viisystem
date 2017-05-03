@@ -25,12 +25,12 @@ use yii\helpers\Url;
 		<div class="form-group has-feedback col-md-6 custom-feedback">
 		    <label class="control-label"  for="exampleInputName2">Bạn muốn vay bao lâu? </label>
 			<?= $form->field($model, 'borrow_time')->input('text', ['class' => 'form-control'])->label(false); ?>
-			<div class="form-control-feedback" aria-hidden="true">Tháng</div>
+			<div class="form-control-feedback" aria-hidden="true">tháng</div>
 		</div>
 	</div>
 
 	<div class="form-group col-md-9 col-sm-8  col-xs-12">
-	    <label class="checkbox"><input type="checkbox" name="is_borrow"><i></i>Tham khảo lãi suất</label>
+	    <label class="checkbox"><input type="checkbox" name="is_borrow"><i></i>Chưa có nhu cầu vay, chỉ tham khảo lãi suất</label>
 	</div>
 	<div class="col-md-3 col-sm-4 col-xs-12">
 		<button type="submit" class="btn-u btn-u-blue pull-right form-control">Tìm ngân hàng tốt nhất</button>

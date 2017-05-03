@@ -283,6 +283,23 @@ FrontendAsset::register($this);
 		</div>
 		<!--=== End Footer Version 1 ===-->
 	</div><!--/wrapper-->
+
+	<!-- Sidebar: More Articles Box -->
+	<div class="outside-more-articles outside-more-articles--right outside-more-articles--show hidden-md hidden-lg" data-scrollTop="400">
+		<div class="row">
+			<div class="col-md-6 col-sm-6 col-xs-6 text-center custom_infomation">
+				<?php if(!Yii::$app->user->isGuest) { ?>
+					<a href="<?= Url::to(['/account/frontend/default/infomation']); ?>"><i class="fa fa-user-circle" style="font-size: 25px;"></i><p>Thông tin cá nhân</p></a>
+			 	<?php } else { ?>
+			 		<a href="<?= Url::to(['/account/frontend/default/login']); ?>"><i class="fa fa-user-circle" style="font-size: 25px;"></i><p>Đăng nhập</p></a>
+			 	<?php } ?>
+			</div>
+			<div class="col-md-6 col-sm-6 col-xs-6 text-center custom_infomation hotline">
+				<a href="tel:0962 767 222"><i class="fa fa-phone" style="font-size: 25px;"></i><p>Hotline: 0962 767 222</p></a>
+			</div>
+		</div>
+	</div>
+	<!-- End More Articles Box -->
 	<?php
 		$this->registerJs("
 			App.init();
