@@ -29,10 +29,11 @@ class DefaultController extends Controller
     	// List bank for service
     	$banks = $this->getBankServices($index_type);
 
-    	$model = $this->builData($is_borrow);
+    	$model = $this->builData($is_borrow, $slug);
 
         // List bank chart
         $arrBankChart = [];
+        $model->load(Yii::$app->request->post());
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $cookies = Yii::$app->response->cookies;
             $cookies->remove('services_form');
@@ -42,12 +43,37 @@ class DefaultController extends Controller
                 'value' => $model->attributes,
             ]));
 
-            $arrBankChart = $this->generateArrBankChart($model, $index_type);
+            if ('the-tin-dung' == $slug)
+                $arrBankChart = $this->generateArrBankChartCreadit($model, $index_type);
+            else
+                $arrBankChart = $this->generateArrBankChart($model, $index_type);
         }
 
         Yii::$app->view->title = 'Dịch vụ ' . strtolower($serviceName);
 
-    	return $this->render('index', ['serviceName' => $serviceName, 'banks' => $banks, 'model' => $model, 'arrBankChart' => $arrBankChart]);
+    	return $this->render('index', ['serviceName' => $serviceName, 'banks' => $banks, 'model' => $model, 'arrBankChart' => $arrBankChart, 'slug' => $slug]);
+    }
+
+    private function generateArrBankChartCreadit($model, $index_type){
+        $arrBankChart = [];
+        $banks_chart = $this->getBankServicesQuery($index_type)->all();
+        foreach ($banks_chart as $item) {
+            $data_bandwith_creadit = ArrayHelper::getValue($item->data_creadit, 'bandwith_creadit');
+            $money_open_creadit = ArrayHelper::getValue($item->data_creadit, 'money_open_creadit');
+            $changre_year = ArrayHelper::getValue($item->data_creadit, 'changre_year');
+            $withdrawal_fee = ArrayHelper::getValue($item->data_creadit, 'withdrawal_fee');
+            $free_time_rate = ArrayHelper::getValue($item->data_creadit, 'free_time_rate');
+
+            $bandwith_creadit = $model->salary * $data_bandwith_creadit;
+
+            $arrBankChart['bandwith_creadit'][$item->bank] = $bandwith_creadit;
+            $arrBankChart['money_open_creadit'][$item->bank] = $money_open_creadit;
+            $arrBankChart['changre_year'][$item->bank] = $changre_year;
+            $arrBankChart['withdrawal_fee'][$item->bank] = $withdrawal_fee;
+            $arrBankChart['free_time_rate'][$item->bank] = $free_time_rate;
+        }
+
+        return $arrBankChart;
     }
 
     private function generateArrBankChart($model, $index_type) {
@@ -67,10 +93,13 @@ class DefaultController extends Controller
         return $arrBankChart;
     }
 
-    private function builData($is_borrow = null) {
+    private function builData($is_borrow = null, $slug = null) {
         $model = new ServicesForm;
         if (empty($is_borrow))
             $model->scenario = 'borrow';
+
+        if ('the-tin-dung' == $slug AND empty($is_borrow))
+            $model->scenario = 'borrow_salary';
 
         $cookies = Yii::$app->request->cookies;
         // get the cookie value

@@ -22,25 +22,12 @@ class Services extends ServicesBase
 
     public $arrType;
 
-    public $arrRuleType;
-
     function __construct() {
         $this->arrType = [
             self::TYPE_CAR => Yii::t('services', 'Borrow buy car'),
             self::TYPE_HOUSE => Yii::t('services', 'Borrow buy house'),
             self::TYPE_CREDIT_CARD => Yii::t('services', 'Creadit card'),
             self::TYPE_CONSUMER_CREDIT => Yii::t('services', 'Consumer creadit'),
-        ];
-
-        $this->arrRuleType = [
-            self::TYPE_CAR => [
-                'max-time' => '84',
-            ],
-            self::TYPE_HOUSE => [
-                'max-time' => '180',
-            ],
-            self::TYPE_CREDIT_CARD => [],
-            self::TYPE_CONSUMER_CREDIT => [],
         ];
     }
 
@@ -59,7 +46,7 @@ class Services extends ServicesBase
     public function rules()
     {
         return [
-            [['title', 'type', 'bank', 'rate', 'rate_special'], 'required'],
+            [['title', 'type', 'bank'], 'required'],
         ];
     }
 
@@ -69,7 +56,7 @@ class Services extends ServicesBase
     public function scenarios()
     {
         return [
-            'default' => ['title', 'type', 'bank', 'rate', 'rate_special', 'created_at', 'created_by', 'updated_at', 'language', 'status'],
+            'default' => ['title', 'type', 'bank', 'rate', 'rate_special', 'created_at', 'created_by', 'updated_at', 'language', 'status', 'data_creadit'],
         ];
     }
 

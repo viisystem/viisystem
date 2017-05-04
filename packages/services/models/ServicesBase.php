@@ -13,6 +13,7 @@ use Yii;
  * @property mixed $bank
  * @property mixed $rate
  * @property mixed $rate_special
+ * @property mixed $data_creadit
  * @property mixed $created_at
  * @property mixed $created_by
  * @property mixed $updated_at
@@ -41,6 +42,7 @@ class ServicesBase extends \vii\components\ActiveRecord
             'bank',
             'rate',
             'rate_special',
+            'data_creadit',
             'created_at',
             'created_by',
             'updated_at',
@@ -55,7 +57,7 @@ class ServicesBase extends \vii\components\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'type', 'bank', 'rate', 'rate_special', 'created_at', 'created_by', 'updated_at', 'language', 'status'], 'safe']
+            [['title', 'type', 'bank', 'rate', 'rate_special', 'data_creadit', 'created_at', 'created_by', 'updated_at', 'language', 'status'], 'safe']
         ];
     }
 
@@ -71,6 +73,7 @@ class ServicesBase extends \vii\components\ActiveRecord
             'bank' => Yii::t('services', 'Bank'),
             'rate' => Yii::t('services', 'Rate'),
             'rate_special' => Yii::t('services', 'Rate special'),
+            'data_creadit' => Yii::t('services', 'Data Creadit'),
             'created_at' => Yii::t('services', 'Created Date'),
             'created_by' => Yii::t('services', 'Created By'),
             'updated_at' => Yii::t('services', 'Updated Date'),

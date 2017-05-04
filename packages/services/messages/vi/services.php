@@ -20,4 +20,5 @@ return [
 	'Borrow Time' => 'thời gian vay',
 	'Full Name' => 'Họ tên',
 	'Phone' => 'Số điện thoại',
+	'Salary' => 'Thu nhập hàng tháng',
 ];

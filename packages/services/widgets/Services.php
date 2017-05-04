@@ -20,7 +20,10 @@ class Services extends Widget{
     	$slug = ArrayHelper::getValue($this->_params, 'slug', null);
 
     	$model = new ServicesForm;
-        $model->scenario = 'borrow';
+        if ('the-tin-dung' == $slug)
+            $model->scenario = 'borrow_salary';
+        else
+            $model->scenario = 'borrow';
         return $this->render($view, ['model' => $model, 'slug' => $slug]);
     }
 

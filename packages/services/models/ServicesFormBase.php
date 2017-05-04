@@ -10,6 +10,7 @@ use Yii;
  * @property \MongoDB\BSON\ObjectID|string $_id
  * @property mixed $borrow_money
  * @property mixed $borrow_time
+ * @property mixed $salary
  * @property mixed $fullname
  * @property mixed $email
  * @property mixed $phone
@@ -33,6 +34,7 @@ class ServicesFormBase extends \vii\components\ActiveRecord
             '_id',
             'borrow_money',
             'borrow_time',
+            'salary',
             'fullname',
             'email',
             'phone',
@@ -45,7 +47,7 @@ class ServicesFormBase extends \vii\components\ActiveRecord
     public function rules()
     {
         return [
-            [['borrow_money', 'borrow_time', 'fullname', 'email', 'phone'], 'safe']
+            [['borrow_money', 'borrow_time', 'salary', 'fullname', 'email', 'phone'], 'safe']
         ];
     }
 
@@ -57,6 +59,7 @@ class ServicesFormBase extends \vii\components\ActiveRecord
         return [
             'borrow_money' => Yii::t('services', 'Borrow Money'),
             'borrow_time' => Yii::t('services', 'Borrow Time'),
+            'salary' => Yii::t('services', 'Salary'),
             'fullname' => Yii::t('services', 'Full Name'),
             'phone' => Yii::t('services', 'Phone'),
             'email' => Yii::t('services', 'Email'),

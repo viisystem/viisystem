@@ -3,6 +3,7 @@
 use vii\helpers\Html;
 use vii\widgets\ActiveForm;
 use vii\widgets\Select;
+use app\packages\services\models\Services;
 
 /* @var $this yii\web\View */
 /* @var $model app\packages\services\models\ServicesSearch */
@@ -22,7 +23,12 @@ use vii\widgets\Select;
             <?= $form->field($model, 'title') ?>
         </div>
         <div class="col-md-3">
-            <?= $form->field($model, 'type') ?>
+            <?= $form->field($model, 'type')->widget(kartik\widgets\Select2::classname(), [
+                'data' => Services::getInstance()->arrType,
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]) ?>
         </div>
         <div class="col-md-3">
             <?= $form->field($model, 'bank') ?>

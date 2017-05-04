@@ -23,11 +23,18 @@
     width: auto;
     color: #b6b6b6;
 }
+.custom-button-bank {
+    padding-top: 25px;
+}
 @media (max-width: 768px) {
 	.tab-header li a {
 	    display: flex;
         flex-direction: column;
 	}
+
+    .custom-button-bank {
+        padding-top: 0;
+    }
 }
 .outside-more-articles {
     position: fixed;
