@@ -43,7 +43,7 @@ FrontendAsset::register($this);
 			<div class="container">
 				<!-- Logo -->
 				<a class="logo" href="<?= Url::home(); ?>">
-					<img src="<?= $this->theme->baseUrl ?>/assets/publish/img/themes/logo1-blue.png" alt="Logo">
+					<img src="<?= $this->theme->baseUrl ?>/assets/publish/img/findbank.vn.png" alt="Logo">
 				</a>
 				<!-- End Logo -->
 
@@ -157,7 +157,7 @@ FrontendAsset::register($this);
 					<div class="row">
 						<!-- About -->
 						<div class="col-md-3 md-margin-bottom-40">
-							<a href="index.html"><img id="logo-footer" class="footer-logo" src="<?= $this->theme->baseUrl ?>/assets/publish/img/themes/logo2-blue.png" alt=""></a>
+							<a href="index.html"><img id="logo-footer" class="footer-logo" src="<?= $this->theme->baseUrl ?>/assets/publish/img/findbank.vn2.png" alt=""></a>
 							<p class="text-justify">FindBank là 1 công ty thuộc lĩnh vực tài chính công nghệ, cung cấp thông tin và so sánh tài chính, lãi suất chi tiết các khoản vay của tất cả các ngân hàng tại Việt Nam. </p>
 							<p class="text-justify">Chúng tôi mang đến cho các khách hàng dịch vụ vay với lãi suất ưu đãi nhất, thời gian nhanh nhất, thủ tục đơn giản nhất.</p>
 						</div><!--/col-md-3-->

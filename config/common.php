@@ -17,19 +17,21 @@ $config = [
                 ],
                 'twitter' => [
                     'class' => 'yii\authclient\clients\Twitter',
-                    'consumerKey' => 'fhIT75pMYEzvYWud2BpBShnV8',
-	                'consumerSecret' => '6b1eQAPZgZxqQkxu5iejqiG34nMEte7FAdnkwGb1ZWx3UVTCmh',
+                    'consumerKey' => 'xV7oIyCd78I4vWhuMiUL35biL',
+	                'consumerSecret' => 'IojJtWoPfbwE7Ao4su3FBpFL9shj3xjkRnNg0TmYwA4AneYLUU',
 	                'attributeParams' => [
                     	'include_email' => 'true'
                   	],
                 ],
                 'googleplus' => [
                     'class' => 'yii\authclient\clients\Google',
-                    'clientId' => '542827592469-jhj3cpjk513a1cau0ndavjbcrtab49cb.apps.googleusercontent.com',
-                    'clientSecret' => '47jGEbZFtUtOlGJ_IeHFKkBl',
+                    'clientId' => '542827592469-7clqiilba9am6psvlsiqkpm05p9u1dtg.apps.googleusercontent.com',
+                    'clientSecret' => 'k5VBWBW0vLTtO05Ktjewdzrl',
                 ],
                 'linkedin' => [
                     'class' => 'yii\authclient\clients\LinkedIn',
+                    'clientId' => '81pk4efoffyj3s',
+	                'clientSecret' => 'ux5sk6TgMUsbuRQH',
                 ],
             ],
         ],

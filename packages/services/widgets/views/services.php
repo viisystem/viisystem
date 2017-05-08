@@ -59,7 +59,7 @@ use yii\helpers\Url;
 		    <label class="checkbox"><input type="checkbox" name="is_borrow"><i></i>Chưa có nhu cầu vay, chỉ tham khảo lãi suất</label>
 		</div>
 		<div class="col-md-3 col-sm-4 col-xs-12">
-			<button type="submit" class="btn-u btn-u-blue pull-right form-control">Tìm ngân hàng tốt nhất</button>
+			<button type="submit" class="btn-u pull-right form-control">Tìm ngân hàng tốt nhất</button>
 		</div>
 	<?php endif; ?>
 <?php ActiveForm::end(); ?>
