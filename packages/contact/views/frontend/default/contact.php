@@ -67,6 +67,17 @@ ContactAsset::register($this);
 						</div>
 					</div>
 
+					<label>Mã xác nhận <span class="color-red">*</span></label>
+					<div class="row sky-space-20">
+						<div class="col-md-11 col-md-offset-0">
+							<div>
+								<?= $form->field($item, 'captcha')->widget(yii\captcha\Captcha::classname(), [
+									'captchaAction' => '/contact/frontend/default/captcha'
+								])->label(false) ?>
+							</div>
+						</div>
+					</div>
+
 					<p><?= Html::submitButton('Gửi Liên Hệ', ['class' => 'btn-u', 'name' => 'contact-button']) ?></p>
 				</fieldset>
 				<?php else: ?>

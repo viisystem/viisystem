@@ -8,6 +8,15 @@ use Yii;
 
 class DefaultController extends Controller
 {
+    public function actions()
+    {
+        return [
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction'
+            ],
+        ];
+    }
+    
     public function actionIndex() {
     	$model = new Contact;
     	$model->setDefaultValues();

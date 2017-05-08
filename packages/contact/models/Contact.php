@@ -12,6 +12,11 @@ class Contact extends ContactBase
     private static $_instance = null;
 
     /**
+     * @var string
+     */
+    public $captcha;
+
+    /**
      * @return \app\packages\contact\models\Contact
      */
     public static function getInstance()
@@ -28,6 +33,9 @@ class Contact extends ContactBase
         return [
             [['fullname', 'phone', 'content'], 'required'],
             [['email'], 'email'],
+            [['captcha'], 'required'],
+            [['captcha'], 'captcha', 'captchaAction'=>'/contact/frontend/default/captcha'],
+            [['content'], 'string', 'min' => 10],
             [['content'], 'string', 'min' => 10],
         ];
     }
@@ -38,7 +46,7 @@ class Contact extends ContactBase
     public function scenarios()
     {
         return [
-            'default' => ['fullname', 'email', 'phone', 'content', 'created_at', 'updated_at'],
+            'default' => ['fullname', 'email', 'phone', 'content', 'created_at', 'updated_at', 'captcha'],
         ];
     }
 
