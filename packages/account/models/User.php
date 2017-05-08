@@ -140,9 +140,9 @@ class User extends UserBase implements \yii\web\IdentityInterface
 		$phone = Yii::$app->user->identity->phone;
 		$displayName = null;
 
-		if (!empty($fullname))
+		if (!empty(trim($fullname)))
 			$displayName = $fullname;
-		else if (!empty($email))
+		else if (!empty(trim($email)))
 			$displayName = $email;
 		else
 			$displayName = ArrayHelper::getValue($phone, 'mobile');

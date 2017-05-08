@@ -25,15 +25,30 @@ class DefaultController extends Controller
     public function onAuthSuccess($client)
     {
         $attributes = $client->getUserAttributes();
-        $fullname = ArrayHelper::getValue($attributes, 'name');
-        $email = ArrayHelper::getValue($attributes, 'email');
-        $id = ArrayHelper::getValue($attributes, 'id');
+        $clientName = $client->getName();
+
+        switch ($clientName) {
+            case 'linkedin':
+                $fullname = ArrayHelper::getValue($attributes, 'first_name') . " " . ArrayHelper::getValue($attributes, 'last_name');
+                $email = ArrayHelper::getValue($attributes, 'email');
+                $id = ArrayHelper::getValue($attributes, 'id');
+                break;
+            case 'google':
+                $fullname = ArrayHelper::getValue($attributes, 'displayName');
+                $email = ArrayHelper::getValue($attributes, 'emails.0.value');
+                $id = ArrayHelper::getValue($attributes, 'id');
+                break;
+            
+            default:
+                $fullname = ArrayHelper::getValue($attributes, 'name');
+                $email = ArrayHelper::getValue($attributes, 'email');
+                $id = ArrayHelper::getValue($attributes, 'id');
+                break;
+        }
 
         $model = User::find()->where(['source_id' => $id])->one();
         if (!empty($model)){
             $login = Yii::$app->user->login($model, 3600*24*30);
-            // if ($login)
-            //     $this->goBack();
         } else {
             $model = new User;
             $model->source_id = $id;
@@ -58,8 +73,6 @@ class DefaultController extends Controller
 
             $saveUser = $model->save();
             $login = Yii::$app->user->login($model, 3600*24*30);
-            // if ($login)
-            //     $this->goBack();
         }
     }
 

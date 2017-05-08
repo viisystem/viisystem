@@ -25,7 +25,7 @@
 		"letyii/yii2-jstree": "*",
 		"miloschuman/yii2-highcharts-widget": "*",
 		"letyii/yii2-imagecache": "*",
-		"yiisoft/yii2-authclient": "~2.1.0"
+		"yiisoft/yii2-authclient": "*"
 	},
 	"require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

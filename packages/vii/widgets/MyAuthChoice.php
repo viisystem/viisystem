@@ -60,7 +60,7 @@ class MyAuthChoice extends AuthChoice
         }
         /* @var $widgetClass Widget */
         $widgetClass = $widgetConfig['class'];
-        if (!(is_subclass_of($widgetClass, AuthChoiceItem::className()))) {
+        if (!(is_subclass_of($widgetClass, \yii\authclient\widgets\AuthChoiceItem::className()))) {
             throw new InvalidConfigException('Item widget class must be subclass of "' . AuthChoiceItem::className() . '"');
         }
         unset($widgetConfig['class']);
