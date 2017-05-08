@@ -15,7 +15,7 @@ use yii\helpers\Url;
 		</div>
 		<div class="caption">
 			<h3><a class="hover-effect text-justify" href="<?= Url::to(['/article/frontend/default/view', 'slug' => $item->slug, 'id' => $item->_id]) ?>"><?= StringHelper::truncateWords($item->title, 10); ?></a></h3>
-			<p class="text-justify"><?= StringHelper::truncateWords(strip_tags($item->content), 20); ?></p>
+			<p class="text-justify"><?= StringHelper::truncateWords(strip_tags($item->content), 16); ?></p>
 		</div>
 	</div>
 </div>

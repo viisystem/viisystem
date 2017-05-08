@@ -52,7 +52,6 @@ $this->params['breadcrumbs'][] = $this->title;
 									return Html::a($item->username,['view', 'id'=> strval($item->_id)]);
 								},
 							],
-							//'password',
 							'displayName',
 							[
 								'attribute'=>'gender',
@@ -62,16 +61,18 @@ $this->params['breadcrumbs'][] = $this->title;
 								'attribute'=>'birth_date',
 								'headerOptions'=>['style'=>'width:100px;'],
 							],
-							// 'emails',
-							// 'addresses',
-							// 'description',
-							// 'auth_key',
-							// 'token',
-							// 'created_date',
-							// 'updated_date',
-							// 'last_login_datetime',
-							// 'data',
-
+							[
+		                        'header' => 'Vai trò',
+		                        // 'mergeHeader' => TRUE,
+		                        // 'hAlign' => 'center',
+		                        // 'vAlign' => 'middle',
+		                        'value' => function ($model, $index, $widget) {
+		                            return Html::a('Quản lý vai trò', ['permission/assign', 'user_id' => (string)$model->_id], [
+		                                'class' => 'btn btn-xs btn-primary'
+		                            ]);
+		                        },
+		                        'format'=>'raw',
+		                    ],
 							['class'=>'yii\grid\ActionColumn','headerOptions'=>['style'=>'width:70px;']],
 						],
 					]); ?>

@@ -8,6 +8,7 @@ use Yii;
 
 class AuthController extends Controller
 {
+
     public function actionLogin()
     {
 		if (!Yii::$app->user->isGuest) {

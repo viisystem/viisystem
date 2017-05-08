@@ -102,14 +102,8 @@ class FeatureArticle extends \app\packages\diy\widgets\Widget
 				->limit($number_of_post)
 				->all();
 
-			$categories = null;
-			if (!empty($model)) {
-				$categories = $this->getCategoryByArticle($model);
-			}
-
 			$cache = [
 				'item' => $model,
-				'categories' => $categories
 			];
 
 			\Yii::$app->cache->set($cacheKey, $cache);
@@ -125,20 +119,5 @@ class FeatureArticle extends \app\packages\diy\widgets\Widget
 		}
 		
 		return $str;
-	}
-
-	function getCategoryByArticle($model) {
-		$arrCategory = [];
-		foreach ($model as $item) {
-			$categories = Category::find()->select(['title', '_id', 'slug'])->where(['_id' => $item->category, 'is_active' => '1'])->all();
-
-			if (!empty($categories)) {
-				foreach ($categories as $category) {
-					$arrCategory[(string) $item->_id][] = $category;
-				}
-			}
-		}
-
-		return $arrCategory;
 	}
 }

@@ -21,14 +21,8 @@ class DefaultController extends Controller
         if (empty($cache)) {
             $model = $this->findModel($id, $slug);
 
-            $created_by = null;
-            if (!empty($model)) {
-            	$created_by = User::findOne($model->created_by);
-            }
-
             $cache = [
             	'item' => $model,
-            	'created_by' => $created_by,
             ];
             
             Yii::$app->cache->set($cacheKey, $cache);
@@ -38,6 +32,11 @@ class DefaultController extends Controller
         Yii::$app->view->title = empty($model->seo_title) ? $model->title : $model->seo_title;
 
         return $this->render('view', $cache);
+    }
+
+    public function actionDeleteallcache(){
+        Yii::$app->cache->flush();
+        return $this->goBack();
     }
     
     /**

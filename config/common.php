@@ -7,6 +7,32 @@ $config = [
 		'@vii' => dirname(__DIR__) . '/packages/vii'
 	],
     'components' => [
+    	'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+            	'facebook' => [
+                    'class' => 'yii\authclient\clients\Facebook',
+                    'clientId' => '459044147777669',
+                    'clientSecret' => 'affc1cebb3300afa755e39398bdf3afc',
+                ],
+                'twitter' => [
+                    'class' => 'yii\authclient\clients\Twitter',
+                    'consumerKey' => 'fhIT75pMYEzvYWud2BpBShnV8',
+	                'consumerSecret' => '6b1eQAPZgZxqQkxu5iejqiG34nMEte7FAdnkwGb1ZWx3UVTCmh',
+	                'attributeParams' => [
+                    	'include_email' => 'true'
+                  	],
+                ],
+                'googleplus' => [
+                    'class' => 'yii\authclient\clients\Google',
+                    'clientId' => '542827592469-jhj3cpjk513a1cau0ndavjbcrtab49cb.apps.googleusercontent.com',
+                    'clientSecret' => '47jGEbZFtUtOlGJ_IeHFKkBl',
+                ],
+                'linkedin' => [
+                    'class' => 'yii\authclient\clients\LinkedIn',
+                ],
+            ],
+        ],
     	'formatter' => [
             'class' => 'yii\i18n\Formatter',
             'thousandSeparator' => '.',
@@ -159,6 +185,12 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
+        'panels' => [
+            'mongodb' => [
+                'class' => 'yii\\mongodb\\debug\\MongoDbPanel',
+            ],
+        ],
+        'allowedIPs' => ['127.0.0.1', '::1', '10.*', '192.168.*', '128.199.133.125']
     ];
 
     $config['bootstrap'][] = 'gii';

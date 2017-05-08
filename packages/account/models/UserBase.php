@@ -16,6 +16,8 @@ use Yii;
  * @property mixed $emails
  * @property mixed $addresses
  * @property mixed $description
+ * @property mixed $source
+ * @property mixed $source_id
  * @property mixed $auth_key
  * @property mixed $token
  * @property mixed $created_date
@@ -49,6 +51,8 @@ class UserBase extends \yii\mongodb\ActiveRecord
 			'phone',
             'addresses',
             'description',
+            'source',
+            'source_id',
             'auth_key',
             'token',
             'created_date',
@@ -64,7 +68,7 @@ class UserBase extends \yii\mongodb\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'password', 'name', 'birth_date', 'gender', 'emails', 'phone', 'addresses', 'description', 'auth_key', 'token', 'created_date', 'updated_date', 'last_login_datetime', 'data'], 'safe']
+            [['username', 'password', 'name', 'birth_date', 'gender', 'emails', 'phone', 'addresses', 'description', 'source', 'source_id', 'auth_key', 'token', 'created_date', 'updated_date', 'last_login_datetime', 'data'], 'safe']
         ];
     }
 
@@ -84,6 +88,8 @@ class UserBase extends \yii\mongodb\ActiveRecord
 			'phone' => Yii::t('account', 'Phone'),
             'addresses' => Yii::t('account', 'Addresses'),
             'description' => Yii::t('account', 'Description'),
+            'source' => Yii::t('account', 'Source'),
+            'source_id' => Yii::t('account', 'Source ID'),
             'auth_key' => Yii::t('account', 'Auth Key'),
             'token' => Yii::t('account', 'Token'),
             'created_date' => Yii::t('account', 'Created Date'),

@@ -69,6 +69,8 @@ class Articles extends \app\packages\diy\widgets\Widget
 				->orderBy('_id DESC')
 				->limit($number_of_post)
 				->all();
+
+			\Yii::$app->cache->set($cacheKey, $cache);
 		}
 		
 		foreach($cache as $one)

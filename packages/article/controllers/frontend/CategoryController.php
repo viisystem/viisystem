@@ -39,7 +39,7 @@ class CategoryController extends Controller
     public function actionNews(){
         $cacheKey = 'news';
         $cache = Yii::$app->cache->get($cacheKey);
-        // if (empty($cache)) {
+        if (empty($cache)) {
             $articles = $this->getArticles();
 
             $cache = [
@@ -47,7 +47,7 @@ class CategoryController extends Controller
             ];
             
             Yii::$app->cache->set($cacheKey, $cache);
-        // }
+        }
 
         Yii::$app->view->title = 'Tin tức';
 

@@ -7,9 +7,62 @@ use yii\web\Controller;
 use Yii;
 use app\packages\account\models\User;
 use yii\web\NotFoundHttpException;
+use vii\helpers\ArrayHelper;
+use MongoId;
 
 class DefaultController extends Controller
 {
+    public function actions()
+    {
+        return [
+            'auth' => [
+                'class' => 'yii\authclient\AuthAction',
+                'successCallback' => [$this, 'onAuthSuccess'],
+            ],
+        ];
+    }
+
+    public function onAuthSuccess($client)
+    {
+        $attributes = $client->getUserAttributes();
+        $fullname = ArrayHelper::getValue($attributes, 'name');
+        $email = ArrayHelper::getValue($attributes, 'email');
+        $id = ArrayHelper::getValue($attributes, 'id');
+
+        $model = User::find()->where(['source_id' => $id])->one();
+        if (!empty($model)){
+            $login = Yii::$app->user->login($model, 3600*24*30);
+            // if ($login)
+            //     $this->goBack();
+        } else {
+            $model = new User;
+            $model->source_id = $id;
+            $model->source = $client->getName();
+            $model->username = $email;
+            $model->emails = [
+                [
+                    'address' => $email
+                ]
+            ];
+
+            $name = explode(' ', $fullname);
+            $fisrtName = ArrayHelper::getValue($name, 0);
+            $middleName = ArrayHelper::getValue($name, 1);
+            $lastName = ArrayHelper::getValue($name, 2);
+
+            $model->name = [
+                'first' => $fisrtName,
+                'middle' => $middleName,
+                'last' => $lastName,
+            ];
+
+            $saveUser = $model->save();
+            $login = Yii::$app->user->login($model, 3600*24*30);
+            // if ($login)
+            //     $this->goBack();
+        }
+    }
+
     public function actionLogin()
     {
 		if (!Yii::$app->user->isGuest) {

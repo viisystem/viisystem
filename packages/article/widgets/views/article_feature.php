@@ -4,13 +4,6 @@ use vii\helpers\ImageHelper;
 use vii\helpers\FileHelper;
 use vii\helpers\Html;
 use yii\helpers\Url;
-
-$arrCategory = [];
-if (isset($categories[(string)$item->_id]) AND !empty($categories[(string)$item->_id])) {
-	foreach ($categories[(string)$item->_id] as $category) {
-		$arrCategory[] = '<a href="' . Url::to(['/article/frontend/category/index', 'slug' => $category->slug, 'id' => (string)$category->_id]) . '">' . $category->title . '</a>';
-	}
-}
 ?>
 <div class="col-sm-6 sm-margin-bottom-30">
 	<div class="news-v2-badge">

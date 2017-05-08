@@ -15,12 +15,12 @@ use yii\helpers\Url;
 	<div class="reg-block">
 		<div class="reg-block-header">
 			<h2>Đăng nhập</h2>
-			<ul class="social-icons text-center">
-				<li><a class="rounded-x social_facebook" data-original-title="Facebook" href="#"></a></li>
-				<li><a class="rounded-x social_twitter" data-original-title="Twitter" href="#"></a></li>
-				<li><a class="rounded-x social_googleplus" data-original-title="Google Plus" href="#"></a></li>
-				<li><a class="rounded-x social_linkedin" data-original-title="Linkedin" href="#"></a></li>
-			</ul>
+			<?= \vii\widgets\MyAuthChoice::widget([
+			    'baseAuthUrl' => ['/account/frontend/default/auth'],
+			    'containerItemOption' => [
+			    	'class' => 'social-icons text-center'
+			    ]
+			]) ?>
 			<p>Bạn chưa có tài khoản? Click <a class="color-green" href="<?= Url::to(['/account/frontend/default/register']); ?>">Đăng ký</a> để tạo tài khoản.</p>
 		</div>
 		<?php $form = ActiveForm::begin([

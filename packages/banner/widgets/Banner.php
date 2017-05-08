@@ -46,6 +46,8 @@ class Banner extends \app\packages\diy\widgets\Widget
 				->orderBy('sort ASC')
 				->limit($number_of_post)
 				->all();
+
+			\Yii::$app->cache->set($cacheKey, $cache);
 		}
 		
 		foreach($cache as $one)

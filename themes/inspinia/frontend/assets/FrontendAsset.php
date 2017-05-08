@@ -26,7 +26,7 @@ class FrontendAsset extends AssetBundle
         'plugins/parallax-slider/css/parallax-slider.css',
         'plugins/owl-carousel/owl-carousel/owl.carousel.css',
         'plugins/revolution-slider/rs-plugin/css/settings.css',
-        'css/theme-colors/blue.css',
+        'css/theme-colors/default.css',
         'css/theme-skins/dark.css',
         'css/custom.css',
     ];

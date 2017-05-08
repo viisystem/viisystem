@@ -3,12 +3,12 @@
 $common = require(__DIR__ . '/common.php');
 
 $config = [
-	'defaultRoute' => 'dashboard/frontend/default',	
-	'components' => [
-		'errorHandler' => [
-			'errorAction' => 'dashboard/frontend/error',
-		],
-		'urlManager' => [
+    'defaultRoute' => 'dashboard/frontend/default', 
+    'components' => [
+        'errorHandler' => [
+            'errorAction' => 'dashboard/frontend/error',
+        ],
+        'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => true,
             'rules' => [
@@ -21,8 +21,14 @@ $config = [
                 //'diy/<controller:\w+>' => 'diy/<controller>/index',
                 //'diy/<controller:\w+>/<action:\w+>' => 'diy/<controller>/<action>',
                 
+                'tim-kiem' => 'dashboard/frontend/search/index',
                 'lien-he' => 'contact/frontend/default/index',
+                'dang-nhap' => 'account/frontend/default/login',
+                'thong-tin-ca-nhan' => 'account/frontend/default/infomation',
+                'dang-xuat' => 'account/frontend/default/logout',
+                'dang-ky' => 'account/frontend/default/register',
                 'dich-vu-<slug:[\d\w\-_]+>' => 'services/frontend/default/index',
+                'chi-tiet-dich-vu' => 'services/frontend/default/detail',
                 'tin-tuc' => 'article/frontend/category/news',
 
                 '<slug:[\d\w\-_]+>-ac<id:[\d\w]+>' => 'article/frontend/category/index',
@@ -33,17 +39,17 @@ $config = [
                 //'<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/frontend/<controller>/<action>',
             ]
         ],
-		'db' => [
-			'class' => 'yii\db\Connection',
-			'dsn' => 'mysql:host=localhost;dbname=test',
-			'username' => 'root',
-			'password' => '',
-			'charset' => 'utf8',
-		],
-		'mongodb' => [
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=test',
+            'username' => 'root',
+            'password' => '',
+            'charset' => 'utf8',
+        ],
+        'mongodb' => [
             'class' => '\yii\mongodb\Connection',
             //'dsn' => 'mongodb://viidev:khongphaiem123!@#@52.77.56.164:27017/viidev',
-			'dsn' => 'mongodb://127.0.0.1:27017/viidev',
+            'dsn' => 'mongodb://127.0.0.1:27017/viidev',
         ],
         'view' => [
             'theme' => [
@@ -51,10 +57,10 @@ $config = [
                 'baseUrl' => '@web/themes/inspinia/frontend',
             ],
         ],
-	],
-	
-	'layout' => 'frontend',
-	'layoutPath' => '@app/themes/inspinia/frontend/layouts',
+    ],
+    
+    'layout' => 'frontend',
+    'layoutPath' => '@app/themes/inspinia/frontend/layouts',
 ];
 
 $configs = array_replace_recursive($common, $config);

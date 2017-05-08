@@ -1,8 +1,7 @@
 <?php
 
 namespace app\packages\article;
-
-use yii\filters\AccessControl;
+use vii\components\AccessControl;
 
 class Module extends \app\classes\Module
 {
@@ -13,20 +12,6 @@ class Module extends \app\classes\Module
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow'=>true,
-                        'matchCallback' => function($rule, $action) {
-                            if(strpos($action->controller->id, 'frontend/') !== false)
-                                return true;
-                            return false;
-                        }
-                    ],
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
             ],
         ];
     }

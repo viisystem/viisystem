@@ -64,9 +64,9 @@ class User extends UserBase implements \yii\web\IdentityInterface
     public function scenarios()
     {
         return array_merge(parent::rules(),[
-            'register' => ['username', 'password', 'name', 'birth_date', 'gender', 'emails', 'phone', 'addresses', 'description', 'auth_key', 'token', 'created_date', 'updated_date', 'last_login_datetime', 'data', 'confirm_password'],
-            'default' => ['username', 'password', 'name', 'birth_date', 'gender', 'emails', 'phone', 'addresses', 'description', 'auth_key', 'token', 'created_date', 'updated_date', 'last_login_datetime', 'data', 'confirm_password', 'new_pass'],
-            'infomation' => ['username', 'password', 'name', 'birth_date', 'gender', 'emails', 'phone', 'addresses', 'description', 'auth_key', 'token', 'created_date', 'updated_date', 'last_login_datetime', 'data', 'confirm_password', 'new_pass'],
+            'register' => ['username', 'password', 'name', 'birth_date', 'gender', 'emails', 'phone', 'addresses', 'description', 'source', 'source_id', 'auth_key', 'token', 'created_date', 'updated_date', 'last_login_datetime', 'data', 'confirm_password'],
+            'default' => ['username', 'password', 'name', 'birth_date', 'gender', 'emails', 'phone', 'addresses', 'description', 'source', 'source_id', 'auth_key', 'token', 'created_date', 'updated_date', 'last_login_datetime', 'data', 'confirm_password', 'new_pass'],
+            'infomation' => ['username', 'password', 'name', 'birth_date', 'gender', 'emails', 'phone', 'addresses', 'description', 'source', 'source_id', 'auth_key', 'token', 'created_date', 'updated_date', 'last_login_datetime', 'data', 'confirm_password', 'new_pass'],
 //            'addrole' => ['name'],
         ]);
     }

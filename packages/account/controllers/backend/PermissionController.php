@@ -3,6 +3,8 @@
 namespace app\packages\account\controllers\backend;
 
 use yii\web\Controller;
+use yii\helpers\ArrayHelper;
+use yii\mongodb\Query;
 use Yii;
 
 class PermissionController extends Controller
@@ -169,4 +171,74 @@ class PermissionController extends Controller
 		}
 		return $this->redirect(['/account/permission']);
 	}
+
+	public function actionAssign($user_id) {
+        // Show tree role
+        $auth = Yii::$app->authManager;
+        
+        // Get all item have in table auth_item.
+        $items = (new Query)->from($auth->itemCollection)
+            ->orderBy('type ASC')
+            ->all();
+
+        $itemOption = [];
+        foreach ($items as $item) {
+            if ($item['type'] == 2)
+                $itemOption[$item['name']] = $item['description'];
+            else
+                $itemOption[$item['name']] = $item['name'];
+        }
+
+        // Get permission for user
+        $assignments = $auth->getAssignments($user_id);
+        $assignmentsByUser = [];
+        foreach ($assignments as $assignment) {
+            $assignmentsByUser[] = $assignment->roleName;
+        }
+
+        if (!empty(Yii::$app->request->post('permission'))) {
+        	$this->updatePermissionAssign(Yii::$app->request->post('permission'), $user_id);
+
+            $this->redirect(['assign', 'user_id' => $user_id]);
+        }
+
+        $assign = [
+        	'items' => $itemOption,
+        	'assignmentsByUser' => $assignmentsByUser,
+        	'auth' => $auth
+        ];
+
+        Yii::$app->view->title = Yii::t($this->module->id, ucfirst($this->module->id));
+        Yii::$app->view->params['breadcrumbs'][] = Yii::$app->view->title;
+
+        return $this->render('assign', $assign);
+    }
+
+    protected function updatePermissionAssign($permissions, $uid = null) {
+        // Auth manager
+        $auth = Yii::$app->authManager;
+        
+        // delete all assign by user
+        Yii::$app->mongodb->getCollection($auth->assignmentCollection)->remove(['user_id' => $uid]);
+        
+        if (is_array($permissions)) {
+            // add assign by user
+            foreach ($permissions as $permission) {
+            	$item = (new Query)->from($auth->itemCollection)
+            		->where(['name' => $permission])
+		            ->orderBy('type ASC')
+		            ->one();
+
+	            $item = json_decode(json_encode($item), FALSE);
+
+                if (!empty($uid)) {
+                    $auth->assign($item, $uid);
+                }
+            }
+        } else {
+            if (!empty($uid)) {
+                $auth->assign($permissions, $uid);
+            }
+        }
+    }
 }
