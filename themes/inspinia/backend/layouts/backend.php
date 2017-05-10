@@ -76,7 +76,13 @@ use yii\widgets\Breadcrumbs;
                     <li>
                         <a href="javascript:void(0)"><i class="fa fa-cubes"></i> <span class="nav-label">Dịch vụ</span> <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-							<li><a href="<?= yii\helpers\Url::to(['/services/default']) ?>">Dịch vụ</a></li>
+                            <li><a href="<?= yii\helpers\Url::to(['/services/default']) ?>">Dịch vụ</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><i class="fa fa-cubes"></i> <span class="nav-label">Liên hệ</span> <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+							<li><a href="<?= yii\helpers\Url::to(['/contact/default']) ?>">Danh sách liên hệ</a></li>
                         </ul>
                     </li>
                     <li>

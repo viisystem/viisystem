@@ -23,7 +23,7 @@ use yii\helpers\Url;
 			  	<div class="form-control-feedback" aria-hidden="true">đ</div>
 			</div>
 			<div class="form-group has-feedback col-md-3 col-sm-4 col-xs-12 custom-feedback custom-button-bank">
-				<button type="submit" class="btn-u btn-u-blue pull-right form-control">Tìm ngân hàng tốt nhất</button>
+				<button type="submit" class="btn-u pull-right form-control">Tìm ngân hàng tốt nhất</button>
 			</div>
 		<?php else: ?>
 			<div class="form-group has-feedback col-md-6 custom-feedback">

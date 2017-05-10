@@ -59,7 +59,7 @@ class ContactSearch extends Contact
      */
     public function search($params)
     {
-        $query = Article::find();
+        $query = Contact::find();
 
         // add conditions that should always apply here
         $query->where(['language' => Yii::$app->params['languageDefault']]);

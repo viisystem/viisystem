@@ -8,6 +8,7 @@ use DateTime;
 
 class Contact extends ContactBase
 {
+    public $moduleName = 'contact';
 
     private static $_instance = null;
 
