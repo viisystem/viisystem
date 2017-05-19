@@ -34,19 +34,25 @@ class PushDataBitrixController extends Controller {
                 $fields = [
                     'fields[NAME]' => $item->fullname,
                     'fields[TITLE]' => $item->fullname,
-                    'fields[LFM[EMAIL][n1][VALUE]]' => $item->email,
-                    'fields[LFM[PHONE][n1][VALUE]]' => $item->phone,
+                    'fields[EMAIL][0][VALUE]' => $item->email,
+                    'fields[PHONE][0][VALUE]' => $item->phone,
+					'fields[UF_CRM_1495182451]' => $item->borrow_time,
+					'fields[UF_CRM_1495182428]' => $item->borrow_money,
                 ];
 
                 // Add lead crm with infomation input user when save success infomation user
-                var_dump(CRMLeadBitrixAPI::getInstance()->AddLeadCRM($fields));
+                $addCrm = CRMLeadBitrixAPI::getInstance()->AddLeadCRM($fields);
 
+				$addCrm = json_decode($addCrm);
+				if (isset($addCrm->error))
+					continue;
+				
                 echo $index . ': ' . $item->_id . ' - ' . $item->fullname . "\n";
 
                 $index++;
 
-                $model->status = 1;
-                $model->save();
+                $item->status = 1;
+                $item->save();
             }
         }
     }

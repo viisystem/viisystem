@@ -8,7 +8,7 @@ class BitrixAPIConnect
 	/**
      * @var String Domain website
      */
-	private $domain = 'http://bitrix24.net.vn';
+	private $domain = 'https://bitrix24.net.vn';
 
 	/**
      * @var String Application id
@@ -46,7 +46,7 @@ class BitrixAPIConnect
 
 	public function __construct() {
         $access_token = 'vjx4oi93v0r7b6r7kbql9iusrq4b5uf7';
-        if (empty(static::$expires_in) OR time() >= static::$expires_in){
+        if (null === static::$expires_in OR time() >= static::$expires_in){
 		  $access_token = json_decode($this->generateAuthorizationToken());
           static::$expires_in = time() + 3600;
         }
@@ -74,20 +74,20 @@ class BitrixAPIConnect
      * @return string
      */
 	private function generateAuthorizationToken() {
-		$urlGetToken = $this->domain . '/pub/token?grant_type=refresh_token&client_id=' . $this->application_id . '&client_secret=' . $this->application_secret . '&refresh_token=' . $this->authentication_refresh_code . '&scope=granted_permission&redirect_uri=app_URL';
+		$urlGetToken = $this->domain . '/pub/token/?grant_type=refresh_token&client_id=' . $this->application_id . '&client_secret=' . $this->application_secret . '&refresh_token=' . $this->authentication_refresh_code . '&scope=granted_permission&redirect_uri=app_URL';
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $urlGetToken); 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_ENCODING, "");
-        curl_setopt($ch, CURLOPT_AUTOREFERER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);    # required for https urls
-        curl_setopt($ch, CURLOPT_MAXREDIRS, 15);   
+		curl_setopt($ch, CURLOPT_URL, $urlGetToken); 
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        $response = curl_exec($ch);
+		curl_setopt($ch, CURLOPT_ENCODING, "");
+		curl_setopt($ch, CURLOPT_AUTOREFERER, true);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);    # required for https urls
 
-        if(!$response){
-		    die('Error: "' . curl_error($ch) . '" - Code: ' . curl_errno($ch));
+		$response = curl_exec($ch);
+
+		if(!$response){
+			die('Error: "' . curl_error($ch) . '" - Code: ' . curl_errno($ch));
 		}
 
 		curl_close($ch);

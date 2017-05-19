@@ -4,6 +4,7 @@ namespace app\packages\services\models;
 
 use Yii;
 use vii\components\BitrixAPIConnect;
+use yii\helpers\ArrayHelper;
 
 
 class CRMLeadBitrixAPI
@@ -54,6 +55,9 @@ class CRMLeadBitrixAPI
 
         $arrField = [];
         foreach ($fields as $field => $value) {
+			if (is_array($value)) {
+				$value = ArrayHelper::getValue($value, '0.VALUE');
+			}
             $arrField[] = $field . '=' .urlencode($value);
         }
 

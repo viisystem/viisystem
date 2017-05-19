@@ -29,8 +29,8 @@ $config = [
         ],
         'mongodb' => [
             'class' => '\yii\mongodb\Connection',
-            //'dsn' => 'mongodb://viidev:khongphaiem123!@#@52.77.56.164:27017/viidev',
-            'dsn' => 'mongodb://127.0.0.1:27017/viidev',
+            'dsn' => 'mongodb://findbank_acc:smlGlBGVjw3E7gH6J1dA@127.0.0.1:27017/findbank_db',
+            // 'dsn' => 'mongodb://127.0.0.1:27017/findbank_db',
         ],
         'urlManager' => [
             'baseUrl' => 'http://localhost/pmonkey/',
