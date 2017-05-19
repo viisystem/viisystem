@@ -28,7 +28,7 @@ class PushDataBitrixController extends Controller {
         $rowPerPage = 100;
         $index = 0;
         for ($i=0; $i < 1000; $i++) {
-            $model = ServicesForm::find()->limit($rowPerPage)->offset($i * $rowPerPage)->all();
+            $model = ServicesForm::find()->limit($rowPerPage)->offset($i * $rowPerPage)->where(['status' => 0])->all();
 
             foreach ($model as $item) {
                 $fields = [
