@@ -14,6 +14,7 @@ use Yii;
  * @property mixed $fullname
  * @property mixed $email
  * @property mixed $phone
+ * @property mixed $status
  */
 class ServicesFormBase extends \vii\components\ActiveRecord
 {
@@ -38,6 +39,7 @@ class ServicesFormBase extends \vii\components\ActiveRecord
             'fullname',
             'email',
             'phone',
+            'status',
         ];
     }
 
@@ -47,7 +49,7 @@ class ServicesFormBase extends \vii\components\ActiveRecord
     public function rules()
     {
         return [
-            [['borrow_money', 'borrow_time', 'salary', 'fullname', 'email', 'phone'], 'safe']
+            [['borrow_money', 'borrow_time', 'salary', 'fullname', 'email', 'phone', 'status'], 'safe']
         ];
     }
 
@@ -63,6 +65,7 @@ class ServicesFormBase extends \vii\components\ActiveRecord
             'fullname' => Yii::t('services', 'Full Name'),
             'phone' => Yii::t('services', 'Phone'),
             'email' => Yii::t('services', 'Email'),
+            'status' => Yii::t('services', 'Status'),
         ];
     }
 }

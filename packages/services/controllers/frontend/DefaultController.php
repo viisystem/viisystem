@@ -5,6 +5,7 @@ namespace app\packages\services\controllers\frontend;
 use yii\web\Controller;
 use app\packages\services\models\Services;
 use app\packages\services\models\ServicesForm;
+use app\packages\services\models\CRMLeadBitrixAPI;
 use vii\helpers\ArrayHelper;
 use Yii;
 
@@ -120,6 +121,7 @@ class DefaultController extends Controller
                 $model->$attribute = $value;
             }
         }
+        $model->status = 0;
         return $model;
     }
 
