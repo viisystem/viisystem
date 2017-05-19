@@ -6,6 +6,8 @@ use Yii;
 
 class ServicesForm extends ServicesFormBase
 {
+    public $moduleName = 'services';
+    
     public function rules()
     {
         return [

@@ -12,6 +12,7 @@ use Yii;
 use yii\console\Controller;
 use yii\helpers\ArrayHelper;
 use app\packages\services\models\ServicesForm;
+use app\packages\services\models\CRMLeadBitrixAPI;
 
 /**
  * This command echoes the first argument that you have entered.
@@ -26,8 +27,8 @@ class PushDataBitrixController extends Controller {
     public function actionIndex() {
         $rowPerPage = 100;
         $index = 0;
-        for ($i=0; $i < 1000; $i++) { 
-            $model = ServicesForm::find()->limit($rowPerPage)->offset($i * $rowPerPage)->where(['status' => 0])->all();
+        for ($i=0; $i < 1000; $i++) {
+            $model = ServicesForm::find()->limit($rowPerPage)->offset($i * $rowPerPage)->all();
 
             foreach ($model as $item) {
                 $fields = [
@@ -38,9 +39,9 @@ class PushDataBitrixController extends Controller {
                 ];
 
                 // Add lead crm with infomation input user when save success infomation user
-                CRMLeadBitrixAPI::getInstance()->AddLeadCRM($fields);
+                var_dump(CRMLeadBitrixAPI::getInstance()->AddLeadCRM($fields));
 
-                echo $index . ': ' . $item->_id . ' - ' . $item->fullname;
+                echo $index . ': ' . $item->_id . ' - ' . $item->fullname . "\n";
 
                 $index++;
 

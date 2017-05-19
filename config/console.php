@@ -5,6 +5,9 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',
+    'aliases' => [
+        '@vii' => dirname(__DIR__) . '/packages/vii'
+    ],
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -18,12 +21,21 @@ $config = [
             ],
         ],
         'db' => [
-			'class' => 'yii\db\Connection',
-			'dsn' => 'mysql:host=localhost;dbname=test',
-			'username' => 'root',
-			'password' => '',
-			'charset' => 'utf8',
-		],
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=test',
+            'username' => 'root',
+            'password' => '',
+            'charset' => 'utf8',
+        ],
+        'mongodb' => [
+            'class' => '\yii\mongodb\Connection',
+            //'dsn' => 'mongodb://viidev:khongphaiem123!@#@52.77.56.164:27017/viidev',
+            'dsn' => 'mongodb://127.0.0.1:27017/viidev',
+        ],
+        'urlManager' => [
+            'baseUrl' => 'http://localhost/pmonkey/',
+            'scriptUrl' => '',
+        ]
     ],
     //'params' => $params,
     /*
