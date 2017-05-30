@@ -33,7 +33,9 @@ use vii\helpers\FileHelper;
 	data-endeasing="Power1.easeIn"
 	data-captionhidden="off"
 	style="z-index: 6">
-	<!-- <a href="<?= $item->link ?>" <?= $item->target == 1 ? 'target="_blank"' : null ?> class="btn-u btn-brd btn-brd-hover btn-u-light">Xem Thêm</a> -->
+	<?php if (!empty($item->link)){ ?>
+		<a href="<?= $item->link ?>" <?= $item->target == 1 ? 'target="_blank"' : null ?> class="btn-u btn-brd btn-brd-hover btn-u-light">Xem Thêm</a>
+	<?php } ?>
 	</div>
 </li>
 <!-- END SLIDE -->

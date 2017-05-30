@@ -97,7 +97,7 @@ ContactAsset::register($this);
 			<ul class="list-unstyled who margin-bottom-30">
 				<li><i class="fa fa-home"></i>Số 51, đường Trung Yên 9, phường Yên Hòa, quận Cầu Giấy, Hà Nội</li>
 				<li><a href="mailto:contact@findbank.vn"><i class="fa fa-envelope"></i>contact@findbank.vn</a></li>
-				<li><i class="fa fa-phone"></i>0962 767 222 / 0968 715 558</li>
+				<li><i class="fa fa-phone"></i>0988 631 988</li>
 				<li><i class="fa fa-globe"></i>http://www.example.com</li>
 			</ul>
 

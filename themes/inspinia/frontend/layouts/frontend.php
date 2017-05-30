@@ -63,9 +63,9 @@ FrontendAsset::register($this);
 						<li class="topbar-devider hidden-xs hidden-sm"></li>
 						<li class="hidden-xs hidden-sm">
 							<?php if ($detect->isMobile()): ?>
-								<a href="tel:0962 767 222">Hot Line:  0962 767 222</a>
+								<a href="tel:0988 631 988">Hot Line:  0988 631 988</a>
 							<?php else: ?>
-								<span style="color: #7c8082; font-size: 11px; text-transform: uppercase;">Hot Line:  0962 767 222</span>
+								<span style="color: #7c8082; font-size: 11px; text-transform: uppercase;">Hot Line:  0988 631 988</span>
 							<?php endif; ?>
 						</li>
 					</ul>
@@ -203,7 +203,7 @@ FrontendAsset::register($this);
 									<li><a href="<?= Url::to(['/account/frontend/default/login']); ?>">Đăng nhập</a><i class="fa fa-angle-right"></i></li>
 								<?php } ?>
 								<li>
-									<a href="tel:0962 767 222">Hot Line:  0962 767 222</a><i class="fa fa-angle-right"></i>
+									<a href="tel:0988 631 988">Hot Line:  0988 631 988</a><i class="fa fa-angle-right"></i>
 								</li>
 						</li>
 							</ul>
@@ -216,7 +216,7 @@ FrontendAsset::register($this);
 							<address class="md-margin-bottom-40 text-justify">
 								Số 51, đường Trung Yên 9, phường Yên Hòa <br />
 								Quận Cầu Giấy, Hà Nội <br />
-								Phone: 0962 767 222 / 0968 715 558 <br />
+								Phone: 0988 631 988 <br />
 								Fax: 0437833187 <br />
 								Email: <a href="mailto:contact@findbank.vn" class="">contact@findbank.vn</a>
 							</address>
@@ -295,7 +295,7 @@ FrontendAsset::register($this);
 			 	<?php } ?>
 			</div>
 			<div class="col-md-6 col-sm-6 col-xs-6 text-center custom_infomation hotline">
-				<a href="tel:0962 767 222"><i class="fa fa-phone" style="font-size: 25px;"></i><p>Hotline: 0962 767 222</p></a>
+				<a href="tel:0988 631 988"><i class="fa fa-phone" style="font-size: 25px;"></i><p>Hotline: 0988 631 988</p></a>
 			</div>
 		</div>
 	</div>
