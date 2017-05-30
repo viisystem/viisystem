@@ -70,3 +70,6 @@
 .outside-more-articles .custom_infomation:last-child {
     border-right: 0;
 }
+.revolution-mch-1:after {
+    background: transparent;
+}
