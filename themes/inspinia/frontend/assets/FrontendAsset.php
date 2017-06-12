@@ -23,9 +23,7 @@ class FrontendAsset extends AssetBundle
         'plugins/animate.css',
         'plugins/line-icons/line-icons.css',
         'plugins/font-awesome/css/font-awesome.min.css',
-        'plugins/parallax-slider/css/parallax-slider.css',
         'plugins/owl-carousel/owl-carousel/owl.carousel.css',
-        'plugins/revolution-slider/rs-plugin/css/settings.css',
         'css/theme-colors/default.css',
         'css/theme-skins/dark.css',
         'css/custom.css',
@@ -35,17 +33,11 @@ class FrontendAsset extends AssetBundle
         'plugins/jquery/jquery-migrate.min.js',
         'plugins/back-to-top.js',
         'plugins/smoothScroll.js',
-        'plugins/parallax-slider/js/modernizr.js',
-        'plugins/parallax-slider/js/jquery.cslider.js',
         'plugins/owl-carousel/owl-carousel/owl.carousel.js',
-        'plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js',
-        'plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js',
         'js/custom.js',
         'js/app.js',
         'js/plugins/owl-carousel.js',
         'js/plugins/style-switcher.js',
-        'js/plugins/parallax-slider.js',
-        'js/plugins/revolution-slider.js',
     ];
 	
     public $depends = [

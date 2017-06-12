@@ -40,7 +40,7 @@ class Banner extends \app\packages\diy\widgets\Widget
 
 		$cacheKey = 'banner_list';
         $cache = \Yii::$app->cache->get($cacheKey);
-        if (empty($cache)) {
+        // if (empty($cache)) {
 			$cache = \app\packages\banner\models\Banner::find()
 				->where(['status' => '1'])
 				->orderBy('sort ASC')
@@ -48,7 +48,7 @@ class Banner extends \app\packages\diy\widgets\Widget
 				->all();
 
 			\Yii::$app->cache->set($cacheKey, $cache);
-		}
+		// }
 		
 		foreach($cache as $one)
 		{

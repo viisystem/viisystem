@@ -13,17 +13,20 @@ class BitrixAPIConnect
 	/**
      * @var String Application id
      */
-	private $application_id = 'local.59141e673713c7.76259301';
+	// private $application_id = 'local.59141e673713c7.76259301';
+	private $application_id = 'local.593d1256df3e15.21633918';
 
 	/**
      * @var String Application secret
      */
-	private $application_secret = 'l04TQYdZDS5l1EhK4rgnTCc0bJ5v5Otc8PvncIPxcakrAFTjiN';
+	// private $application_secret = 'l04TQYdZDS5l1EhK4rgnTCc0bJ5v5Otc8PvncIPxcakrAFTjiN';
+	private $application_secret = 'qVz1n01VvFEpPg7nz1Gz6VYy1zlDBr2gGxayxitEAUa4ITYXnv';
 
 	/**
      * @var String Authentication refresh code
      */
-	private $authentication_refresh_code = 'pyu4je4w96ono3jhu5zguwsmwwxggdaw';
+	// private $authentication_refresh_code = 'pyu4je4w96ono3jhu5zguwsmwwxggdaw';
+	private $authentication_refresh_code = 'rqr1p24ugn1xffy1t26k2hh4rzdyimq2';
 
 	/**
      * @var String Link connect api

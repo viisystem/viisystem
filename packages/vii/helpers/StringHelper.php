@@ -303,4 +303,17 @@ class StringHelper extends BaseStringHelper
         return ucfirst($textnumber." đồng");
     }
 
+    /**
+     * Tra ve 1 so dien thoai co so 84 o dau tien, neu co so 0 o dau thi cat bo so 0 va them so 84
+     * @param integer $phone So dien thoai can xu ly
+     * @return integer So dien thoai co so 84 dau tien
+     */
+    public static function asPhone ($phone) {
+        $phone = trim($phone);
+        if (!preg_match('/^84/', $phone) AND preg_match('/^0/', $phone)) {
+            $phone = '84' . substr($phone, 1);
+        }
+        return $phone;
+    }
+
 }

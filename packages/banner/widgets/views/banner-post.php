@@ -2,40 +2,21 @@
 use vii\helpers\Html;
 use vii\helpers\ImageHelper;
 use vii\helpers\FileHelper;
+use app\themes\inspinia\frontend\assets\FrontendAsset;
+use yii\helpers\Url;
 
 ?>
-<!-- SLIDE -->
-<li class="revolution-mch-1" data-transition="fade" data-slotamount="5" data-masterspeed="1000" data-title="<?= $item->title ?>">
-	<!-- MAIN IMAGE -->
-	<?= Yii::$app->imageCache->img(FileHelper::getUploadDir($item->image), '', ['class' => 'img-responsive', 'data-bgfit' => '100%', 'data-bgposition' => 'center center', 'data-bgrepeat' => 'no-repeat']); ?>
+<div class="ls-slide" data-ls="slidedelay:4500;transition2d:25;">
+	<img src="<?= $this->theme->baseUrl ?>/assets/publish/img/bg-banner.png" class="ls-bg" alt=""/>
 
-	<div class="tp-caption revolution-ch1 sft start"
-		data-x="center"
-		data-hoffset="0"
-		data-y="100"
-		data-speed="1500"
-		data-start="500"
-		data-easing="Back.easeInOut"
-		data-endeasing="Power1.easeIn"
-		data-endspeed="300">
-		 
-	</div>
+	<?= Yii::$app->imageCache->img(FileHelper::getUploadDir($item->image), '', ['class' => 'ls-s-1', 'style' => 'top:0; left: 50%', 'data-ls' => 'offsetxin:left; durationin:1500; delayin:900; fadein:false; offsetxout:left; durationout:1000; fadeout:false;']); ?>
 
-	<!-- LAYER -->
-	<div class="tp-caption sft"
-	data-x="center"
-	data-hoffset="0"
-	data-y="370"
-	data-speed="1600"
-	data-start="2800"
-	data-easing="Power4.easeOut"
-	data-endspeed="300"
-	data-endeasing="Power1.easeIn"
-	data-captionhidden="off"
-	style="z-index: 6">
-	<?php if (!empty($item->link)){ ?>
-		<a href="<?= $item->link ?>" <?= $item->target == 1 ? 'target="_blank"' : null ?> class="btn-u btn-brd btn-brd-hover btn-u-light">Xem Thêm</a>
-	<?php } ?>
-	</div>
-</li>
-<!-- END SLIDE -->
+    <!-- <span class="ls-s-1" style=" text-transform: uppercase; line-height: 45px; font-size:35px; color:#fff; top:130px; left: 650px; slidedirection : top; slideoutdirection : bottom; durationin : 3500; durationout : 3500; delayin : 1000;">
+        Tư Vấn Vận Hành
+        <br>Và Phát Triển Doanh Nghiệp
+    </span> -->
+
+    <!-- <a class="btn-u btn-u-orange ls-s-1" href="<?= Url::to(['/feedback/frontend/default/index']) ?>" style=" padding: 9px 20px; font-size:25px; top:300px; left: 650px; slidedirection : bottom; slideoutdirection : top; durationin : 3500; durationout : 2500; delayin : 1000; ">
+        LIÊN HỆ VỚI CHÚNG TÔI
+    </a> -->
+</div>

@@ -35,7 +35,7 @@ class PushDataBitrixController extends Controller {
                     'fields[NAME]' => $item->fullname,
                     'fields[TITLE]' => $item->fullname,
                     'fields[EMAIL][0][VALUE]' => $item->email,
-                    'fields[PHONE][0][VALUE]' => $item->phone,
+                    'fields[PHONE][0][VALUE]' => \vii\helpers\StringHelper::asPhone($item->phone),
 					'fields[UF_CRM_1495182451]' => $item->borrow_time,
 					'fields[UF_CRM_1495182428]' => $item->borrow_money,
                 ];

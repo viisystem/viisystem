@@ -2,15 +2,30 @@
 use yii\helpers\Url;
 use app\themes\inspinia\frontend\assets\FrontendAsset;
 ?>
+<?php
+
+$this->registerCssFile($this->theme->baseUrl . '/assets/publish/plugins/layer-slider/layerslider/css/layerslider.css', ['depends' => FrontendAsset::className()]);
+$this->registerCssFile($this->theme->baseUrl . '/assets/publish/plugins/layer-slider/layerslider/skins/fullwidth/skin.css', ['depends' => FrontendAsset::className()]);
+$this->registerJsFile($this->theme->baseUrl . '/assets/publish/plugins/layer-slider/layerslider/js/greensock.js', ['depends' => FrontendAsset::className()]);
+$this->registerJsFile($this->theme->baseUrl . '/assets/publish/plugins/layer-slider/layerslider/js/layerslider.transitions.js', ['depends' => FrontendAsset::className()]);
+$this->registerJsFile($this->theme->baseUrl . '/assets/publish/plugins/layer-slider/layerslider/js/layerslider.kreaturamedia.jquery.js', ['depends' => FrontendAsset::className()]);
+$this->registerJsFile($this->theme->baseUrl . '/assets/publish/js/plugins/layer-slider.js', ['depends' => FrontendAsset::className()]);
+$this->registerJs("
+    LayerSlider.initLayerSlider();
+", yii\web\View::POS_READY);
+$this->registerCss("
+     @media screen and (min-width: 1800px) {
+        .ls-hack-left {left:0!important; width:700px!important; height:auto!important}
+     }
+     
+");
+
+?>
+
 <!--=== Slider ===-->
-<div class="tp-banner-container">
-	<div class="tp-banner">
-		<ul>
-			<?= app\packages\banner\widgets\Banner::widget(); ?>
-		</ul>
-		<div class="tp-bannertimer tp-bottom"></div>
-	</div>
-</div>
+<div id="layerslider" style="width: 100%; height: 500px; margin: 0px auto;">
+	<?= app\packages\banner\widgets\Banner::widget(); ?>
+</div><!--/layer_slider-->
 <!--=== End Slider ===-->
 
 <!-- Services Section -->

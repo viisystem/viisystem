@@ -304,9 +304,7 @@ FrontendAsset::register($this);
 		$this->registerJs("
 			App.init();
 			OwlCarousel.initOwlCarousel();
-			RevolutionSlider.initRSfullWidth();
 			StyleSwitcher.initStyleSwitcher();
-			ParallaxSlider.initParallaxSlider();
 		", yii\web\View::POS_READY);
 	?>
 	<!--[if lt IE 9]>
