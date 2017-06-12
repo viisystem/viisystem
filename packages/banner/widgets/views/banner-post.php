@@ -9,7 +9,7 @@ use yii\helpers\Url;
 <div class="ls-slide" data-ls="slidedelay:4500;transition2d:25;">
 	<img src="<?= $this->theme->baseUrl ?>/assets/publish/img/bg-banner.png" class="ls-bg" alt=""/>
 
-	<?= Yii::$app->imageCache->img(FileHelper::getUploadDir($item->image), '', ['class' => 'ls-s-1', 'style' => 'top:0; left: 50%', 'data-ls' => 'offsetxin:left; durationin:1500; delayin:900; fadein:false; offsetxout:left; durationout:1000; fadeout:false;']); ?>
+	<?= Yii::$app->imageCache->img(FileHelper::getUploadDir($item->image), '', ['class' => 'ls-s-1', 'style' => 'top:0; left: 50%', 'data-ls' => 'offsetxin:left; durationin:800; delayin:20; fadein:false; offsetxout:left; durationout:100; fadeout:false;']); ?>
 
     <!-- <span class="ls-s-1" style=" text-transform: uppercase; line-height: 45px; font-size:35px; color:#fff; top:130px; left: 650px; slidedirection : top; slideoutdirection : bottom; durationin : 3500; durationout : 3500; delayin : 1000;">
         Tư Vấn Vận Hành
